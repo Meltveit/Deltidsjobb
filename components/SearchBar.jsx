@@ -1,9 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { NORWEGIAN_CITIES, JOB_SECTORS, JOB_TAGS } from '@/lib/constants';
+import { useLocale } from 'next-intl';
+import { CITIES_BY_LOCALE, JOB_SECTORS, JOB_TAGS } from '@/lib/constants';
 
 export default function SearchBar({ onSearch }) {
+    const locale = useLocale();
+    const cities = CITIES_BY_LOCALE[locale] || CITIES_BY_LOCALE['no'];
+
     const [searchQuery, setSearchQuery] = useState('');
     const [location, setLocation] = useState('');
     const [sector, setSector] = useState('');
@@ -52,7 +56,7 @@ export default function SearchBar({ onSearch }) {
                             className="input"
                         >
                             <option value="">Alle byer</option>
-                            {NORWEGIAN_CITIES.map((city) => (
+                            {cities.map((city) => (
                                 <option key={city} value={city}>
                                     {city}
                                 </option>

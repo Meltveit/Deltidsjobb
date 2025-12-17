@@ -148,5 +148,86 @@
                 "button": "Dine rettigheter →"
             }
         }
+    },
+    "ForCompanies": {
+        "metaTitle": "For Bedrifter - Legg ut stilling | Deltidsjobb",
+        "metaDescription": "Finn din neste deltidsansatt raskt og enkelt. Legg ut stillingsannonse i dag.",
+        "title": "For Bedrifter",
+        "subtitle": "Den enkleste måten å finne din neste ansatt på",
+        "benefits": {
+            "fast": {
+                "title": "Raskt og enkelt",
+                "desc": "Legg ut en stilling på under 5 minutter"
+            },
+            "price": {
+                "title": "Rimelig pris",
+                "desc": "Kun {price} for 60 dager",
+                "value": "649 kr"
+            },
+            "audience": {
+                "title": "Nå riktig målgruppe",
+                "desc": "SEO-optimalisert for maksimal synlighet"
+            }
+        },
+        "howItWorks": {
+            "title": "Slik fungerer det",
+            "step1": {
+                "title": "Opprett konto",
+                "desc": "Registrer bedriften din gratis"
+            },
+            "step2": {
+                "title": "Legg ut stilling",
+                "desc": "Fyll ut informasjon om stillingen i 3 enkle steg"
+            },
+            "step3": {
+                "title": "Betal og publiser",
+                "desc": "Betal {price} med kort, og stillingen publiseres umiddelbart"
+            },
+            "step4": {
+                "title": "Motta søknader",
+                "desc": "Kandidater sender søknader direkte til din e-post"
+            }
+        },
+        "cta": "Kom i gang nå"
+    },
+    "Dashboard": {
+        "title": "Dashboard",
+        "welcome": "Velkommen tilbake, {name}!",
+        "stats": {
+            "active": "Aktive stillinger",
+            "expired": "Utgåtte stillinger",
+            "pending": "Venter på betaling"
+        },
+        "buttons": {
+            "create": "+ Legg ut ny stilling",
+            "delete": "Slett",
+            "edit": "Rediger",
+            "view": "Vis",
+            "finishPayment": "Fullfør betaling",
+            "republish": "Publiser på nytt",
+            "createFirst": "Legg ut din første stilling"
+        },
+        "sections": {
+            "pending": "Venter på betaling",
+            "active": "Aktive stillinger",
+            "expired": "Utgåtte stillinger"
+        },
+        "success": {
+            "title": "Betaling vellykket!",
+            "message": "Din stilling er nå publisert og aktiv."
+        },
+        "labels": {
+            "created": "Opprettet",
+            "expired": "Utgikk",
+            "views": "visninger",
+            "daysRemaining": "dager igjen",
+            "noActive": "Du har ingen aktive stillinger"
+        },
+        "alerts": {
+            "confirmRepublish": "Vil du publisere denne stillingen på nytt? Dette vil koste {price} for 60 nye dager.",
+            "confirmDelete": "Er du sikker på at du vil slette denne stillingen?",
+            "errorDelete": "Kunne ikke slette jobb",
+            "errorRepublish": "Kunne ikke republisere jobb"
+        }
     }
 }

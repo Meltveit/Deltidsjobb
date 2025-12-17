@@ -148,5 +148,86 @@
                 "button": "Dine rettigheder →"
             }
         }
+    },
+    "ForCompanies": {
+        "metaTitle": "For Virksomheder - Opret job | Deltidsjobb",
+        "metaDescription": "Find din næste deltidsansatte hurtigt og nemt. Opret en jobannonce i dag.",
+        "title": "For Virksomheder",
+        "subtitle": "Den nemmeste måde at finde din næste medarbejder på",
+        "benefits": {
+            "fast": {
+                "title": "Hurtigt og enkelt",
+                "desc": "Opret et job på under 5 minutter"
+            },
+            "price": {
+                "title": "Rimelig pris",
+                "desc": "Kun {price} for 60 dage",
+                "value": "449 kr."
+            },
+            "audience": {
+                "title": "Nå den rette målgruppe",
+                "desc": "SEO-optimeret for maksimal synlighed"
+            }
+        },
+        "howItWorks": {
+            "title": "Sådan fungerer det",
+            "step1": {
+                "title": "Opret konto",
+                "desc": "Registrer din virksomhed gratis"
+            },
+            "step2": {
+                "title": "Opret job",
+                "desc": "Udfyld information om stillingen i 3 enkle trin"
+            },
+            "step3": {
+                "title": "Betal og publicer",
+                "desc": "Betal {price} med kort, og jobbet publiceres med det samme"
+            },
+            "step4": {
+                "title": "Modtag ansøgninger",
+                "desc": "Kandidater sender ansøgninger direkte til din e-mail"
+            }
+        },
+        "cta": "Kom i gang nu"
+    },
+    "Dashboard": {
+        "title": "Betjeningspanel",
+        "welcome": "Velkommen tilbage, {name}!",
+        "stats": {
+            "active": "Aktive job",
+            "expired": "Udløbne job",
+            "pending": "Afventer betaling"
+        },
+        "buttons": {
+            "create": "+ Opret nyt job",
+            "delete": "Slet",
+            "edit": "Rediger",
+            "view": "Vis",
+            "finishPayment": "Gennemfør betaling",
+            "republish": "Genudgiv",
+            "createFirst": "Opret dit første job"
+        },
+        "sections": {
+            "pending": "Afventer betaling",
+            "active": "Aktive job",
+            "expired": "Udløbne job"
+        },
+        "success": {
+            "title": "Betaling gennemført!",
+            "message": "Dit job er nu offentliggjort og aktivt."
+        },
+        "labels": {
+            "created": "Oprettet",
+            "expired": "Udløb",
+            "views": "visninger",
+            "daysRemaining": "dage tilbage",
+            "noActive": "Du har ingen aktive job"
+        },
+        "alerts": {
+            "confirmRepublish": "Vil du genudgive dette job? Dette koster {price} for 60 nye dage.",
+            "confirmDelete": "Er du sikker på, at du vil slette dette job?",
+            "errorDelete": "Kunne ikke slette job",
+            "errorRepublish": "Kunne ikke genudgive job"
+        }
     }
 }

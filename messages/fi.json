@@ -148,5 +148,86 @@
                 "button": "Oikeutesi →"
             }
         }
+    },
+    "ForCompanies": {
+        "metaTitle": "Yrityksille - Ilmoita työpaikka | Deltidsjobb",
+        "metaDescription": "Löydä seuraava osa-aikatyöntekijäsi nopeasti ja helposti. Jätä työpaikkailmoitus tänään.",
+        "title": "Yrityksille",
+        "subtitle": "Helpoin tapa löytää seuraava työntekijäsi",
+        "benefits": {
+            "fast": {
+                "title": "Nopea ja helppo",
+                "desc": "Jätä ilmoitus alle 5 minuutissa"
+            },
+            "price": {
+                "title": "Edullinen hinta",
+                "desc": "Vain {price} 60 päiväksi",
+                "value": "59 €"
+            },
+            "audience": {
+                "title": "Tavoita oikea kohderyhmä",
+                "desc": "SEO-optimoitu maksimaalisen näkyvyyden saavuttamiseksi"
+            }
+        },
+        "howItWorks": {
+            "title": "Näin se toimii",
+            "step1": {
+                "title": "Luo tili",
+                "desc": "Rekisteröi yrityksesi ilmaiseksi"
+            },
+            "step2": {
+                "title": "Jätä ilmoitus",
+                "desc": "Täytä tiedot tehtävästä 3 yksinkertaisessa vaiheessa"
+            },
+            "step3": {
+                "title": "Maksa ja julkaise",
+                "desc": "Maksa {price} kortilla, ja ilmoitus julkaistaan heti"
+            },
+            "step4": {
+                "title": "Vastaanota hakemuksia",
+                "desc": "Ehdokkaat lähettävät hakemukset suoraan sähköpostiisi"
+            }
+        },
+        "cta": "Aloita nyt"
+    },
+    "Dashboard": {
+        "title": "Kojelauta",
+        "welcome": "Tervetuloa takaisin, {name}!",
+        "stats": {
+            "active": "Aktiiviset työpaikat",
+            "expired": "Vanhentuneet työpaikat",
+            "pending": "Odottaa maksua"
+        },
+        "buttons": {
+            "create": "+ Ilmoita uusi työpaikka",
+            "delete": "Poista",
+            "edit": "Muokkaa",
+            "view": "Näytä",
+            "finishPayment": "Suorita maksu",
+            "republish": "Julkaise uudelleen",
+            "createFirst": "Jätä ensimmäinen ilmoitus"
+        },
+        "sections": {
+            "pending": "Odottaa maksua",
+            "active": "Aktiiviset työpaikat",
+            "expired": "Vanhentuneet työpaikat"
+        },
+        "success": {
+            "title": "Maksu onnistui!",
+            "message": "Työpaikkasi on nyt julkaistu ja aktiivinen."
+        },
+        "labels": {
+            "created": "Luotu",
+            "expired": "Vanhentui",
+            "views": "katselukertaa",
+            "daysRemaining": "päivää jäljellä",
+            "noActive": "Sinulla ei ole aktiivisia työpaikkoja"
+        },
+        "alerts": {
+            "confirmRepublish": "Haluatko julkaista tämän työpaikan uudelleen? Tämä maksaa {price} 60 uudelta päivältä.",
+            "confirmDelete": "Oletko varma, että haluat poistaa tämän työpaikan?",
+            "errorDelete": "Työpaikkaa ei voitu poistaa",
+            "errorRepublish": "Työpaikkaa ei voitu julkaista uudelleen"
+        }
     }
 }

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import StepWizard from '@/components/StepWizard';
+import AddressAutocomplete from '@/components/AddressAutocomplete';
 import { NORWEGIAN_CITIES, JOB_SECTORS, EMPLOYMENT_TYPES } from '@/lib/constants';
 
 export default function PostJobPage() {
@@ -23,6 +24,9 @@ export default function PostJobPage() {
         phone: '',
         showPhone: false,
         logo: '',
+        address: '',
+        zip: '',
+        country: '',
     });
 
     // Fetch available tags on mount
@@ -358,21 +362,51 @@ export default function PostJobPage() {
 
                                     <div>
                                         <label className="block text-sm font-medium mb-2">
-                                            By / Kommune <span className="text-red-400">*</span>
+                                            Adresse <span className="text-red-400">*</span>
                                         </label>
-                                        <select
-                                            value={formData.location}
-                                            onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                                            required
+                                        <AddressAutocomplete
+                                            onSelect={(data) => {
+                                                setFormData({
+                                                    ...formData,
+                                                    address: data.address,
+                                                    zip: data.zip,
+                                                    location: data.city,
+                                                    country: data.country
+                                                });
+                                            }}
                                             className="input"
-                                        >
-                                            <option value="">Velg by/kommune</option>
-                                            {NORWEGIAN_CITIES.map((city) => (
-                                                <option key={city} value={city}>
-                                                    {city}
-                                                </option>
-                                            ))}
-                                        </select>
+                                        />
+                                        <p className="text-xs text-gray-400 mt-2 mb-4">
+                                            Begynn å skrive adressen, så fyller vi ut resten automatisk.
+                                        </p>
+
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label className="block text-sm font-medium mb-2">
+                                                    Postnummer
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    value={formData.zip}
+                                                    onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
+                                                    className="input"
+                                                    placeholder="0001"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-medium mb-2">
+                                                    By / Sted <span className="text-red-400">*</span>
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    value={formData.location}
+                                                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                                                    required
+                                                    className="input"
+                                                    placeholder="Oslo"
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div>

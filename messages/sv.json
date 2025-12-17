@@ -148,5 +148,86 @@
                 "button": "Dina rättigheter →"
             }
         }
+    },
+    "ForCompanies": {
+        "metaTitle": "För Företag - Lägg ut jobb | Deltidsjobb",
+        "metaDescription": "Hitta din nästa deltidsanställda snabbt och enkelt. Lägg ut en platsannons idag.",
+        "title": "För Företag",
+        "subtitle": "Det enklaste sättet att hitta din nästa anställd",
+        "benefits": {
+            "fast": {
+                "title": "Snabbt och enkelt",
+                "desc": "Lägg ut ett jobb på under 5 minuter"
+            },
+            "price": {
+                "title": "Rimligt pris",
+                "desc": "Endast {price} för 60 dagar",
+                "value": "699 kr"
+            },
+            "audience": {
+                "title": "Nå rätt målgrupp",
+                "desc": "SEO-optimerad för maximal synlighet"
+            }
+        },
+        "howItWorks": {
+            "title": "Så fungerar det",
+            "step1": {
+                "title": "Skapa konto",
+                "desc": "Registrera ditt företag gratis"
+            },
+            "step2": {
+                "title": "Lägg ut jobb",
+                "desc": "Fyll i information om tjänsten i 3 enkla steg"
+            },
+            "step3": {
+                "title": "Betala och publicera",
+                "desc": "Betala {price} med kort, och tjänsten publiceras omedelbart"
+            },
+            "step4": {
+                "title": "Ta emot ansökningar",
+                "desc": "Kandidater skickar ansökningar direkt till din e-post"
+            }
+        },
+        "cta": "Kom igång nu"
+    },
+    "Dashboard": {
+        "title": "Instrumentpanel",
+        "welcome": "Välkommen tillbaka, {name}!",
+        "stats": {
+            "active": "Aktiva jobb",
+            "expired": "Utgångna jobb",
+            "pending": "Väntar på betalning"
+        },
+        "buttons": {
+            "create": "+ Lägg ut nytt jobb",
+            "delete": "Ta bort",
+            "edit": "Redigera",
+            "view": "Visa",
+            "finishPayment": "Slutför betalning",
+            "republish": "Publicera på nytt",
+            "createFirst": "Lägg ut ditt första jobb"
+        },
+        "sections": {
+            "pending": "Väntar på betalning",
+            "active": "Aktiva jobb",
+            "expired": "Utgångna jobb"
+        },
+        "success": {
+            "title": "Betalning lyckades!",
+            "message": "Ditt jobb är nu publicerat och aktivt."
+        },
+        "labels": {
+            "created": "Skapad",
+            "expired": "Gick ut",
+            "views": "visningar",
+            "daysRemaining": "dagar kvar",
+            "noActive": "Du har inga aktiva jobb"
+        },
+        "alerts": {
+            "confirmRepublish": "Vill du publicera detta jobb på nytt? Detta kostar {price} för 60 nya dagar.",
+            "confirmDelete": "Är du säker på att du vil ta bort detta jobb?",
+            "errorDelete": "Kunde inte ta bort jobb",
+            "errorRepublish": "Kunde inte återpublicera jobb"
+        }
     }
 }
