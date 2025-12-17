@@ -40,63 +40,64 @@ export default function Navbar({ locale }) {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center space-x-8">
-                        <Link href="/" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
-                            {t('home')}
-                        </Link>
-                        <Link href="/for-bedrifter" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
-                            {t('forCompanies')}
-                        </Link>
-                        <Link href="/cv-generator" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
-                            {t('cvGenerator')}
-                        </Link>
-
-                        {/* Language Switcher */}
-                        <div className="relative group">
-                            <button className="flex items-center gap-1 text-slate-600 hover:text-primary-600 font-medium">
-                                <span>{languages.find(l => l.code === locale)?.label || '🌐'}</span>
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <div className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                {languages.map((lang) => (
-                                    <button
-                                        key={lang.code}
-                                        onClick={() => changeLanguage(lang.code)}
-                                        className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 flex items-center gap-2 ${locale === lang.code ? 'font-bold text-primary-600' : 'text-slate-600'}`}
-                                    >
-                                        <span>{lang.label}</span>
-                                        <span>{lang.name}</span>
-                                    </button>
-                                ))}
-                            </div>
+                        <div className="flex items-center space-x-6">
+                            <Link href="/" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
+                                {t('home')}
+                            </Link>
+                            <Link href="/for-bedrifter" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
+                                {t('forCompanies')}
+                            </Link>
+                            <Link href="/cv-generator" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
+                                {t('cvGenerator')}
+                            </Link>
                         </div>
 
-                        {session ? (
-                            <>
-                                <Link href="/dashboard" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
-                                    {t('dashboard')}
-                                </Link>
-                                <Link href="/legg-ut-stilling" className="btn-primary">
-                                    {t('postJob')}
-                                </Link>
-                                <button
-                                    onClick={() => signOut()}
-                                    className="text-slate-600 hover:text-primary-600 font-medium transition-colors"
-                                >
-                                    {t('logout')}
+                        <div className="flex items-center space-x-4 pl-4 border-l border-slate-200">
+                            {session ? (
+                                <>
+                                    <Link href="/dashboard" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
+                                        {t('dashboard')}
+                                    </Link>
+                                    <Link href="/legg-ut-stilling" className="btn-primary py-2 px-4 text-sm">
+                                        {t('postJob')}
+                                    </Link>
+                                    <button
+                                        onClick={() => signOut()}
+                                        className="text-slate-600 hover:text-primary-600 font-medium transition-colors"
+                                    >
+                                        {t('logout')}
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <Link href="/auth/signin" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
+                                        {t('login')}
+                                    </Link>
+                                    <Link href="/auth/signup" className="btn-primary py-2 px-4 text-sm">
+                                        {t('signup')}
+                                    </Link>
+                                </>
+                            )}
+
+                            {/* Language Switcher - Moved to far right */}
+                            <div className="relative group ml-2">
+                                <button className="flex items-center gap-1 text-slate-600 hover:text-primary-600 font-medium p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                                    <span className="text-xl">{languages.find(l => l.code === locale)?.label || '🌐'}</span>
                                 </button>
-                            </>
-                        ) : (
-                            <>
-                                <Link href="/auth/signin" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
-                                    {t('login')}
-                                </Link>
-                                <Link href="/auth/signup" className="btn-primary">
-                                    {t('signup')}
-                                </Link>
-                            </>
-                        )}
+                                <div className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden z-50">
+                                    {languages.map((lang) => (
+                                        <button
+                                            key={lang.code}
+                                            onClick={() => changeLanguage(lang.code)}
+                                            className={`w-full text-left px-4 py-3 text-sm hover:bg-slate-50 flex items-center gap-3 ${locale === lang.code ? 'font-bold text-primary-600 bg-slate-50' : 'text-slate-600'}`}
+                                        >
+                                            <span className="text-lg">{lang.label}</span>
+                                            <span>{lang.name}</span>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Mobile menu button */}

@@ -1,103 +1,149 @@
 import { Link } from '@/navigation';
+import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata = {
-    title: 'Personvernerklæring | Deltidsjobb',
-    description: 'Slik behandler Deltidsjobb.no dine personopplysninger. Les om innsamling, bruk og dine rettigheter.',
-};
+export async function generateMetadata({ params: { locale } }) {
+    const t = await getTranslations({ locale, namespace: 'Privacy' });
+
+    return {
+        title: t('metaTitle'),
+        description: t('metaDescription'),
+    };
+}
 
 export default function PersonvernPage() {
+    const t = useTranslations('Privacy');
+
     return (
         <div className="container-custom py-20">
-            {/* Header / Hero */}
+            {/* Hero Section */}
             <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
-                <span className="text-primary-600 font-semibold tracking-wider uppercase text-sm mb-4 block">Trygghet</span>
+                <span className="text-primary-600 font-semibold tracking-wider uppercase text-sm mb-4 block">{t('header.eyebrow')}</span>
                 <h1 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900">
-                    Personvern<span className="gradient-text">erklæring</span>
+                    {t('header.title')} <span className="gradient-text">{t('header.titleHighlight')}</span>
                 </h1>
                 <p className="text-xl text-slate-500 leading-relaxed">
-                    Vi tar personvernet ditt på største alvor. Her kan du lese om hvordan vi samler inn og beskytter dine data.
+                    {t('header.desc')}
                 </p>
+                <div className="mt-4 text-sm text-slate-400">
+                    Sist oppdatert: {new Date().toLocaleDateString('no-NO')}
+                </div>
             </div>
 
-            <div className="max-w-4xl mx-auto space-y-6 animate-slide-up">
-                
-                {/* Intro Card */}
+            <div className="max-w-4xl mx-auto space-y-8 animate-slide-up">
+
+                {/* Section 1: Controller */}
                 <div className="glass-card bg-white p-8 md:p-10 shadow-sm border-l-4 border-l-primary-500">
-                    <h2 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
-                        <span className="text-3xl">📋</span> 1. Behandlingsansvarlig
-                    </h2>
-                    <p className="text-slate-600 leading-relaxed">
-                        Deltidsjobb (ved daglig leder) er hovedansvarlig for hvordan vi behandler dine personopplysninger.
-                        Denne erklæringen gir deg informasjonen du har krav på når du bruker nettsiden vår.
-                    </p>
-                </div>
-
-                {/* Data Collection Card */}
-                <div className="glass-card bg-white p-8 md:p-10 shadow-sm">
-                    <h2 className="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3">
-                        <span className="text-3xl">💾</span> 2. Hva vi faktisk samler inn
-                    </h2>
-                    
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:border-primary-200 transition-colors group">
-                            <h3 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
-                                <span className="bg-white text-lg w-8 h-8 rounded-full flex items-center justify-center shadow-sm">🏢</span>
-                                For Bedrifter
-                            </h3>
-                            <ul className="space-y-3 text-sm text-slate-600">
-                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-primary-400 rounded-full"></div> Kontaktinfo (navn, e-post)</li>
-                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-primary-400 rounded-full"></div> Bedriftsdata (org.nr)</li>
-                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-primary-400 rounded-full"></div> Betalingshistorikk</li>
-                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-primary-400 rounded-full"></div> Stillingsannonser</li>
-                            </ul>
+                    <div className="flex items-start gap-4">
+                        <div className="hidden md:flex w-12 h-12 rounded-full bg-primary-50 items-center justify-center text-2xl shrink-0">
+                            🔒
                         </div>
-
-                        <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:border-primary-200 transition-colors group">
-                            <h3 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
-                                <span className="bg-white text-lg w-8 h-8 rounded-full flex items-center justify-center shadow-sm">👀</span>
-                                For Besøkende
-                            </h3>
-                            <ul className="space-y-3 text-sm text-slate-600">
-                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div> Anonymisert IP-adresse</li>
-                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div> Nettlesertype</li>
-                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div> Bruksmønster</li>
-                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div> Cookies (for funksjonalitet)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Purpose & Third Parties */}
-                <div className="grid md:grid-cols-2 gap-6">
-                    <div className="glass-card bg-white p-8 shadow-sm">
-                        <h2 className="text-xl font-bold text-slate-900 mb-4">3. Formålet</h2>
-                        <p className="text-slate-600 text-sm leading-relaxed">
-                            Vi bruker dataene til å levere tjenesten til deg, forbedre nettsiden, og yte kundeservice. Vi bruker den <b>aldri</b> til å selge informasjonen din videre.
-                        </p>
-                    </div>
-                    <div className="glass-card bg-white p-8 shadow-sm">
-                        <h2 className="text-xl font-bold text-slate-900 mb-4">4. Deling av data</h2>
-                        <p className="text-slate-600 text-sm leading-relaxed">
-                            Vi deler kun data med strengt nødvendige partnere som hjelper oss å drive siden (f.eks. betalingsløsning eller serverhosting). Alle disse har taushetsplikt.
-                        </p>
-                    </div>
-                </div>
-
-                {/* Rights */}
-                <div className="glass-card bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 md:p-12 shadow-lg rounded-2xl">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                         <div>
-                            <h2 className="text-2xl font-bold mb-4">5. Dine Rettigheter</h2>
-                            <p className="text-slate-300 mb-0 leading-relaxed max-w-lg">
-                                Du er sjefen over dine egne data. Du har rett til innsyn, retting og sletting av dine opplysninger.
-                                Vi hører gjerne fra deg hvis du lurer på noe.
+                            <h2 className="text-2xl font-bold text-slate-900 mb-4">{t('sections.controller.title')}</h2>
+                            <p className="text-slate-600 leading-relaxed">
+                                {t('sections.controller.content')}
                             </p>
                         </div>
-                        <a 
-                            href="mailto:personvern@deltidsjobb.no" 
-                            className="bg-white text-slate-900 px-6 py-3 rounded-xl font-bold hover:bg-slate-100 transition-colors shadow-lg whitespace-nowrap"
-                        >
-                            Dine rettigheter →
+                    </div>
+                </div>
+
+                {/* Section 2: Data Collection Grid */}
+                <div className="grid md:grid-cols-2 gap-8">
+                    {/* For Companies */}
+                    <div className="glass-card bg-white p-8 shadow-sm">
+                        <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-xl mb-4 text-blue-600">
+                            🏢
+                        </div>
+                        <h3 className="text-xl font-bold text-slate-900 mb-4">{t('sections.collection.companiesTitle')}</h3>
+                        <ul className="space-y-3">
+                            <li className="flex items-center gap-3 text-slate-600">
+                                <svg className="w-5 h-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                {t('sections.collection.companiesList.contact')}
+                            </li>
+                            <li className="flex items-center gap-3 text-slate-600">
+                                <svg className="w-5 h-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                {t('sections.collection.companiesList.company')}
+                            </li>
+                            <li className="flex items-center gap-3 text-slate-600">
+                                <svg className="w-5 h-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                {t('sections.collection.companiesList.payment')}
+                            </li>
+                            <li className="flex items-center gap-3 text-slate-600">
+                                <svg className="w-5 h-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                {t('sections.collection.companiesList.ads')}
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* For Visitors */}
+                    <div className="glass-card bg-white p-8 shadow-sm">
+                        <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-xl mb-4 text-emerald-600">
+                            👀
+                        </div>
+                        <h3 className="text-xl font-bold text-slate-900 mb-4">{t('sections.collection.visitorsTitle')}</h3>
+                        <ul className="space-y-3">
+                            <li className="flex items-center gap-3 text-slate-600">
+                                <svg className="w-5 h-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                {t('sections.collection.visitorsList.ip')}
+                            </li>
+                            <li className="flex items-center gap-3 text-slate-600">
+                                <svg className="w-5 h-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                {t('sections.collection.visitorsList.browser')}
+                            </li>
+                            <li className="flex items-center gap-3 text-slate-600">
+                                <svg className="w-5 h-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                {t('sections.collection.visitorsList.usage')}
+                            </li>
+                            <li className="flex items-center gap-3 text-slate-600">
+                                <svg className="w-5 h-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                {t('sections.collection.visitorsList.cookies')}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                {/* Section 3 & 4 */}
+                <div className="space-y-6">
+                    <div className="glass-card bg-white p-8 shadow-sm transition-all hover:shadow-md">
+                        <h2 className="text-xl font-bold text-slate-900 mb-3">{t('sections.purpose.title')}</h2>
+                        <p className="text-slate-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: t.raw('sections.purpose.content') }} />
+                    </div>
+
+                    <div className="glass-card bg-white p-8 shadow-sm transition-all hover:shadow-md">
+                        <h2 className="text-xl font-bold text-slate-900 mb-3">{t('sections.sharing.title')}</h2>
+                        <p className="text-slate-600 leading-relaxed">
+                            {t('sections.sharing.content')}
+                        </p>
+                    </div>
+                </div>
+
+                {/* Section 5: Your Rights - Highlighted */}
+                <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 md:p-12 text-white shadow-xl">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                        <div>
+                            <h2 className="text-2xl font-bold mb-4">{t('sections.rights.title')}</h2>
+                            <p className="text-slate-300 leading-relaxed mb-6 max-w-xl">
+                                {t('sections.rights.content')}
+                            </p>
+                        </div>
+                        <a href="mailto:personvern@deltidsjobb.no" className="btn-primary bg-white text-slate-900 hover:bg-slate-50 border-none shrink-0">
+                            {t('sections.rights.button')}
                         </a>
                     </div>
                 </div>

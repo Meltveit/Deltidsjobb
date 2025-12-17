@@ -4,7 +4,7 @@
         "forCompanies": "Yrityksille",
         "cvGenerator": "CV-generaattori",
         "dashboard": "Kojelauta",
-        "postJob": "Jätä ilmoitus",
+        "postJob": "Ilmoita työpaikka",
         "logout": "Kirjaudu ulos",
         "login": "Kirjaudu sisään",
         "signup": "Luo tili"
@@ -27,6 +27,126 @@
     },
     "Home": {
         "heroTitle": "Löydä seuraava osa-aikatyösi",
-        "heroSubtitle": "Suomen helpoin alusta osa-aikatyön löytämiseen ja ilmoittamiseen."
+        "heroSubtitle": "Norjan helpoin alusta osa-aikatöiden löytämiseen ja ilmoittamiseen."
+    },
+    "About": {
+        "metaTitle": "Tietoa Deltidsjobbista - Missiomme työmarkkinoille",
+        "metaDescription": "Tutustu Deltidsjobbiin. Yhdistämme työnhakijat avoimiin työpaikkoihin yksinkertaisen ja tehokkaan alustan kautta.",
+        "sectionTitle": "Historiamme",
+        "title": "Rakennamme tulevaisuuden",
+        "titleHighlight": "työpaikkaa",
+        "description": "Deltidsjobb sai alkunsa yksinkertaisesta ideasta: Lisätyön löytämisen pitäisi olla yhtä helppoa kuin matkan varaaminen. Tänään autamme tuhansia löytämään merkityksellisiä töitä, jotka sopivat heidän arkeensa.",
+        "stats": {
+            "developed": "Paikallisesti kehitetty",
+            "support": "Tuki ja saatavuus",
+            "simple": "Yksinkertainen",
+            "userFocus": "Käyttäjäystävällinen"
+        },
+        "mission": {
+            "title": "Missiomme",
+            "p1": "Haluamme yksinkertaistaa osa-aikatyön rekrytointiprosessia. Poistamalla hälyn ja keskittymällä yksinomaan osa-aikamarkkinoihin luomme tehokkaamman kohtaamispaikan opiskelijoille, apulaisille ja yrityksille.",
+            "p2": "Uskomme, että joustava työ on avain dynaamiseen yhteiskuntaan, ja teemme joka päivä töitä yhdistääksemme oikean henkilön oikeaan työhön."
+        },
+        "values": {
+            "transparency": {
+                "title": "Läpinäkyvyys",
+                "desc": "Avoimet hinnat, ei piilokuluja ja selkeä viestintä."
+            },
+            "quality": {
+                "title": "Laatu",
+                "desc": "Varmistamme kaikkien työilmoitusten laadun välttääksemme roskapostin ja epäluotettavat toimijat."
+            },
+            "innovation": {
+                "title": "Innovaatio",
+                "desc": "Kehitämme jatkuvasti uusia työkaluja, kuten CV-generaattorin, auttaaksemme hakijoita eteenpäin."
+            }
+        }
+    },
+    "Terms": {
+        "metaTitle": "Ehdot ja edellytykset | Deltidsjobb",
+        "metaDescription": "Lue Deltidsjobb.no-sivuston käyttöehdot.",
+        "header": {
+            "eyebrow": "Oikeudellinen",
+            "title": "Ehdot ja",
+            "titleHighlight": "Edellytykset",
+            "desc": "Jotta Deltidsjobb olisi turvallinen ja tehokas alusta kaikille, meillä on muutamia yksinkertaisia sääntöjä.",
+            "updated": "Viimeksi päivitetty"
+        },
+        "sections": {
+            "introduction": {
+                "title": "1. Johdanto",
+                "content": "Tervetuloa Deltidsjobbiin. Nämä ehdot säätelevät verkkosivustomme ja palveluidemme käyttöä. Luomalla tilin tai käyttämällä palveluitamme hyväksyt nämä ehdot kokonaisuudessaan. Jos et hyväksy jotakin ehtojen osaa, et valitettavasti voi käyttää palvelua."
+            },
+            "account": {
+                "title": "2. Käyttäjätilisi",
+                "desc": "Päästäksesi käyttämään tiettyjä toimintoja (kuten työpaikkailmoitusten jättäminen), sinun on luotava tili. Olet velvollinen antamaan oikeat tiedot ja pitämään ne ajan tasalla.",
+                "warning": "Olet itse vastuussa salasanasi pitämisestä salassa ja turvassa."
+            },
+            "companies": {
+                "title": "3. Yrityksille",
+                "adsTitle": "Mainonta",
+                "adsContent": "Kaikkien työpaikkailmoitusten on oltava aitoja ja Norjan lain mukaisia. Emme salli syrjivää tai harhaanjohtavaa sisältöä.",
+                "refundTitle": "Maksu & Palautus",
+                "refundContent": "Ostettuja ilmoituspaikkoja ei yleensä palauteta julkaisun jälkeen. Meidän puoleltamme johtuvissa teknisissä virheissä korjaamme asian tietenkin."
+            },
+            "rights": {
+                "title": "4. Oikeudet",
+                "content": "Kaikki Deltidsjobb.no-sivuston sisältö (teksti, grafiikka, logot, koodi) kuuluu meille tai lisenssinantajillemme. Kopiointi ilman lupaa on kielletty."
+            },
+            "liability": {
+                "title": "5. Vastuu",
+                "content": "Toimimme välittäjänä. Emme ole vastuussa rekrytointiprosessista tai työnantajan ja työntekijän välisestä suhteesta."
+            }
+        },
+        "footer": {
+            "question": "Onko sinulla kysyttävää ehdoistamme?",
+            "contact": "Ota yhteyttä"
+        }
+    },
+    "Privacy": {
+        "metaTitle": "Tietosuojaseloste | Deltidsjobb",
+        "metaDescription": "Näin Deltidsjobb.no käsittelee henkilötietojasi. Lue keräämisestä, käytöstä ja oikeuksistasi.",
+        "header": {
+            "eyebrow": "Turvallisuus",
+            "title": "Tietosuoja",
+            "titleHighlight": "seloste",
+            "desc": "Otamme yksityisyytesi erittäin vakavasti. Täältä voit lukea, miten keräämme ja suojaamme tietojasi."
+        },
+        "sections": {
+            "controller": {
+                "title": "1. Rekisterinpitäjä",
+                "content": "Deltidsjobb (toimitusjohtajan edustamana) on päävastuussa siitä, miten käsittelemme henkilötietojasi. Tämä seloste antaa sinulle tiedot, joihin sinulla on oikeus käyttäessäsi verkkosivustoamme."
+            },
+            "collection": {
+                "title": "2. Mitä oikeastaan keräämme",
+                "companiesTitle": "Yrityksille",
+                "companiesList": {
+                    "contact": "Yhteystiedot (nimi, sähköposti)",
+                    "company": "Yritystiedot (Y-tunnus)",
+                    "payment": "Maksuhistoria",
+                    "ads": "Työpaikkailmoitukset"
+                },
+                "visitorsTitle": "Vierailijoille",
+                "visitorsList": {
+                    "ip": "Anonymisoitu IP-osoite",
+                    "browser": "Selaistyyppi",
+                    "usage": "Käyttömalli",
+                    "cookies": "Evästeet (toiminnallisuutta varten)"
+                }
+            },
+            "purpose": {
+                "title": "3. Tarkoitus",
+                "content": "Käytämme tietoja palvelun toimittamiseen sinulle, verkkosivuston parantamiseen ja asiakaspalvelun tarjoamiseen. Emme <b>koskaan</b> käytä niitä tietojesi myymiseen eteenpäin."
+            },
+            "sharing": {
+                "title": "4. Tietojen jakaminen",
+                "content": "Jaamme tietoja vain ehdottoman välttämättömien kumppaneiden kanssa, jotka auttavat meitä sivuston ylläpidossa (esim. maksuratkaisu tai palvelinhosting). Kaikilla näillä on vaitiolovelvollisuus."
+            },
+            "rights": {
+                "title": "5. Oikeutesi",
+                "content": "Olet omien tietojesi pomo. Sinulla on oikeus tietojen tarkastamiseen, oikaisemiseen ja poistamiseen. Kuulemme mielellämme sinusta, jos sinulla on kysyttävää.",
+                "button": "Oikeutesi →"
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@
         "forCompanies": "För Företag",
         "cvGenerator": "CV-generator",
         "dashboard": "Instrumentpanel",
-        "postJob": "Lägg upp jobb",
+        "postJob": "Lägg ut jobb",
         "logout": "Logga ut",
         "login": "Logga in",
         "signup": "Skapa konto"
@@ -17,7 +17,7 @@
         "companies": "För Företag",
         "legal": "Juridiskt",
         "terms": "Villkor",
-        "privacy": "Integritetspolicy",
+        "privacy": "Integritet",
         "contact": "Kontakt",
         "rights": "Alla rättigheter förbehållna"
     },
@@ -27,6 +27,126 @@
     },
     "Home": {
         "heroTitle": "Hitta ditt nästa deltidsjobb",
-        "heroSubtitle": "Sveriges enklaste plattform för att hitta och lägga ut deltidsjobb."
+        "heroSubtitle": "Norges enkleste plattform för att hitta och lägga ut deltidsjobb."
+    },
+    "About": {
+        "metaTitle": "Om Deltidsjobb - Vår mission för arbetsmarknaden",
+        "metaDescription": "Lär känna Deltidsjobb. Vi kopplar samman arbetssökande med lediga tjänster genom en enkel och effektiv plattform.",
+        "sectionTitle": "Vår Historia",
+        "title": "Vi bygger framtidens",
+        "titleHighlight": "arbetsplats",
+        "description": "Deltidsjobb startade med en enkel idé: Det borde vara lika enkelt att hitta ett extrajobb som det är att boka en resa. Idag hjälper vi tusentals att hitta meningsfulla jobb som passar deras vardag.",
+        "stats": {
+            "developed": "Lokalt utvecklad",
+            "support": "Support och tillgänglighet",
+            "simple": "Enkelt",
+            "userFocus": "Användarvänligt fokus"
+        },
+        "mission": {
+            "title": "Vår mission",
+            "p1": "Vi ska förenkla rekryteringsprocessen för deltidsanställningar. Genom att ta bort brus och fokusera uteslutande på deltidsmarknaden skapar vi en mer effektiv mötesplats för studenter, extrahjälp och företag.",
+            "p2": "Vi tror att flexibelt arbete är nyckeln till ett dynamiskt samhälle, och vi jobbar varje dag för att koppla rätt person till rätt jobb."
+        },
+        "values": {
+            "transparency": {
+                "title": "Transparens",
+                "desc": "Öppna priser, inga dolda avgifter och tydlig kommunikation."
+            },
+            "quality": {
+                "title": "Kvalitet",
+                "desc": "Vi kvalitetssäkrar alla platsannonser för att undvika spam och oseriösa aktörer."
+            },
+            "innovation": {
+                "title": "Innovation",
+                "desc": "Vi utvecklar ständigt nya verktyg som CV-generatorn för att hjälpa sökande vidare."
+            }
+        }
+    },
+    "Terms": {
+        "metaTitle": "Villkor och bestämmelser | Deltidsjobb",
+        "metaDescription": "Läs våra villkor och bestämmelser för användning av Deltidsjobb.no.",
+        "header": {
+            "eyebrow": "Juridiskt",
+            "title": "Villkor och",
+            "titleHighlight": "Bestämmelser",
+            "desc": "För att Deltidsjobb ska vara en säker och effektiv plattform för alla har vi några enkla spelregler.",
+            "updated": "Senast uppdaterad"
+        },
+        "sections": {
+            "introduction": {
+                "title": "1. Inledning",
+                "content": "Välkommen till Deltidsjobb. Dessa villkor reglerar din användning av vår webbplats och våra tjänster. Genom att skapa ett konto eller använda våra tjänster godkänner du dessa villkor i sin helhet. Om du inte godkänner någon del av villkoren kan du tyvärr inte använda tjänsten."
+            },
+            "account": {
+                "title": "2. Ditt användarkonto",
+                "desc": "För att få tillgång till vissa funktioner (som att lägga ut jobb) måste du skapa ett konto. Du är skyldig att lämna korrekt information och hålla den uppdaterad.",
+                "warning": "Du är själv ansvarig för att hålla ditt lösenord hemligt och säkert."
+            },
+            "companies": {
+                "title": "3. För Företag",
+                "adsTitle": "Annonsering",
+                "adsContent": "Alla platsannonser måste vara äkta och följa norsk lag. Vi tillåter inte innehåll som är diskriminerande eller vilseledande.",
+                "refundTitle": "Betalning & Återbetalning",
+                "refundContent": "Köpta annonsplatser återbetalas normalt inte efter publicering. Vid tekniska fel från vår sida ordnar vi självklart upp det."
+            },
+            "rights": {
+                "title": "4. Rättigheter",
+                "content": "Allt innehåll på Deltidsjobb.no (text, grafik, logotyper, kod) tillhör oss eller våra licensgivare. Kopiering utan medgivande är inte tillåten."
+            },
+            "liability": {
+                "title": "5. Ansvar",
+                "content": "Vi är en förmedlare. Vi ansvarar inte för rekryteringsprocessen eller förhållandet mellan arbetsgivare och arbetstagare."
+            }
+        },
+        "footer": {
+            "question": "Har du frågor om våra villkor?",
+            "contact": "Kontakta oss"
+        }
+    },
+    "Privacy": {
+        "metaTitle": "Integritetspolicy | Deltidsjobb",
+        "metaDescription": "Så behandlar Deltidsjobb.no dina personuppgifter. Läs om insamling, användning och dina rättigheter.",
+        "header": {
+            "eyebrow": "Trygghet",
+            "title": "Integritets",
+            "titleHighlight": "policy",
+            "desc": "Vi tar din integritet på största allvar. Här kan du läsa om hur vi samlar in och skyddar dina uppgifter."
+        },
+        "sections": {
+            "controller": {
+                "title": "1. Personuppgiftsansvarig",
+                "content": "Deltidsjobb (genom VD) är huvudansvarig för hur vi behandlar dina personuppgifter. Denna policy ger dig den information du har rätt till när du använder vår webbplats."
+            },
+            "collection": {
+                "title": "2. Vad vi faktiskt samlar in",
+                "companiesTitle": "För Företag",
+                "companiesList": {
+                    "contact": "Kontaktinfo (namn, e-post)",
+                    "company": "Företagsdata (org.nr)",
+                    "payment": "Betalningshistorik",
+                    "ads": "Platsannonser"
+                },
+                "visitorsTitle": "För Besökare",
+                "visitorsList": {
+                    "ip": "Anonymiserad IP-adress",
+                    "browser": "Webbläsartyp",
+                    "usage": "Användarmönster",
+                    "cookies": "Cookies (för funktionalitet)"
+                }
+            },
+            "purpose": {
+                "title": "3. Syftet",
+                "content": "Vi använder informationen för att leverera tjänsten till dig, förbättra webbplatsen och ge kundservice. Vi använder den <b>aldrig</b> för att sälja din information vidare."
+            },
+            "sharing": {
+                "title": "4. Delning av data",
+                "content": "Vi deler endast data med strikt nödvändiga partners som hjälper oss att driva sidan (t.ex. betalningslösning eller serverhosting). Alla dessa har tystnadsplikt."
+            },
+            "rights": {
+                "title": "5. Dina Rättigheter",
+                "content": "Du är chef över dina egna data. Du har rätt till insyn, rättelse och radering av dina uppgifter. Hör gärna av dig om du undrar över något.",
+                "button": "Dina rättigheter →"
+            }
+        }
     }
 }

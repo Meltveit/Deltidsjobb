@@ -2,9 +2,9 @@
     "Navbar": {
         "home": "Hjem",
         "forCompanies": "For Virksomheder",
-        "cvGenerator": "CV Generator",
+        "cvGenerator": "CV-generator",
         "dashboard": "Betjeningspanel",
-        "postJob": "Slå stilling op",
+        "postJob": "Opret job",
         "logout": "Log ud",
         "login": "Log ind",
         "signup": "Opret konto"
@@ -23,10 +23,130 @@
     },
     "Common": {
         "readMore": "Læs mere",
-        "apply": "Søg nu"
+        "apply": "Ansøg nu"
     },
     "Home": {
         "heroTitle": "Find dit næste deltidsjob",
-        "heroSubtitle": "Danmarks nemmeste platform til at finde og slå deltidsjob op."
+        "heroSubtitle": "Norges nemmeste platform til at finde og opslå deltidsjob."
+    },
+    "About": {
+        "metaTitle": "Om Deltidsjobb - Vores mission for arbejdsmarkedet",
+        "metaDescription": "Lær Deltidsjobb at kende. Vi forbinder jobsøgende med ledige stillinger gennem en enkel og effektiv platform.",
+        "sectionTitle": "Vores Historie",
+        "title": "Vi bygger fremtidens",
+        "titleHighlight": "arbejdsplads",
+        "description": "Deltidsjobb startede med en simpel idé: Det burde være lige så nemt at finde et ekstrajob, som det er at bestille en rejse. I dag hjælper vi tusindvis med at finde meningsfulde jobs, der passer til deres hverdag.",
+        "stats": {
+            "developed": "Lokalt udviklet",
+            "support": "Support og tilgængelighed",
+            "simple": "Enkelt",
+            "userFocus": "Brugervenligt fokus"
+        },
+        "mission": {
+            "title": "Vores mission",
+            "p1": "Vi vil forenkle rekrutteringsprocessen for deltidsstillinger. Ved at fjerne støj og fokusere udelukkende på deltidsmarkedet skaber vi et mere effektivt mødested for studerende, ekstrahjælpere og virksomheder.",
+            "p2": "Vi tror på, at fleksibelt arbejde er nøglen til et dynamisk samfund, og vi arbejder hver dag for at forbinde den rette person med det rette job."
+        },
+        "values": {
+            "transparency": {
+                "title": "Gennemsigtighed",
+                "desc": "Åbne priser, ingen skjulte gebyrer og tydelig kommunikation."
+            },
+            "quality": {
+                "title": "Kvalitet",
+                "desc": "Vi kvalitetssikrer alle jobannoncer for at undgå spam og useriøse aktører."
+            },
+            "innovation": {
+                "title": "Innovation",
+                "desc": "Vi udvikler konstant nye værktøjer som CV-generatoren for at hjælpe ansøgere videre."
+            }
+        }
+    },
+    "Terms": {
+        "metaTitle": "Vilkår og betingelser | Deltidsjobb",
+        "metaDescription": "Læs vores vilkår og betingelser for brug af Deltidsjobb.no.",
+        "header": {
+            "eyebrow": "Juridisk",
+            "title": "Vilkår og",
+            "titleHighlight": "Betingelser",
+            "desc": "For at Deltidsjobb skal være en sikker og effektiv platform for alle, har vi nogle enkle spilleregler.",
+            "updated": "Sidst opdateret"
+        },
+        "sections": {
+            "introduction": {
+                "title": "1. Indledning",
+                "content": "Velkommen til Deltidsjobb. Disse vilkår regulerer din brug af vores hjemmeside og tjenester. Ved at oprette en konto eller bruge vores tjenester accepterer du disse vilkår i deres helhed. Hvis du er uenig i nogen del af vilkårene, kan du desværre ikke bruge tjenesten."
+            },
+            "account": {
+                "title": "2. Din Brugerkonto",
+                "desc": "For at få adgang til visse funktioner (som at opslå job) skal du oprette en konto. Du er forpligtet til at give korrekte oplysninger og holde dem opdaterede.",
+                "warning": "Du er selv ansvarlig for at holde din adgangskode hemmelig og sikker."
+            },
+            "companies": {
+                "title": "3. For Virksomheder",
+                "adsTitle": "Annoncering",
+                "adsContent": "Alle jobannoncer skal være ægte og overholde norsk lov. Vi tillader ikke indhold, der er diskriminerende eller vildledende.",
+                "refundTitle": "Betaling & Refusion",
+                "refundContent": "Købte annoncepladser refunderes normalt ikke efter offentliggørelse. Ved tekniske fejl fra vores side ordner vi det selvfølgelig."
+            },
+            "rights": {
+                "title": "4. Rettigheder",
+                "content": "Alt indhold på Deltidsjobb.no (tekst, grafik, logoer, kode) tilhører os eller vores licensgivere. Kopiering uden samtykke er ikke tilladt."
+            },
+            "liability": {
+                "title": "5. Ansvar",
+                "content": "Vi er en formidler. Vi er ikke ansvarlige for ansættelsesprocessen eller forholdet mellem arbejdsgiver og arbejdstager."
+            }
+        },
+        "footer": {
+            "question": "Har du spørgsmål til vores vilkår?",
+            "contact": "Kontakt os"
+        }
+    },
+    "Privacy": {
+        "metaTitle": "Persondatapolitik | Deltidsjobb",
+        "metaDescription": "Sådan behandler Deltidsjobb.no dine personoplysninger. Læs om indsamling, brug og dine rettigheder.",
+        "header": {
+            "eyebrow": "Tryghed",
+            "title": "Persondata",
+            "titleHighlight": "politik",
+            "desc": "Vi tager dit privatliv meget alvorligt. Her kan du læse om, hvordan vi indsamler og beskytter dine data."
+        },
+        "sections": {
+            "controller": {
+                "title": "1. Dataansvarlig",
+                "content": "Deltidsjobb (ved daglig leder) er hovedansvarlig for, hvordan vi behandler dine personoplysninger. Denne politik giver dig de oplysninger, du har krav på, når du bruger vores hjemmeside."
+            },
+            "collection": {
+                "title": "2. Hvad vi faktisk indsamler",
+                "companiesTitle": "For Virksomheder",
+                "companiesList": {
+                    "contact": "Kontaktinfo (navn, e-mail)",
+                    "company": "Virksomhedsdata (CVR-nr)",
+                    "payment": "Betalingshistorik",
+                    "ads": "Jobannoncer"
+                },
+                "visitorsTitle": "For Besøgende",
+                "visitorsList": {
+                    "ip": "Anonymiseret IP-adresse",
+                    "browser": "Browsertype",
+                    "usage": "Brugsmønster",
+                    "cookies": "Cookies (til funktionalitet)"
+                }
+            },
+            "purpose": {
+                "title": "3. Formålet",
+                "content": "Vi bruger dataene til at levere tjenesten til dig, forbedre hjemmesiden og yde kundeservice. Vi bruger den <b>aldrig</b> til at sælge dine oplysninger videre."
+            },
+            "sharing": {
+                "title": "4. Deling af data",
+                "content": "Vi deler kun data med strengt nødvendige partnere, der hjælper os med at drive siden (f.eks. betalingsløsning eller serverhosting). Alle disse har tavshedspligt."
+            },
+            "rights": {
+                "title": "5. Dine Rettigheder",
+                "content": "Du er chefen over dine egne data. Du har ret til indsigt, rettelse og sletning af dine oplysninger. Vi hører gerne fra dig, hvis du har spørgsmål.",
+                "button": "Dine rettigheder →"
+            }
+        }
     }
 }

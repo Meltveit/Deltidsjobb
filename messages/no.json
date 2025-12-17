@@ -28,5 +28,125 @@
     "Home": {
         "heroTitle": "Finn din neste deltidsjobb",
         "heroSubtitle": "Norges enkleste plattform for å finne og legge ut deltidsjobber."
+    },
+    "About": {
+        "metaTitle": "Om Deltidsjobb - Vår misjon for arbeidsmarkedet",
+        "metaDescription": "Bli kjent med Deltidsjobb. Vi kobler arbeidssøkere med ledige stillinger gjennom en enkel og effektiv plattform.",
+        "sectionTitle": "Vår Historie",
+        "title": "Vi bygger fremtidens",
+        "titleHighlight": "arbeidsplass",
+        "description": "Deltidsjobb startet med en enkel idé: Det burde være like enkelt å finne en ekstrajobb som det er å bestille en reise. I dag hjelper vi tusenvis med å finne meningsfulle jobber som passer deres hverdag.",
+        "stats": {
+            "developed": "Lokalt utviklet",
+            "support": "Support og tilgjengelighet",
+            "simple": "Enkelt",
+            "userFocus": "Brukervennlig fokus"
+        },
+        "mission": {
+            "title": "Vår misjon",
+            "p1": "Vi skal forenkle rekrutteringsprosessen for deltidsstillinger. Ved å fjerne støy og fokusere utelukkende på deltidsmarkedet, skaper vi en mer effektiv møteplass for studenter, ekstrahjelper og bedrifter.",
+            "p2": "Vi tror på at fleksibelt arbeid er nøkkelen til et dynamisk samfunn, og vi jobber hver dag for å koble rett person til rett jobb."
+        },
+        "values": {
+            "transparency": {
+                "title": "Transparens",
+                "desc": "Åpne priser, ingen skjulte gebyrer og tydelig kommunikasjon."
+            },
+            "quality": {
+                "title": "Kvalitet",
+                "desc": "Vi kvalitetssikrer alle stillingsannonser for å unngå spam og useriøse aktører."
+            },
+            "innovation": {
+                "title": "Innovasjon",
+                "desc": "Vi utvikler stadig nye verktøy som CV-generatoren for å hjelpe søkere videre."
+            }
+        }
+    },
+    "Terms": {
+        "metaTitle": "Vilkår og betingelser | Deltidsjobb",
+        "metaDescription": "Les våre vilkår og betingelser for bruk av Deltidsjobb.no.",
+        "header": {
+            "eyebrow": "Juridisk",
+            "title": "Vilkår og",
+            "titleHighlight": "Betingelser",
+            "desc": "For at Deltidsjobb skal være en trygg og effektiv plattform for alle, har vi noen enkle spilleregler.",
+            "updated": "Sist oppdatert"
+        },
+        "sections": {
+            "introduction": {
+                "title": "1. Innledning",
+                "content": "Velkommen til Deltidsjobb. Disse vilkårene regulerer din bruk av vår nettside og tjenester. Ved å opprette en konto eller bruke våre tjenester, godtar du disse vilkårene i sin helhet. Dersom du er uenig i noen del av vilkårene, kan du dessverre ikke bruke tjenesten."
+            },
+            "account": {
+                "title": "2. Din Brukerkonto",
+                "desc": "For å få tilgang til visse funksjoner (som å legge ut stillinger), må du opprette en konto. Du plikter å oppgi korrekt informasjon og holde denne oppdatert.",
+                "warning": "Du er selv ansvarlig for å holde passordet ditt hemmelig og trygt."
+            },
+            "companies": {
+                "title": "3. For Bedrifter",
+                "adsTitle": "Annonsering",
+                "adsContent": "Alle stillingsannonser skal være reelle og følge norsk lov. Vi tillater ikke innhold som er diskriminerende eller villedende.",
+                "refundTitle": "Betaling & Refusjon",
+                "refundContent": "Kjøpte annonseplasser refunderes normalt ikke etter publisering. Ved tekniske feil fra vår side ordner vi selvsagt opp."
+            },
+            "rights": {
+                "title": "4. Rettigheter",
+                "content": "Alt innhold på Deltidsjobb.no (tekst, grafikk, logoer, kode) tilhører oss eller våre lisensgivere. Kopiering uten samtykke er ikke tillatt."
+            },
+            "liability": {
+                "title": "5. Ansvar",
+                "content": "Vi er en formidler. Vi har ikke ansvar for ansettelsesprosessen eller forholdet mellom arbeidsgiver og arbeidstaker."
+            }
+        },
+        "footer": {
+            "question": "Har du spørsmål om våre vilkår?",
+            "contact": "Kontakt oss"
+        }
+    },
+    "Privacy": {
+        "metaTitle": "Personvernerklæring | Deltidsjobb",
+        "metaDescription": "Slik behandler Deltidsjobb.no dine personopplysninger. Les om innsamling, bruk og dine rettigheter.",
+        "header": {
+            "eyebrow": "Trygghet",
+            "title": "Personvern",
+            "titleHighlight": "erklæring",
+            "desc": "Vi tar personvernet ditt på største alvor. Her kan du lese om hvordan vi samler inn og beskytter dine data."
+        },
+        "sections": {
+            "controller": {
+                "title": "1. Behandlingsansvarlig",
+                "content": "Deltidsjobb (ved daglig leder) er hovedansvarlig for hvordan vi behandler dine personopplysninger. Denne erklæringen gir deg informasjonen du har krav på når du bruker nettsiden vår."
+            },
+            "collection": {
+                "title": "2. Hva vi faktisk samler inn",
+                "companiesTitle": "For Bedrifter",
+                "companiesList": {
+                    "contact": "Kontaktinfo (navn, e-post)",
+                    "company": "Bedriftsdata (org.nr)",
+                    "payment": "Betalingshistorikk",
+                    "ads": "Stillingsannonser"
+                },
+                "visitorsTitle": "For Besøkende",
+                "visitorsList": {
+                    "ip": "Anonymisert IP-adresse",
+                    "browser": "Nettlesertype",
+                    "usage": "Bruksmønster",
+                    "cookies": "Cookies (for funksjonalitet)"
+                }
+            },
+            "purpose": {
+                "title": "3. Formålet",
+                "content": "Vi bruker dataene til å levere tjenesten til deg, forbedre nettsiden, og yte kundeservice. Vi bruker den <b>aldri</b> til å selge informasjonen din videre."
+            },
+            "sharing": {
+                "title": "4. Deling av data",
+                "content": "Vi deler kun data med strengt nødvendige partnere som hjelper oss å drive siden (f.eks. betalingsløsning eller serverhosting). Alle disse har taushetsplikt."
+            },
+            "rights": {
+                "title": "5. Dine Rettigheter",
+                "content": "Du er sjefen over dine egne data. Du har rett til innsyn, retting og sletting av dine opplysninger. Vi hører gjerne fra deg hvis du lurer på noe.",
+                "button": "Dine rettigheter →"
+            }
+        }
     }
 }
