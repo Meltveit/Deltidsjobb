@@ -1,6 +1,6 @@
 import { getJobById, incrementJobViews } from '@/lib/models/Job';
 import { slugify, formatDate } from '@/lib/utils';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { notFound } from 'next/navigation';
 
 export async function generateMetadata({ params }) {

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { slugify, truncate } from '@/lib/utils';
 
 export default function JobCard({ job }) {
@@ -7,19 +7,35 @@ export default function JobCard({ job }) {
     return (
         <Link href={`/jobb/${slug}`}>
             <div className="glass-card hover-lift group cursor-pointer bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
-                <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-xl font-semibold text-slate-900 group-hover:text-primary-600 transition-colors">
-                        {job.title}
-                    </h3>
-                    {job.daysRemaining !== undefined && (
-                        <span className="text-xs text-slate-500 font-medium bg-slate-100 px-2 py-1 rounded-full">
-                            {job.daysRemaining} dager igjen
-                        </span>
+                <div className="flex gap-4 mb-4">
+                    {job.logo && (
+                        <div className="w-16 h-16 flex-shrink-0 bg-slate-50 rounded-lg p-2 flex items-center justify-center border border-slate-100">
+                            <img
+                                src={job.logo}
+                                alt={`${job.companyName} logo`}
+                                className="max-w-full max-h-full object-contain"
+                            />
+                        </div>
                     )}
+                    <div className="flex-1 min-w-0">
+                        <div className="flex justify-between items-start mb-1">
+                            <h3 className="text-xl font-semibold text-slate-900 group-hover:text-primary-600 transition-colors truncate">
+                                {job.title}
+                            </h3>
+                            {job.daysRemaining !== undefined && (
+                                <span className="text-xs text-slate-500 font-medium bg-slate-100 px-2 py-1 rounded-full flex-shrink-0 ml-2">
+                                    {job.daysRemaining} dager igjen
+                                </span>
+                            )}
+                        </div>
+                        <div className="text-sm font-medium text-slate-600 truncate mb-1">
+                            {job.companyName}
+                        </div>
+                    </div>
                 </div>
 
                 <p className="text-slate-600 text-sm mb-4 leading-relaxed">
-                    {truncate(job.description, 120)}
+                    {truncate(job.description, 100)}
                 </p>
 
                 <div className="flex items-center gap-2 text-sm text-slate-500 mb-4">

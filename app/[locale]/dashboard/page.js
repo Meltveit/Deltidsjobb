@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { Link } from '@/navigation';
+import { Link, useRouter, usePathname } from '@/navigation';
+import { useSearchParams } from 'next/navigation';
 import { formatDate } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 
@@ -162,11 +162,22 @@ export default function DashboardPage() {
                         {pendingJobs.map((job) => (
                             <div key={job._id} className="glass-card border-yellow-500/30">
                                 <div className="flex justify-between items-start">
-                                    <div>
-                                        <h3 className="text-xl font-semibold mb-2">{job.title}</h3>
-                                        <p className="text-sm text-gray-400">
-                                            {t('labels.created')}: {formatDate(job.createdAt)}
-                                        </p>
+                                    <div className="flex gap-4">
+                                        {job.logo && (
+                                            <div className="w-16 h-16 flex-shrink-0 bg-slate-50 rounded-lg p-2 flex items-center justify-center border border-slate-100">
+                                                <img
+                                                    src={job.logo}
+                                                    alt="Company logo"
+                                                    className="max-w-full max-h-full object-contain"
+                                                />
+                                            </div>
+                                        )}
+                                        <div>
+                                            <h3 className="text-xl font-semibold mb-2">{job.title}</h3>
+                                            <p className="text-sm text-gray-400">
+                                                {t('labels.created')}: {formatDate(job.createdAt)}
+                                            </p>
+                                        </div>
                                     </div>
                                     <div className="flex gap-2">
                                         <Link
@@ -210,19 +221,30 @@ export default function DashboardPage() {
                         {activeJobs.map((job) => (
                             <div key={job._id} className="glass-card">
                                 <div className="flex flex-col md:flex-row justify-between md:items-start gap-4">
-                                    <div className="flex-1">
-                                        <h3 className="text-xl font-semibold mb-2">{job.title}</h3>
-                                        <div className="flex flex-wrap gap-4 text-sm text-gray-400 mb-3">
-                                            <span>📍 {job.location}</span>
-                                            <span>📁 {job.sector}</span>
-                                            <span>👁 {job.views || 0} {t('labels.views')}</span>
-                                        </div>
-                                        <div className="flex flex-wrap gap-2">
-                                            {job.tags.map((tag) => (
-                                                <span key={tag} className="tag text-xs">
-                                                    {tag}
-                                                </span>
-                                            ))}
+                                    <div className="flex gap-4 flex-1">
+                                        {job.logo && (
+                                            <div className="w-16 h-16 flex-shrink-0 bg-slate-50 rounded-lg p-2 flex items-center justify-center border border-slate-100">
+                                                <img
+                                                    src={job.logo}
+                                                    alt="Company logo"
+                                                    className="max-w-full max-h-full object-contain"
+                                                />
+                                            </div>
+                                        )}
+                                        <div className="flex-1">
+                                            <h3 className="text-xl font-semibold mb-2">{job.title}</h3>
+                                            <div className="flex flex-wrap gap-4 text-sm text-gray-400 mb-3">
+                                                <span>📍 {job.location}</span>
+                                                <span>📁 {job.sector}</span>
+                                                <span>👁 {job.views || 0} {t('labels.views')}</span>
+                                            </div>
+                                            <div className="flex flex-wrap gap-2">
+                                                {job.tags.map((tag) => (
+                                                    <span key={tag} className="tag text-xs">
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="flex flex-col gap-2 text-right">
