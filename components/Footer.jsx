@@ -23,8 +23,13 @@ export default function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/" className="hover:text-primary-600 transition-colors">
+                                <Link href="/sok-tips" className="hover:text-primary-600 transition-colors">
                                     Søk tips
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/cv-generator" className="hover:text-primary-600 transition-colors">
+                                    CV Generator
                                 </Link>
                             </li>
                         </ul>
@@ -35,7 +40,7 @@ export default function Footer() {
                         <h4 className="font-semibold mb-4 text-slate-900">For Bedrifter</h4>
                         <ul className="space-y-2 text-sm text-slate-600">
                             <li>
-                                <Link href="/for-bedrifter" className="hover:text-primary-600 transition-colors">
+                                <Link href="/om-oss" className="hover:text-primary-600 transition-colors">
                                     Om oss
                                 </Link>
                             </li>

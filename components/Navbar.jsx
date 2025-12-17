@@ -28,6 +28,9 @@ export default function Navbar() {
                         <Link href="/for-bedrifter" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
                             For Bedrifter
                         </Link>
+                        <Link href="/cv-generator" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
+                            CV Generator
+                        </Link>
 
                         {session ? (
                             <>
@@ -79,6 +82,9 @@ export default function Navbar() {
                         </Link>
                         <Link href="/for-bedrifter" className="block py-2 text-slate-600 hover:text-primary-600 font-medium">
                             For Bedrifter
+                        </Link>
+                        <Link href="/cv-generator" className="block py-2 text-slate-600 hover:text-primary-600 font-medium">
+                            CV Generator
                         </Link>
                         {session ? (
                             <>
