@@ -5,7 +5,8 @@ import Footer from '@/components/Footer';
 import { getServerSession } from 'next-auth';
 import SessionProvider from '@/components/SessionProvider';
 import { NextIntlClientProvider } from 'next-intl';
-import { notFound } from 'next/navigation';
+import { getMessages, setRequestLocale } from 'next-intl/server';
+import { routing } from '@/navigation';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,25 +17,25 @@ export const metadata = {
     type: 'website',
 };
 
-const locales = ['no', 'sv', 'da', 'fi'];
+// Generates static params for all supported locales
+export function generateStaticParams() {
+    return routing.locales.map((locale) => ({ locale }));
+}
 
 export default async function RootLayout({ children, params: { locale } }) {
-    // Validate that the incoming `locale` parameter is valid
-    if (!locales.includes(locale)) notFound();
+    // Enable static rendering
+    setRequestLocale(locale);
 
     const session = await getServerSession();
 
-    let messages;
-    try {
-        messages = (await import(`../../messages/${locale}.json`)).default;
-    } catch (error) {
-        notFound();
-    }
+    // Providing all messages to the client
+    // side is the easiest way to get started
+    const messages = await getMessages();
 
     return (
         <html lang={locale}>
             <body className={inter.className}>
-                <NextIntlClientProvider locale={locale} messages={messages}>
+                <NextIntlClientProvider messages={messages}>
                     <SessionProvider session={session}>
                         <div className="flex flex-col min-h-screen">
                             <Navbar locale={locale} />
