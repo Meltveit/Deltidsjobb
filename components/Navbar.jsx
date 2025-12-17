@@ -1,12 +1,30 @@
 'use client';
 
-import Link from 'next/link';
+import { Link, usePathname, useRouter } from '@/navigation';
 import { useSession, signOut } from 'next-auth/react';
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
+import { useTranslations } from 'next-intl';
 
-export default function Navbar() {
+export default function Navbar({ locale }) {
     const { data: session } = useSession();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const t = useTranslations('Navbar');
+    const router = useRouter();
+    const pathname = usePathname();
+    const [isPending, startTransition] = useTransition();
+
+    const changeLanguage = (newLocale) => {
+        startTransition(() => {
+            router.replace(pathname, { locale: newLocale });
+        });
+    };
+
+    const languages = [
+        { code: 'no', label: '🇳🇴', name: 'Norsk' },
+        { code: 'sv', label: '🇸🇪', name: 'Svenska' },
+        { code: 'da', label: '🇩🇰', name: 'Dansk' },
+        { code: 'fi', label: '🇫🇮', name: 'Suomi' }
+    ];
 
     return (
         <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm print:hidden">
@@ -23,37 +41,59 @@ export default function Navbar() {
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center space-x-8">
                         <Link href="/" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
-                            Hjem
+                            {t('home')}
                         </Link>
                         <Link href="/for-bedrifter" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
-                            For Bedrifter
+                            {t('forCompanies')}
                         </Link>
                         <Link href="/cv-generator" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
-                            CV Generator
+                            {t('cvGenerator')}
                         </Link>
+
+                        {/* Language Switcher */}
+                        <div className="relative group">
+                            <button className="flex items-center gap-1 text-slate-600 hover:text-primary-600 font-medium">
+                                <span>{languages.find(l => l.code === locale)?.label || '🌐'}</span>
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                {languages.map((lang) => (
+                                    <button
+                                        key={lang.code}
+                                        onClick={() => changeLanguage(lang.code)}
+                                        className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 flex items-center gap-2 ${locale === lang.code ? 'font-bold text-primary-600' : 'text-slate-600'}`}
+                                    >
+                                        <span>{lang.label}</span>
+                                        <span>{lang.name}</span>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
 
                         {session ? (
                             <>
                                 <Link href="/dashboard" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
-                                    Dashboard
+                                    {t('dashboard')}
                                 </Link>
                                 <Link href="/legg-ut-stilling" className="btn-primary">
-                                    Legg ut stilling
+                                    {t('postJob')}
                                 </Link>
                                 <button
                                     onClick={() => signOut()}
                                     className="text-slate-600 hover:text-primary-600 font-medium transition-colors"
                                 >
-                                    Logg ut
+                                    {t('logout')}
                                 </button>
                             </>
                         ) : (
                             <>
                                 <Link href="/auth/signin" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
-                                    Logg inn
+                                    {t('login')}
                                 </Link>
                                 <Link href="/auth/signup" className="btn-primary">
-                                    Opprett konto
+                                    {t('signup')}
                                 </Link>
                             </>
                         )}
@@ -78,36 +118,53 @@ export default function Navbar() {
                 {mobileMenuOpen && (
                     <div className="md:hidden py-4 space-y-3 border-t border-slate-100 bg-white absolute top-20 left-0 right-0 shadow-lg px-4 pb-6">
                         <Link href="/" className="block py-2 text-slate-600 hover:text-primary-600 font-medium">
-                            Hjem
+                            {t('home')}
                         </Link>
                         <Link href="/for-bedrifter" className="block py-2 text-slate-600 hover:text-primary-600 font-medium">
-                            For Bedrifter
+                            {t('forCompanies')}
                         </Link>
                         <Link href="/cv-generator" className="block py-2 text-slate-600 hover:text-primary-600 font-medium">
-                            CV Generator
+                            {t('cvGenerator')}
                         </Link>
+
+                        {/* Mobile Language Switcher */}
+                        <div className="py-2 border-y border-slate-100 my-2">
+                            <p className="text-xs text-slate-400 uppercase mb-2">Språk / Language</p>
+                            <div className="flex gap-4">
+                                {languages.map((lang) => (
+                                    <button
+                                        key={lang.code}
+                                        onClick={() => changeLanguage(lang.code)}
+                                        className={`text-2xl ${locale === lang.code ? 'opacity-100 scale-110' : 'opacity-50'}`}
+                                    >
+                                        {lang.label}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
                         {session ? (
                             <>
                                 <Link href="/dashboard" className="block py-2 text-slate-600 hover:text-primary-600 font-medium">
-                                    Dashboard
+                                    {t('dashboard')}
                                 </Link>
                                 <Link href="/legg-ut-stilling" className="block py-2 btn-primary text-center">
-                                    Legg ut stilling
+                                    {t('postJob')}
                                 </Link>
                                 <button
                                     onClick={() => signOut()}
                                     className="block w-full text-left py-2 text-slate-600 hover:text-primary-600 font-medium"
                                 >
-                                    Logg ut
+                                    {t('logout')}
                                 </button>
                             </>
                         ) : (
                             <>
                                 <Link href="/auth/signin" className="block py-2 text-slate-600 hover:text-primary-600 font-medium">
-                                    Logg inn
+                                    {t('login')}
                                 </Link>
                                 <Link href="/auth/signup" className="block py-2 btn-primary text-center">
-                                    Opprett konto
+                                    {t('signup')}
                                 </Link>
                             </>
                         )}

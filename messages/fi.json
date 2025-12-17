@@ -1,0 +1,32 @@
+{
+    "Navbar": {
+        "home": "Koti",
+        "forCompanies": "Yrityksille",
+        "cvGenerator": "CV-generaattori",
+        "dashboard": "Kojelauta",
+        "postJob": "Jätä ilmoitus",
+        "logout": "Kirjaudu ulos",
+        "login": "Kirjaudu sisään",
+        "signup": "Luo tili"
+    },
+    "Footer": {
+        "about": "Meistä",
+        "jobSeekers": "Työnhakijoille",
+        "findJob": "Löydä töitä",
+        "searchTips": "Hakuvinkit",
+        "companies": "Yrityksille",
+        "legal": "Oikeudellinen",
+        "terms": "Ehdot",
+        "privacy": "Tietosuoja",
+        "contact": "Ota yhteyttä",
+        "rights": "Kaikki oikeudet pidätetään"
+    },
+    "Common": {
+        "readMore": "Lue lisää",
+        "apply": "Hae nyt"
+    },
+    "Home": {
+        "heroTitle": "Löydä seuraava osa-aikatyösi",
+        "heroSubtitle": "Suomen helpoin alusta osa-aikatyön löytämiseen ja ilmoittamiseen."
+    }
+}

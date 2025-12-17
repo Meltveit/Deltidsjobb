@@ -1,6 +1,10 @@
-import Link from 'next/link';
+import { Link } from '@/navigation';
+import { useTranslations } from 'next-intl';
 
 export default function Footer() {
+    const t = useTranslations('Footer');
+    const h = useTranslations('Home');
+
     return (
         <footer className="bg-white border-t border-slate-200 mt-20 print:hidden">
             <div className="container-custom py-12">
@@ -9,22 +13,22 @@ export default function Footer() {
                     <div>
                         <h3 className="text-lg font-bold mb-4 gradient-text">Deltidsjobb</h3>
                         <p className="text-slate-600 text-sm leading-relaxed">
-                            Norges enkleste plattform for å finne og legge ut deltidsjobber.
+                            {h('heroSubtitle')}
                         </p>
                     </div>
 
                     {/* For Job Seekers */}
                     <div>
-                        <h4 className="font-semibold mb-4 text-slate-900">For Jobbsøkere</h4>
+                        <h4 className="font-semibold mb-4 text-slate-900">{t('jobSeekers')}</h4>
                         <ul className="space-y-2 text-sm text-slate-600">
                             <li>
                                 <Link href="/" className="hover:text-primary-600 transition-colors">
-                                    Finn jobb
+                                    {t('findJob')}
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/sok-tips" className="hover:text-primary-600 transition-colors">
-                                    Søk tips
+                                    {t('searchTips')}
                                 </Link>
                             </li>
                             <li>
@@ -37,11 +41,11 @@ export default function Footer() {
 
                     {/* For Companies */}
                     <div>
-                        <h4 className="font-semibold mb-4 text-slate-900">For Bedrifter</h4>
+                        <h4 className="font-semibold mb-4 text-slate-900">{t('companies')}</h4>
                         <ul className="space-y-2 text-sm text-slate-600">
                             <li>
                                 <Link href="/om-oss" className="hover:text-primary-600 transition-colors">
-                                    Om oss
+                                    {t('about')}
                                 </Link>
                             </li>
                             <li>
@@ -59,21 +63,21 @@ export default function Footer() {
 
                     {/* Legal */}
                     <div>
-                        <h4 className="font-semibold mb-4 text-slate-900">Juridisk</h4>
+                        <h4 className="font-semibold mb-4 text-slate-900">{t('legal')}</h4>
                         <ul className="space-y-2 text-sm text-slate-600">
                             <li>
                                 <Link href="/vilkar" className="hover:text-primary-600 transition-colors">
-                                    Vilkår
+                                    {t('terms')}
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/personvern" className="hover:text-primary-600 transition-colors">
-                                    Personvern
+                                    {t('privacy')}
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/kontakt" className="hover:text-primary-600 transition-colors">
-                                    Kontakt
+                                    {t('contact')}
                                 </Link>
                             </li>
                         </ul>
@@ -81,7 +85,7 @@ export default function Footer() {
                 </div>
 
                 <div className="mt-8 pt-8 border-t border-slate-100 text-center text-sm text-slate-500">
-                    <p>&copy; {new Date().getFullYear()} Deltidsjobb. Alle rettigheter reservert.</p>
+                    <p>&copy; {new Date().getFullYear()} Deltidsjobb. {t('rights')}.</p>
                 </div>
             </div>
         </footer>

@@ -1,0 +1,32 @@
+{
+    "Navbar": {
+        "home": "Hem",
+        "forCompanies": "För Företag",
+        "cvGenerator": "CV-generator",
+        "dashboard": "Instrumentpanel",
+        "postJob": "Lägg upp jobb",
+        "logout": "Logga ut",
+        "login": "Logga in",
+        "signup": "Skapa konto"
+    },
+    "Footer": {
+        "about": "Om oss",
+        "jobSeekers": "För Arbetssökande",
+        "findJob": "Hitta jobb",
+        "searchTips": "Söktips",
+        "companies": "För Företag",
+        "legal": "Juridiskt",
+        "terms": "Villkor",
+        "privacy": "Integritetspolicy",
+        "contact": "Kontakt",
+        "rights": "Alla rättigheter förbehållna"
+    },
+    "Common": {
+        "readMore": "Läs mer",
+        "apply": "Ansök nu"
+    },
+    "Home": {
+        "heroTitle": "Hitta ditt nästa deltidsjobb",
+        "heroSubtitle": "Sveriges enklaste plattform för att hitta och lägga ut deltidsjobb."
+    }
+}

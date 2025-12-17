@@ -1,0 +1,32 @@
+{
+    "Navbar": {
+        "home": "Hjem",
+        "forCompanies": "For Virksomheder",
+        "cvGenerator": "CV Generator",
+        "dashboard": "Betjeningspanel",
+        "postJob": "Slå stilling op",
+        "logout": "Log ud",
+        "login": "Log ind",
+        "signup": "Opret konto"
+    },
+    "Footer": {
+        "about": "Om os",
+        "jobSeekers": "For Jobsøgende",
+        "findJob": "Find job",
+        "searchTips": "Søgetips",
+        "companies": "For Virksomheder",
+        "legal": "Juridisk",
+        "terms": "Vilkår",
+        "privacy": "Persondatapolitik",
+        "contact": "Kontakt",
+        "rights": "Alle rettigheder forbeholdes"
+    },
+    "Common": {
+        "readMore": "Læs mere",
+        "apply": "Søg nu"
+    },
+    "Home": {
+        "heroTitle": "Find dit næste deltidsjob",
+        "heroSubtitle": "Danmarks nemmeste platform til at finde og slå deltidsjob op."
+    }
+}

@@ -3,12 +3,16 @@
 import { useState, useEffect } from 'react';
 import SearchBar from '@/components/SearchBar';
 import JobCard from '@/components/JobCard';
-import Link from 'next/link';
+import { Link } from '@/navigation';
+import { useTranslations } from 'next-intl';
 
 export default function HomePage() {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filters, setFilters] = useState({});
+    const t = useTranslations('Home');
+    const n = useTranslations('Navbar');
+    const c = useTranslations('Common');
 
     useEffect(() => {
         fetchJobs(filters);
@@ -42,20 +46,19 @@ export default function HomePage() {
             {/* Hero Section */}
             <div className="text-center mb-16 animate-fade-in">
                 <h1 className="text-5xl md:text-7xl font-bold mb-6">
-                    Finn din neste{' '}
+                    {t('heroTitle')}{' '}
                     <span className="gradient-text">deltidsjobb</span>
                 </h1>
                 <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                    Enkel og rask måte å finne deltidsjobber i hele Norge.
-                    Søk blant hundrevis av stillinger eller legg ut din egen.
+                    {t('heroSubtitle')}
                 </p>
 
                 <div className="flex justify-center gap-4 mb-12">
                     <Link href="/for-bedrifter" className="btn-primary">
-                        For Bedrifter
+                        {n('forCompanies')}
                     </Link>
                     <a href="#jobber" className="btn-secondary">
-                        Se stillinger
+                        {c('readMore')}
                     </a>
                 </div>
             </div>

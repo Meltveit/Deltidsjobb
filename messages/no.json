@@ -1,0 +1,32 @@
+{
+    "Navbar": {
+        "home": "Hjem",
+        "forCompanies": "For Bedrifter",
+        "cvGenerator": "CV Generator",
+        "dashboard": "Dashboard",
+        "postJob": "Legg ut stilling",
+        "logout": "Logg ut",
+        "login": "Logg inn",
+        "signup": "Opprett konto"
+    },
+    "Footer": {
+        "about": "Om oss",
+        "jobSeekers": "For Jobbsøkere",
+        "findJob": "Finn jobb",
+        "searchTips": "Søketips",
+        "companies": "For Bedrifter",
+        "legal": "Juridisk",
+        "terms": "Vilkår",
+        "privacy": "Personvern",
+        "contact": "Kontakt",
+        "rights": "Alle rettigheter reservert"
+    },
+    "Common": {
+        "readMore": "Les mer",
+        "apply": "Søk nå"
+    },
+    "Home": {
+        "heroTitle": "Finn din neste deltidsjobb",
+        "heroSubtitle": "Norges enkleste plattform for å finne og legge ut deltidsjobber."
+    }
+}
