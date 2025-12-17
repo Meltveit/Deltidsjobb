@@ -72,8 +72,8 @@ export default function HomePage() {
                     <div className="text-gray-400">Aktive stillinger</div>
                 </div>
                 <div className="glass-card text-center">
-                    <div className="text-4xl font-bold gradient-text mb-2">650kr</div>
-                    <div className="text-gray-400">Per stilling i 60 dager</div>
+                    <div className="text-4xl font-bold gradient-text mb-2">649kr</div>
+                    <div className="text-gray-400">Per annonse i 60 dager</div>
                 </div>
                 <div className="glass-card text-center">
                     <div className="text-4xl font-bold gradient-text mb-2">24/7</div>

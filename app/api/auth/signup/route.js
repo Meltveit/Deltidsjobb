@@ -34,7 +34,7 @@ export async function POST(request) {
             { status: 201 }
         );
     } catch (error) {
-        console.error('Signup error:', error);
+        console.error('Signup error details:', error);
 
         if (error.message === 'User already exists') {
             return NextResponse.json(
