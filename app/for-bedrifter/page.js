@@ -25,7 +25,7 @@ export default function ForBedrifterPage() {
                         <div className="text-4xl mb-4">💰</div>
                         <h3 className="text-xl font-semibold mb-2">Rimelig pris</h3>
                         <p className="text-gray-400 text-sm">
-                            Kun 650 kr for 60 dager
+                            Kun 649 kr for 60 dager
                         </p>
                     </div>
                     <div className="glass-card text-center">
@@ -70,7 +70,7 @@ export default function ForBedrifterPage() {
                             <div>
                                 <h3 className="text-lg font-semibold mb-1">Betal og publiser</h3>
                                 <p className="text-gray-400 text-sm">
-                                    Betal 650 kr med kort, og stillingen publiseres umiddelbart
+                                    Betal 649 kr med kort, og stillingen publiseres umiddelbart
                                 </p>
                             </div>
                         </div>

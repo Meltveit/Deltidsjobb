@@ -118,12 +118,11 @@ export default function SearchBar({ onSearch }) {
                                 {['Heltid', 'Deltid', 'Sesongarbeid', 'Vikariat'].map((type) => (
                                     <button
                                         key={type}
-                                        onClick={() => {
-                                            // Handled via parent/props or local state? 
-                                            // Wait, current SearchBar structure uses local state for inputs.
-                                            // We need to add employmentType to state.
-                                        }}
-                                        className="px-3 py-1 rounded-full text-sm glass border border-white/20 hover:border-primary-400"
+                                        onClick={() => setEmploymentType(employmentType === type ? '' : type)}
+                                        className={`px-3 py-1 rounded-full text-sm transition-all ${employmentType === type
+                                            ? 'bg-gradient-to-r from-primary-500 to-accent-500 text-white'
+                                            : 'glass border border-white/20 text-gray-500 hover:border-primary-400'
+                                            }`}
                                     >
                                         {type}
                                     </button>

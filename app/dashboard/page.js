@@ -120,12 +120,20 @@ export default function DashboardPage() {
                                             Opprettet: {formatDate(job.createdAt)}
                                         </p>
                                     </div>
-                                    <Link
-                                        href={`/betaling/${job._id}`}
-                                        className="btn-primary"
-                                    >
-                                        Fullfør betaling
-                                    </Link>
+                                    <div className="flex gap-2">
+                                        <button
+                                            onClick={() => handleDeleteJob(job._id)}
+                                            className="btn-ghost text-red-400 hover:text-red-300 border border-red-500/30 hover:bg-red-500/10"
+                                        >
+                                            Slett
+                                        </button>
+                                        <Link
+                                            href={`/betaling/${job._id}`}
+                                            className="btn-primary"
+                                        >
+                                            Fullfør betaling
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -241,5 +249,48 @@ export default function DashboardPage() {
         } catch (error) {
             alert(error.message);
         }
+        async function handleRepublish(jobId) {
+            if (!confirm('Vil du publisere denne stillingen på nytt? Dette vil koste 650 kr for 60 nye dager.')) {
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/jobs/republish', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ jobId }),
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Kunne ikke republisere jobb');
+                }
+
+                // Redirect to payment
+                router.push(`/betaling/${jobId}`);
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        async function handleDeleteJob(jobId) {
+            if (!confirm('Er du sikker på at du vil slette denne stillingen?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/jobs/${jobId}`, {
+                    method: 'DELETE',
+                });
+
+                if (!response.ok) {
+                    throw new Error('Kunne ikke slette jobb');
+                }
+
+                fetchJobs(); // Refresh list
+            } catch (error) {
+                alert(error.message);
+            }
+        }
     }
-}

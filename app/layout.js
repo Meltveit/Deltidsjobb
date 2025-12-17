@@ -8,9 +8,11 @@ import SessionProvider from '@/components/SessionProvider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-    title: 'Deltidsjobb - Finn din neste deltidsjobb',
+    title: 'Deltidsjobb - Finn din neste deltidsjobb i Norge',
     description: 'Norges enkleste plattform for å finne og legge ut deltidsjobber. Søk blant tusenvis av stillinger eller legg ut din egen.',
-    keywords: 'deltidsjobb, jobb, stillinger, Norge, deltid, bijobb, ekstrajobb',
+    keywords: 'deltidsjobb, jobb, stillinger, Norge, deltid, bijobb, ekstrajobb, sommerjobb',
+    locale: 'no_NO',
+    type: 'website',
 };
 
 export default async function RootLayout({ children }) {
