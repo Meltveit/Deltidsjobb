@@ -1,12 +1,7 @@
 import createMiddleware from 'next-intl/middleware';
+import { routing } from './navigation';
 
-export default createMiddleware({
-    // A list of all locales that are supported
-    locales: ['no', 'sv', 'da', 'fi'],
-
-    // Used when no locale matches
-    defaultLocale: 'no'
-});
+export default createMiddleware(routing);
 
 export const config = {
     // Match only internationalized pathnames
