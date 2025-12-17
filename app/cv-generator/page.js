@@ -67,21 +67,21 @@ export default function CVGeneratorPage() {
     };
 
     return (
-        <div className="container-custom py-12">
+        <div className="container-custom py-12 print:p-0 print:max-w-none">
             <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-8 items-start">
 
                 {/* Editor Section (Hidden when printing) */}
                 <div className={`w-full md:w-1/2 space-y-8 print:hidden ${isGenerating ? 'hidden' : 'block'}`}>
                     <div>
                         <h1 className="text-3xl font-bold gradient-text mb-4">CV Generator</h1>
-                        <p className="text-gray-400">
+                        <p className="text-slate-500">
                             Fyll inn informasjonen din for å generere en profesjonell CV.
                             Ingen data lagres på våre servere.
                         </p>
                     </div>
 
                     {/* Personal Info */}
-                    <div className="glass-card">
+                    <div className="glass-card bg-white shadow-sm">
                         <h2 className="text-xl font-bold mb-4">Personlig informasjon</h2>
                         <div className="space-y-4">
                             <div>
@@ -110,14 +110,14 @@ export default function CVGeneratorPage() {
                     </div>
 
                     {/* Experience */}
-                    <div className="glass-card">
+                    <div className="glass-card bg-white shadow-sm">
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-xl font-bold">Arbeidserfaring</h2>
                             <button onClick={addExperience} className="btn-secondary text-sm py-1 px-3">+ Legg til</button>
                         </div>
                         <div className="space-y-6">
                             {experiences.map((exp) => (
-                                <div key={exp.id} className="p-4 border border-white/10 rounded-lg bg-white/5 relative">
+                                <div key={exp.id} className="p-4 border border-slate-200 rounded-lg bg-slate-50 relative">
                                     <button onClick={() => removeExperience(exp.id)} className="absolute top-2 right-2 text-red-400 hover:text-red-300">✕</button>
                                     <div className="space-y-3">
                                         <input
@@ -160,14 +160,14 @@ export default function CVGeneratorPage() {
                     </div>
 
                     {/* Education */}
-                    <div className="glass-card">
+                    <div className="glass-card bg-white shadow-sm">
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-xl font-bold">Utdanning</h2>
                             <button onClick={addEducation} className="btn-secondary text-sm py-1 px-3">+ Legg til</button>
                         </div>
                         <div className="space-y-6">
                             {education.map((edu) => (
-                                <div key={edu.id} className="p-4 border border-white/10 rounded-lg bg-white/5 relative">
+                                <div key={edu.id} className="p-4 border border-slate-200 rounded-lg bg-slate-50 relative">
                                     <button onClick={() => removeEducation(edu.id)} className="absolute top-2 right-2 text-red-400 hover:text-red-300">✕</button>
                                     <div className="space-y-3">
                                         <input
@@ -314,28 +314,20 @@ export default function CVGeneratorPage() {
             </div>
 
             {/* Print Styles */}
+            {/* Print Styles */}
             <style jsx global>{`
                 @media print {
-                    body * {
-                        visibility: hidden;
-                    }
-                    .container-custom, .container-custom * {
-                        visibility: visible;
-                    }
-                    .container-custom {
-                        position: absolute;
-                        left: 0;
-                        top: 0;
-                        width: 100%;
-                        margin: 0;
-                        padding: 0;
-                    }
                     @page {
                         margin: 0;
                         size: auto;
                     }
                     body {
                         background: white;
+                    }
+                    /* Hide header/footer if class approach fails for some reason, 
+                       but rely mostly on Tailwind classes */
+                    nav, footer {
+                        display: none !important;
                     }
                 }
             `}</style>

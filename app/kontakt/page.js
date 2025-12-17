@@ -9,7 +9,7 @@ export default function KontaktPage() {
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16">
                     <h1 className="text-5xl font-bold mb-6 gradient-text">Kontakt oss</h1>
-                    <p className="text-xl text-gray-300">
+                    <p className="text-xl text-slate-600">
                         Vi er her for å hjelpe deg, enten du er arbeidssøker eller arbeidsgiver.
                     </p>
                 </div>
@@ -17,65 +17,65 @@ export default function KontaktPage() {
                 <div className="grid md:grid-cols-2 gap-12">
                     {/* Contact Info */}
                     <div className="space-y-8">
-                        <div className="glass-card p-8">
-                            <h2 className="text-2xl font-bold mb-6">Ta kontakt</h2>
+                        <div className="glass-card bg-white p-8 shadow-sm">
+                            <h2 className="text-2xl font-bold mb-6 text-slate-900">Ta kontakt</h2>
                             <div className="space-y-6">
                                 <div className="flex items-start gap-4">
-                                    <div className="w-10 h-10 rounded-lg bg-primary-500/20 flex items-center justify-center text-primary-400">
+                                    <div className="w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center text-primary-600">
                                         📧
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold text-white">Generelle henvendelser</h3>
-                                        <a href="mailto:kontakt@deltidsjobb.no" className="text-gray-400 hover:text-white transition-colors">
+                                        <h3 className="font-semibold text-slate-900">Generelle henvendelser</h3>
+                                        <a href="mailto:kontakt@deltidsjobb.no" className="text-slate-500 hover:text-primary-600 transition-colors">
                                             kontakt@deltidsjobb.no
                                         </a>
-                                        <p className="text-xs text-gray-500 mt-1">Vi svarer innen 24 timer</p>
+                                        <p className="text-xs text-slate-400 mt-1">Vi svarer innen 24 timer</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <div className="w-10 h-10 rounded-lg bg-primary-500/20 flex items-center justify-center text-primary-400">
+                                    <div className="w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center text-primary-600">
                                         💼
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold text-white">For bedrifter</h3>
-                                        <a href="mailto:bedrift@deltidsjobb.no" className="text-gray-400 hover:text-white transition-colors">
+                                        <h3 className="font-semibold text-slate-900">For bedrifter</h3>
+                                        <a href="mailto:bedrift@deltidsjobb.no" className="text-slate-500 hover:text-primary-600 transition-colors">
                                             bedrift@deltidsjobb.no
                                         </a>
-                                        <p className="text-xs text-gray-500 mt-1">Annonsering og samarbeid</p>
+                                        <p className="text-xs text-slate-400 mt-1">Annonsering og samarbeid</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="glass-card p-8 bg-gradient-to-br from-white/5 to-white/0">
-                            <h3 className="text-lg font-semibold mb-4 text-primary-400">Ofte stilte spørsmål</h3>
+                        <div className="glass-card bg-white p-8 bg-gradient-to-br from-white to-slate-50 shadow-sm border border-slate-100">
+                            <h3 className="text-lg font-semibold mb-4 text-primary-600">Ofte stilte spørsmål</h3>
                             <div className="space-y-4">
                                 <div>
-                                    <h4 className="font-medium text-white text-sm">Hva koster en annonse?</h4>
-                                    <p className="text-sm text-gray-400">649 kr for 60 dager.</p>
+                                    <h4 className="font-medium text-slate-900 text-sm">Hva koster en annonse?</h4>
+                                    <p className="text-sm text-slate-500">649 kr for 60 dager.</p>
                                 </div>
                                 <div>
-                                    <h4 className="font-medium text-white text-sm">Hvordan endrer jeg annonsen?</h4>
-                                    <p className="text-sm text-gray-400">Logg inn på dashboardet og trykk rediger.</p>
+                                    <h4 className="font-medium text-slate-900 text-sm">Hvordan endrer jeg annonsen?</h4>
+                                    <p className="text-sm text-slate-500">Logg inn på dashboardet og trykk rediger.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     {/* Contact Form Details */}
-                    <div className="glass-card p-8">
-                        <h2 className="text-2xl font-bold mb-6">Send oss en melding</h2>
+                    <div className="glass-card bg-white p-8 shadow-sm">
+                        <h2 className="text-2xl font-bold mb-6 text-slate-900">Send oss en melding</h2>
                         <form className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium mb-2">Navn</label>
+                                <label className="block text-sm font-medium mb-2 text-slate-700">Navn</label>
                                 <input type="text" className="input" placeholder="Ditt navn" required />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium mb-2">E-post</label>
+                                <label className="block text-sm font-medium mb-2 text-slate-700">E-post</label>
                                 <input type="email" className="input" placeholder="din@epost.no" required />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium mb-2">Emne</label>
+                                <label className="block text-sm font-medium mb-2 text-slate-700">Emne</label>
                                 <select className="input">
                                     <option>Generelt spørsmål</option>
                                     <option>Teknisk problem</option>
@@ -84,7 +84,7 @@ export default function KontaktPage() {
                                 </select>
                             </div>
                             <div>
-                                <label className="block text-sm font-medium mb-2">Melding</label>
+                                <label className="block text-sm font-medium mb-2 text-slate-700">Melding</label>
                                 <textarea className="input min-h-[120px]" placeholder="Hva kan vi hjelpe deg med?" required></textarea>
                             </div>
                             <button type="submit" className="btn-primary w-full">
