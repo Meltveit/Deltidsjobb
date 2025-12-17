@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { getJobById } from '@/lib/models/Job';
-import { JOB_LISTING_PRICE } from '@/lib/constants';
+import { getJobById, activateJob, getJobCountByCountry } from '@/lib/models/Job';
+import { JOB_LISTING_PRICE, CITY_TO_COUNTRY } from '@/lib/constants';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -18,7 +18,7 @@ export async function POST(request) {
             );
         }
 
-        const { jobId } = await request.json();
+        const { jobId, locale = 'no' } = await request.json();
 
         // Verify job exists and belongs to user
         const job = await getJobById(jobId);
@@ -37,6 +37,18 @@ export async function POST(request) {
             );
         }
 
+        // --- FREE PROMOTION LOGIC ---
+        // Determine country from city
+        const country = job.country || CITY_TO_COUNTRY[job.location] || 'Norway';
+        const activeJobCount = await getJobCountByCountry(country);
+
+        if (activeJobCount < 100) {
+            console.log(`🎁 Promotion applies! Country: ${country}, Count: ${activeJobCount}. Activating job ${jobId} for free.`);
+            await activateJob(jobId);
+            return NextResponse.json({ isFree: true });
+        }
+        // ----------------------------
+
         // Create Stripe checkout session
         const checkoutSession = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -47,8 +59,8 @@ export async function POST(request) {
                 },
             ],
             mode: 'payment',
-            success_url: `${process.env.NEXTAUTH_URL}/dashboard?payment_success=true&jobId=${jobId}`,
-            cancel_url: `${process.env.NEXTAUTH_URL}/betaling/${jobId}?canceled=true`,
+            success_url: `${process.env.NEXTAUTH_URL}/${locale}/dashboard?payment_success=true&jobId=${jobId}`,
+            cancel_url: `${process.env.NEXTAUTH_URL}/${locale}/betaling/${jobId}?canceled=true`,
             metadata: {
                 jobId: jobId,
                 userId: session.user.id,

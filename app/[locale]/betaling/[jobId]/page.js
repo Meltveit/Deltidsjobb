@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
+import { useRouter } from '@/navigation';
 import { loadStripe } from '@stripe/stripe-js';
 import { JOB_LISTING_PRICE, formatPrice } from '@/lib/constants';
 
@@ -13,6 +14,7 @@ export default function PaymentPage() {
     const [job, setJob] = useState(null);
     const [loading, setLoading] = useState(true);
     const [processing, setProcessing] = useState(false);
+    const [isFreeEligible, setIsFreeEligible] = useState(false);
 
     useEffect(() => {
         fetchJob();
@@ -23,6 +25,11 @@ export default function PaymentPage() {
             const response = await fetch(`/api/jobs/${params.jobId}`);
             const data = await response.json();
             setJob(data.job);
+
+            // Check if job is already active (might have been auto-activated)
+            if (data.job?.status === 'active') {
+                router.push('/dashboard?payment_success=true');
+            }
         } catch (error) {
             console.error('Error fetching job:', error);
         } finally {
@@ -40,6 +47,7 @@ export default function PaymentPage() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     jobId: params.jobId,
+                    locale: params.locale
                 }),
             });
 
@@ -47,6 +55,12 @@ export default function PaymentPage() {
 
             if (!response.ok) {
                 throw new Error(data.error || 'Kunne ikke starte betaling');
+            }
+
+            // Handle free promotion
+            if (data.isFree) {
+                router.push(`/dashboard?payment_success=true&jobId=${params.jobId}`);
+                return;
             }
 
             // Redirect to Stripe
@@ -95,6 +109,14 @@ export default function PaymentPage() {
                     <p className="text-gray-400">
                         Betal for å publisere stillingen din i 60 dager
                     </p>
+
+                    {job && job.country && (
+                        <div className="mt-6 p-4 bg-green-500/10 border border-green-500/30 rounded-xl inline-block animate-bounce">
+                            <span className="text-green-400 font-bold">
+                                🎁 KAMPANJE: De første 100 annonsene i {job.country} er GRATIS!
+                            </span>
+                        </div>
+                    )}
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">

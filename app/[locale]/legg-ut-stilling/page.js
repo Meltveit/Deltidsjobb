@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
+import { useRouter } from '@/navigation';
 import StepWizard from '@/components/StepWizard';
 import AddressAutocomplete from '@/components/AddressAutocomplete';
 import { NORWEGIAN_CITIES, JOB_SECTORS, EMPLOYMENT_TYPES } from '@/lib/constants';
@@ -10,6 +11,7 @@ import { NORWEGIAN_CITIES, JOB_SECTORS, EMPLOYMENT_TYPES } from '@/lib/constants
 export default function PostJobPage() {
     const { data: session, status } = useSession();
     const router = useRouter();
+    const params = useParams();
     const [currentStep, setCurrentStep] = useState(1);
     const [customTag, setCustomTag] = useState('');
     const [availableTags, setAvailableTags] = useState([]);
@@ -130,7 +132,7 @@ export default function PostJobPage() {
                 throw new Error(data.error || 'Kunne ikke opprette stilling');
             }
 
-            // Redirect to payment
+            // Redirect to payment (localized)
             router.push(`/betaling/${data.jobId}`);
         } catch (error) {
             alert(error.message);
