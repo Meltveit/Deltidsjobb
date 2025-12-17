@@ -27,20 +27,25 @@ export async function POST(request) {
     switch (event.type) {
         case 'checkout.session.completed':
             const session = event.data.object;
-            const jobId = session.metadata.jobId;
+            const jobId = session.metadata?.jobId;
+
+            console.log(`🔔 Webhook received: checkout.session.completed for session ${session.id}`);
 
             if (jobId) {
                 try {
-                    console.log(`Payment successful for job ${jobId}, activating...`);
+                    console.log(`✅ Payment successful for job ${jobId}, activating listing...`);
                     await activateJob(jobId);
+                    console.log(`🚀 Job ${jobId} is now active!`);
                 } catch (error) {
-                    console.error('Error activating job:', error);
+                    console.error('❌ Error activating job:', error);
                     return NextResponse.json({ error: 'Error activating job' }, { status: 500 });
                 }
+            } else {
+                console.warn('⚠️ No jobId found in session metadata');
             }
             break;
         default:
-            console.log(`Unhandled event type ${event.type}`);
+            console.log(`ℹ️ Unhandled event type ${event.type}`);
     }
 
     return NextResponse.json({ received: true });

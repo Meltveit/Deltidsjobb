@@ -42,14 +42,7 @@ export async function POST(request) {
             payment_method_types: ['card'],
             line_items: [
                 {
-                    price_data: {
-                        currency: 'nok',
-                        product_data: {
-                            name: `Stillingsannonse: ${job.title}`,
-                            description: `60 dagers stillingsannonse for ${job.title}`,
-                        },
-                        unit_amount: JOB_LISTING_PRICE * 100, // Amount in øre
-                    },
+                    price: 'price_1SfR9pCq59oBRtBTVOfeUjsT',
                     quantity: 1,
                 },
             ],

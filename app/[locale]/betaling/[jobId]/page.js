@@ -159,10 +159,6 @@ export default function PaymentPage() {
 
                 {/* Payment Button */}
                 <div className="glass-card text-center">
-                    <p className="mb-6 text-gray-400">
-                        <strong>Merk:</strong> Dette er en demo-versjon. I produksjon vil du bli tatt til en sikker Stripe betalingsside.
-                    </p>
-
                     <button
                         onClick={handlePayment}
                         disabled={processing}
