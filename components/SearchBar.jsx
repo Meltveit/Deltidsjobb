@@ -81,7 +81,7 @@ export default function SearchBar({ onSearch }) {
                     <div className="mt-6 pt-6 border-t border-white/10 space-y-4">
                         {/* Sector filter */}
                         <div>
-                            <label className="block text-sm font-medium mb-2">Sektor</label>
+                            <label className="block text-sm font-medium mb-2 text-slate-700">Sektor</label>
                             <select
                                 value={sector}
                                 onChange={(e) => setSector(e.target.value)}
@@ -98,7 +98,7 @@ export default function SearchBar({ onSearch }) {
 
                         {/* Employment Type filter */}
                         <div>
-                            <label className="block text-sm font-medium mb-2">Ansettelsestype</label>
+                            <label className="block text-sm font-medium mb-2 text-slate-700">Ansettelsestype</label>
                             <div className="flex flex-wrap gap-2">
                                 {['Heltid', 'Deltid', 'Sesongarbeid', 'Vikariat'].map((type) => (
                                     <button
@@ -106,26 +106,7 @@ export default function SearchBar({ onSearch }) {
                                         onClick={() => setEmploymentType(employmentType === type ? '' : type)}
                                         className={`px-3 py-1 rounded-full text-sm transition-all ${employmentType === type
                                             ? 'bg-gradient-to-r from-primary-500 to-accent-500 text-white'
-                                            : 'glass border border-white/20 text-gray-500 hover:border-primary-400'
-                                            }`}
-                                    >
-                                        {type}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Employment Type Filter */}
-                        <div>
-                            <label className="block text-sm font-medium mb-2">Ansettelsestype</label>
-                            <div className="flex flex-wrap gap-2">
-                                {['Heltid', 'Deltid', 'Sesongarbeid', 'Vikariat'].map((type) => (
-                                    <button
-                                        key={type}
-                                        onClick={() => setEmploymentType(employmentType === type ? '' : type)}
-                                        className={`px-3 py-1 rounded-full text-sm transition-all ${employmentType === type
-                                            ? 'bg-gradient-to-r from-primary-500 to-accent-500 text-white'
-                                            : 'glass border border-white/20 text-gray-500 hover:border-primary-400'
+                                            : 'glass border border-white/20 text-slate-600 hover:border-primary-400'
                                             }`}
                                     >
                                         {type}
@@ -136,7 +117,7 @@ export default function SearchBar({ onSearch }) {
 
                         {/* Tags filter */}
                         <div>
-                            <label className="block text-sm font-medium mb-2">Tags</label>
+                            <label className="block text-sm font-medium mb-2 text-slate-700">Tags</label>
                             <div className="flex flex-wrap gap-2 max-h-40 overflow-y-auto custom-scrollbar">
                                 {JOB_TAGS.map((tag) => (
                                     <button
@@ -144,7 +125,7 @@ export default function SearchBar({ onSearch }) {
                                         onClick={() => toggleTag(tag)}
                                         className={`px-3 py-1 rounded-full text-sm transition-all ${selectedTags.includes(tag)
                                             ? 'bg-gradient-to-r from-primary-500 to-accent-500 text-white'
-                                            : 'glass border border-white/20 text-gray-300 hover:border-primary-400'
+                                            : 'glass border border-white/20 text-slate-600 hover:border-primary-400'
                                             }`}
                                     >
                                         {tag}
@@ -159,7 +140,7 @@ export default function SearchBar({ onSearch }) {
             {/* Active filters display */}
             {(searchQuery || location || sector || employmentType || selectedTags.length > 0) && (
                 <div className="mt-4 flex flex-wrap gap-2 items-center">
-                    <span className="text-sm text-gray-400">Aktive filtre:</span>
+                    <span className="text-sm text-slate-500">Aktive filtre:</span>
 
                     {searchQuery && (
                         <span className="tag">
