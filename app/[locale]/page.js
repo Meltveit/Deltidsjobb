@@ -47,6 +47,30 @@ export default function HomePage() {
 
     return (
         <div className="container-custom py-12">
+            {/* Promotional Banner */}
+            <div className="mb-8 animate-fade-in">
+                <div className="glass-card bg-gradient-to-r from-primary-500 via-accent-500 to-primary-600 border-0 shadow-xl relative overflow-hidden">
+                    {/* Decorative elements */}
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+
+                    <div className="relative z-10 text-center py-8 px-6">
+                        <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-white text-sm font-semibold mb-4">
+                            🎁 Lanserings-tilbud
+                        </div>
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+                            De første 50 stillingsannonsene er GRATIS!
+                        </h2>
+                        <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">
+                            Vær blant de første bedriftene på Nordens enkleste jobbplattform
+                        </p>
+                        <Link href="/auth/signup" className="inline-block bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-slate-50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                            Legg ut gratis stilling nå →
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
             {/* Hero Section */}
             <div className="text-center mb-16 animate-fade-in">
                 <h1 className="text-5xl md:text-7xl font-bold mb-6">

@@ -42,7 +42,7 @@ export async function POST(request) {
         const country = job.country || CITY_TO_COUNTRY[job.location] || 'Norway';
         const activeJobCount = await getJobCountByCountry(country);
 
-        if (activeJobCount < 100) {
+        if (activeJobCount < 50) {
             console.log(`🎁 Promotion applies! Country: ${country}, Count: ${activeJobCount}. Activating job ${jobId} for free.`);
             await activateJob(jobId);
             return NextResponse.json({ isFree: true });
