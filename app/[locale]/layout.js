@@ -43,8 +43,8 @@ export const metadata = {
 
     // Icons / Favicon
     icons: {
-        icon: '/icon.png',
-        shortcut: '/icon.png',
+        icon: '/favicon.png',
+        shortcut: '/favicon.png',
         apple: '/icon.png',
     },
 
