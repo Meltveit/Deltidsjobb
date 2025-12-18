@@ -4,12 +4,15 @@ import { useState, useEffect } from 'react';
 import SearchBar from '@/components/SearchBar';
 import JobCard from '@/components/JobCard';
 import { Link } from '@/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import { getPriceByLocale } from '@/lib/constants';
 
 export default function HomePage() {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filters, setFilters] = useState({});
+    const locale = useLocale();
+    const priceInfo = getPriceByLocale(locale);
     const t = useTranslations('Home');
     const n = useTranslations('Navbar');
     const c = useTranslations('Common');
@@ -76,7 +79,7 @@ export default function HomePage() {
                     <div className="text-gray-400">{t('stats.active')}</div>
                 </div>
                 <div className="glass-card text-center">
-                    <div className="text-4xl font-bold gradient-text mb-2">649kr</div>
+                    <div className="text-4xl font-bold gradient-text mb-2">{priceInfo.display}</div>
                     <div className="text-gray-400">{t('stats.price', { days: 60 })}</div>
                 </div>
                 <div className="glass-card text-center">

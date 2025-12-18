@@ -91,8 +91,21 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="mt-8 pt-8 border-t border-slate-100 text-center text-sm text-slate-500">
-                    <p>&copy; {new Date().getFullYear()} Deltidsjobb. {t('rights')}.</p>
+                {/* Climate Badge */}
+                <div className="mt-8 pt-8 border-t border-slate-100 flex flex-col items-center gap-4">
+                    <a
+                        href="https://climate.stripe.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 hover:bg-green-100 border border-green-200 rounded-lg transition-colors group"
+                    >
+                        <span className="text-2xl">🌍</span>
+                        <div className="text-left">
+                            <div className="text-xs text-green-600 font-semibold">{t('climate.badge')}</div>
+                            <div className="text-xs text-green-700">{t('climate.contribution')}</div>
+                        </div>
+                    </a>
+                    <p className="text-sm text-slate-500">&copy; {new Date().getFullYear()} Deltidsjobb. {t('rights')}.</p>
                 </div>
             </div>
         </footer>

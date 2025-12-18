@@ -6,6 +6,14 @@ import { headers } from 'next/headers';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
+// Disable body parsing for webhook - we need raw body for signature verification
+export const config = {
+    api: {
+        bodyParser: false,
+    },
+};
+
+
 export async function POST(request) {
     const body = await request.text();
     const sig = headers().get('stripe-signature');

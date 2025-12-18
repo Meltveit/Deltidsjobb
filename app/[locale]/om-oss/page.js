@@ -84,6 +84,47 @@ export default function OmOssPage() {
                     </div>
                 </div>
             </div>
+
+            {/* Simplicity Philosophy */}
+            <div className="glass-card bg-gradient-to-br from-primary-50 to-white p-8 md:p-12 mb-24 border border-primary-100 shadow-lg">
+                <div className="max-w-3xl mx-auto text-center">
+                    <div className="inline-block bg-primary-100 text-primary-600 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                        {t('simplicity.badge')}
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900">
+                        {t('simplicity.title')}
+                    </h2>
+                    <p className="text-lg text-slate-600 leading-relaxed mb-6">
+                        {t('simplicity.p1')}
+                    </p>
+                    <p className="text-lg text-slate-600 leading-relaxed">
+                        {t('simplicity.p2')}
+                    </p>
+                </div>
+            </div>
+
+            {/* Climate Commitment */}
+            <div className="glass-card bg-white p-8 md:p-12 border-l-4 border-l-green-500 shadow-sm">
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                    <div className="flex-shrink-0">
+                        <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center text-4xl">
+                            🌍
+                        </div>
+                    </div>
+                    <div className="flex-1 text-center md:text-left">
+                        <h2 className="text-2xl font-bold mb-4 text-slate-900">
+                            {t('climate.title')}
+                        </h2>
+                        <p className="text-slate-600 leading-relaxed mb-4">
+                            {t('climate.description')}
+                        </p>
+                        <div className="inline-flex items-center gap-2 bg-green-50 px-4 py-2 rounded-lg border border-green-200">
+                            <span className="text-green-700 font-semibold">1.5%</span>
+                            <span className="text-green-600 text-sm">{t('climate.percentage')}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

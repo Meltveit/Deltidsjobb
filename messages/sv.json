@@ -19,7 +19,11 @@
         "terms": "Villkor",
         "privacy": "Integritet",
         "contact": "Kontakt",
-        "rights": "Alla rättigheter förbehållna"
+        "rights": "Alla rättigheter förbehållna",
+        "climate": {
+            "badge": "Stripe Climate-medlem",
+            "contribution": "1.5% av omsättning till CO₂-borttagning"
+        }
     },
     "Common": {
         "readMore": "Läs mer",
@@ -96,6 +100,17 @@
                 "title": "Innovation",
                 "desc": "Vi utvecklar ständigt nya verktyg som CV-generatorn för att hjälpa sökande vidare."
             }
+        },
+        "simplicity": {
+            "badge": "Vår filosofi",
+            "title": "Enkelhet är nyckeln",
+            "p1": "Dagens platsannonser är ofta designade för heltidstjänster med komplicerade ansökningsprocesser. Långa tester, omfattande CV-ifyllningar på flera sidor och tidskrävande procedurer har gjort det onödigt svårt att söka jobb.",
+            "p2": "Vi tar några steg tillbaka och gör processen enkel igen. Det ska inte vara svårt att söka jobb, och du ska inte behöva spendera 15-30 minuter på tester för varje tjänst. För både jobbsökare och arbetsgivare är det enklaste ofta det bästa."
+        },
+        "climate": {
+            "title": "Vårt klimatengagemang",
+            "description": "Vi donerar 1.5% av all omsättning till CO₂-borttagning genom Stripe Climate. Tillsammans bidrar vi till en bättre framtid för planeten.",
+            "percentage": "av omsättningen går till klimatåtgärder"
         }
     },
     "Terms": {
@@ -198,7 +213,7 @@
             "price": {
                 "title": "Rimligt pris",
                 "desc": "Endast {price} för 60 dagar",
-                "value": "699 kr"
+                "value": "599 kr"
             },
             "audience": {
                 "title": "Nå rätt målgrupp",

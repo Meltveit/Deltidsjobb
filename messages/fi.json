@@ -19,7 +19,11 @@
         "terms": "Ehdot",
         "privacy": "Tietosuoja",
         "contact": "Ota yhteyttä",
-        "rights": "Kaikki oikeudet pidätetään"
+        "rights": "Kaikki oikeudet pidätetään",
+        "climate": {
+            "badge": "Stripe Climate -jäsen",
+            "contribution": "1.5% liikevaihdosta CO₂:n poistamiseen"
+        }
     },
     "Common": {
         "readMore": "Lue lisää",
@@ -96,6 +100,17 @@
                 "title": "Innovaatio",
                 "desc": "Kehitämme jatkuvasti uusia työkaluja, kuten CV-generaattorin, auttaaksemme hakijoita eteenpäin."
             }
+        },
+        "simplicity": {
+            "badge": "Filosofiamme",
+            "title": "Yksinkertaisuus on avain",
+            "p1": "Nykyiset työpaikkailmoitukset on usein suunniteltu kokopäivätyöhön monimutkaisilla hakuprosesseilla. Pitkät testit, laajat CV-täytöt useilla sivuilla ja aikaa vievät menettelyt ovat tehneet työnhausta tarpeettoman vaikeaa.",
+            "p2": "Otamme muutaman askeleen taaksepäin ja teemme prosessista yksinkertaisen jälleen. Työnhaun ei pitäisi olla vaikeaa, eikä sinun pitäisi joutua käyttämään 15-30 minuuttia testeihin jokaisessa työpaikassa. Sekä työnhakijoille että työnantajille yksinkertaisin on usein paras."
+        },
+        "climate": {
+            "title": "Ilmastositoumuksemme",
+            "description": "Lahjoitamme 1.5% kaikesta liikevaihdosta CO₂:n poistamiseen Stripe Climaten kautta. Yhdessä autamme rakentamaan parempaa tulevaisuutta planeetalle.",
+            "percentage": "liikevaihdosta menee ilmastotoimiin"
         }
     },
     "Terms": {
@@ -198,7 +213,7 @@
             "price": {
                 "title": "Edullinen hinta",
                 "desc": "Vain {price} 60 päiväksi",
-                "value": "59 €"
+                "value": "€55.90"
             },
             "audience": {
                 "title": "Tavoita oikea kohderyhmä",

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { getJobById, activateJob, getJobCountByCountry } from '@/lib/models/Job';
-import { JOB_LISTING_PRICE, CITY_TO_COUNTRY } from '@/lib/constants';
+import { CITY_TO_COUNTRY, getPriceByLocale } from '@/lib/constants';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -49,12 +49,16 @@ export async function POST(request) {
         }
         // ----------------------------
 
+        // Get price info based on locale
+        const priceInfo = getPriceByLocale(locale);
+        console.log(`💰 Creating checkout session for locale: ${locale}, price: ${priceInfo.display}`);
+
         // Create Stripe checkout session
         const checkoutSession = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             line_items: [
                 {
-                    price: 'price_1SfR9pCq59oBRtBTVOfeUjsT',
+                    price: priceInfo.priceId,
                     quantity: 1,
                 },
             ],
@@ -64,6 +68,7 @@ export async function POST(request) {
             metadata: {
                 jobId: jobId,
                 userId: session.user.id,
+                locale: locale,
             },
             customer_email: session.user.email,
         });
@@ -77,3 +82,4 @@ export async function POST(request) {
         );
     }
 }
+

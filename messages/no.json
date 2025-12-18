@@ -19,7 +19,11 @@
         "terms": "Vilkår",
         "privacy": "Personvern",
         "contact": "Kontakt",
-        "rights": "Alle rettigheter reservert"
+        "rights": "Alle rettigheter reservert",
+        "climate": {
+            "badge": "Stripe Climate-medlem",
+            "contribution": "1.5% av omsetning til CO₂-fjerning"
+        }
     },
     "Common": {
         "readMore": "Les mer",
@@ -96,6 +100,17 @@
                 "title": "Innovasjon",
                 "desc": "Vi utvikler stadig nye verktøy som CV-generatoren for å hjelpe søkere videre."
             }
+        },
+        "simplicity": {
+            "badge": "Vår filosofi",
+            "title": "Enkelhet er nøkkelen",
+            "p1": "Dagens stillingsannonser er ofte designet for fulltidsstillinger med kompliserte søknadsprosesser. Lange tester, omfattende CV-utfyllinger på flere sider, og tidkrevende prosedyrer har gjort det unødvendig vanskelig å søke jobb.",
+            "p2": "Vi tar noen skritt tilbake og gjør prosessen enkel igjen. Det skal ikke være vanskelig å søke jobb, og du skal ikke måtte bruke 15-30 minutter på tester for hver stilling. For både jobbsøkere og arbeidsgivere er det enkleste ofte det beste."
+        },
+        "climate": {
+            "title": "Vårt klimaengasjement",
+            "description": "Vi donerer 1.5% av all omsetning til CO₂-fjerning gjennom Stripe Climate. Sammen bidrar vi til en bedre fremtid for planeten.",
+            "percentage": "av omsetningen går til klimatiltak"
         }
     },
     "Terms": {

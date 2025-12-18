@@ -1,9 +1,12 @@
-export const metadata = {
-    title: 'Kontakt oss | Kundeservice Fleksjobb',
-    description: 'Trenger du hjelp? Kontakt kundeservice hos Fleksjobb.no for spørsmål om annonsering, teknisk support eller samarbeid.',
-};
+'use client';
+
+import { useLocale } from 'next-intl';
+import { getPriceByLocale } from '@/lib/constants';
 
 export default function KontaktPage() {
+    const locale = useLocale();
+    const priceInfo = getPriceByLocale(locale);
+
     return (
         <div className="container-custom py-20">
             <div className="max-w-4xl mx-auto">
@@ -52,7 +55,7 @@ export default function KontaktPage() {
                             <div className="space-y-4">
                                 <div>
                                     <h4 className="font-medium text-slate-900 text-sm">Hva koster en annonse?</h4>
-                                    <p className="text-sm text-slate-500">649 kr for 60 dager.</p>
+                                    <p className="text-sm text-slate-500">{priceInfo.display} for 60 dager.</p>
                                 </div>
                                 <div>
                                     <h4 className="font-medium text-slate-900 text-sm">Hvordan endrer jeg annonsen?</h4>
