@@ -15,6 +15,7 @@ export default function PaymentPage() {
     const [loading, setLoading] = useState(true);
     const [processing, setProcessing] = useState(false);
     const [isFreeEligible, setIsFreeEligible] = useState(false);
+    const [showPromotion, setShowPromotion] = useState(true);
 
     useEffect(() => {
         fetchJob();
@@ -29,6 +30,13 @@ export default function PaymentPage() {
             // Check if job is already active (might have been auto-activated)
             if (data.job?.status === 'active') {
                 router.push('/dashboard?payment_success=true');
+            }
+
+            // Check if promotion is still active for this country
+            if (data.job?.country) {
+                const countResponse = await fetch(`/api/jobs/count?country=${data.job.country}`);
+                const countData = await countResponse.json();
+                setShowPromotion(countData.count < 50);
             }
         } catch (error) {
             console.error('Error fetching job:', error);
@@ -110,10 +118,10 @@ export default function PaymentPage() {
                         Betal for å publisere stillingen din i 60 dager
                     </p>
 
-                    {job && job.country && (
+                    {job && job.country && showPromotion && (
                         <div className="mt-6 p-4 bg-green-500/10 border border-green-500/30 rounded-xl inline-block animate-bounce">
                             <span className="text-green-400 font-bold">
-                                🎁 KAMPANJE: De første 100 annonsene i {job.country} er GRATIS!
+                                🎁 KAMPANJE: De første 50 annonsene i {job.country} er GRATIS!
                             </span>
                         </div>
                     )}
@@ -180,26 +188,28 @@ export default function PaymentPage() {
                 </div>
 
                 {/* Payment Button */}
-                <div className="glass-card text-center">
-                    <button
-                        onClick={handlePayment}
-                        disabled={processing}
-                        className="btn-primary px-12 py-4 text-lg"
-                    >
-                        {processing ? (
-                            <span className="flex items-center justify-center">
-                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                Behandler betaling...
-                            </span>
-                        ) : (
-                            `Betal ${JOB_LISTING_PRICE} kr`
-                        )}
-                    </button>
+                <div className="glass-card">
+                    <div className="flex justify-center">
+                        <button
+                            onClick={handlePayment}
+                            disabled={processing}
+                            className="btn-primary px-12 py-4 text-lg"
+                        >
+                            {processing ? (
+                                <span className="flex items-center justify-center">
+                                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Behandler betaling...
+                                </span>
+                            ) : (
+                                `Betal ${JOB_LISTING_PRICE} kr`
+                            )}
+                        </button>
+                    </div>
 
-                    <p className="mt-4 text-sm text-gray-500">
+                    <p className="mt-4 text-sm text-gray-500 text-center">
                         Sikret av Stripe • 128-bit SSL kryptering
                     </p>
                 </div>
