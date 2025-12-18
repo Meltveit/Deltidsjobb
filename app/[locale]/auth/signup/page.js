@@ -14,6 +14,10 @@ export default function SignUpPage() {
         companyName: '',
         contactPerson: '',
         phoneNumber: '',
+        country: 'Norway', // Hidden for now, auto-set to Norway
+        termsAccepted: false,
+        privacyAccepted: false,
+        marketingConsent: false,
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -21,6 +25,17 @@ export default function SignUpPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+
+        // GDPR Validation
+        if (!formData.termsAccepted) {
+            setError('Du må godta vilkårene for å opprette en konto');
+            return;
+        }
+
+        if (!formData.privacyAccepted) {
+            setError('Du må godta personvernerklæringen for å opprette en konto');
+            return;
+        }
 
         // Validation
         if (formData.password !== formData.confirmPassword) {
@@ -45,6 +60,10 @@ export default function SignUpPage() {
                     companyName: formData.companyName,
                     contactPerson: formData.contactPerson,
                     phoneNumber: formData.phoneNumber,
+                    country: formData.country,
+                    termsAccepted: formData.termsAccepted,
+                    privacyAccepted: formData.privacyAccepted,
+                    marketingConsent: formData.marketingConsent,
                 }),
             });
 
@@ -165,6 +184,58 @@ export default function SignUpPage() {
                                 className="input"
                                 placeholder="Gjenta passord"
                             />
+                        </div>
+
+                        {/* GDPR Consent Section */}
+                        <div className="space-y-3 pt-6 border-t border-slate-200">
+                            <p className="text-sm font-medium text-slate-700 mb-3">Samtykke og vilkår</p>
+
+                            {/* Terms of Service - Required */}
+                            <label className="flex items-start gap-3 cursor-pointer group">
+                                <input
+                                    type="checkbox"
+                                    checked={formData.termsAccepted}
+                                    onChange={(e) => setFormData({ ...formData, termsAccepted: e.target.checked })}
+                                    className="mt-1 w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500"
+                                />
+                                <span className="text-sm text-slate-600 group-hover:text-slate-900">
+                                    Jeg godtar{' '}
+                                    <Link href="/vilkar" className="text-primary-600 hover:text-primary-700 underline" target="_blank">
+                                        vilkårene
+                                    </Link>
+                                    {' '}<span className="text-red-500">*</span>
+                                </span>
+                            </label>
+
+                            {/* Privacy Policy - Required */}
+                            <label className="flex items-start gap-3 cursor-pointer group">
+                                <input
+                                    type="checkbox"
+                                    checked={formData.privacyAccepted}
+                                    onChange={(e) => setFormData({ ...formData, privacyAccepted: e.target.checked })}
+                                    className="mt-1 w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500"
+                                />
+                                <span className="text-sm text-slate-600 group-hover:text-slate-900">
+                                    Jeg har lest og godtar{' '}
+                                    <Link href="/personvern" className="text-primary-600 hover:text-primary-700 underline" target="_blank">
+                                        personvernerklæringen
+                                    </Link>
+                                    {' '}<span className="text-red-500">*</span>
+                                </span>
+                            </label>
+
+                            {/* Marketing Consent - Optional */}
+                            <label className="flex items-start gap-3 cursor-pointer group">
+                                <input
+                                    type="checkbox"
+                                    checked={formData.marketingConsent}
+                                    onChange={(e) => setFormData({ ...formData, marketingConsent: e.target.checked })}
+                                    className="mt-1 w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500"
+                                />
+                                <span className="text-sm text-slate-600 group-hover:text-slate-900">
+                                    Jeg ønsker å motta nyhetsbrev og markedsføring (valgfritt)
+                                </span>
+                            </label>
                         </div>
 
                         <button

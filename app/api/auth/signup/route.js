@@ -3,12 +3,37 @@ import { createUser } from '@/lib/models/User';
 
 export async function POST(request) {
     try {
-        const { email, password, companyName, contactPerson, phoneNumber } = await request.json();
+        const {
+            email,
+            password,
+            companyName,
+            contactPerson,
+            phoneNumber,
+            country,
+            termsAccepted,
+            privacyAccepted,
+            marketingConsent
+        } = await request.json();
 
         // Validation
         if (!email || !password || !companyName || !contactPerson) {
             return NextResponse.json(
                 { error: 'Alle feltene er påkrevd' },
+                { status: 400 }
+            );
+        }
+
+        // GDPR Validation
+        if (!termsAccepted) {
+            return NextResponse.json(
+                { error: 'Du må godta vilkårene' },
+                { status: 400 }
+            );
+        }
+
+        if (!privacyAccepted) {
+            return NextResponse.json(
+                { error: 'Du må godta personvernerklæringen' },
                 { status: 400 }
             );
         }
@@ -20,6 +45,11 @@ export async function POST(request) {
             );
         }
 
+        // Get IP address for GDPR audit trail
+        const ipAddress = request.headers.get('x-forwarded-for') ||
+            request.headers.get('x-real-ip') ||
+            'unknown';
+
         // Create user
         const user = await createUser({
             email,
@@ -27,6 +57,14 @@ export async function POST(request) {
             companyName,
             contactPerson,
             phoneNumber,
+            country: country || 'Norway',
+            gdprConsent: {
+                termsAccepted,
+                privacyAccepted,
+                marketingConsent: marketingConsent || false,
+                consentDate: new Date(),
+                ipAddress
+            }
         });
 
         return NextResponse.json(
