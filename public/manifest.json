@@ -1,0 +1,17 @@
+{
+    "name": "FleksJobb - Finn din neste deltidsjobb",
+    "short_name": "FleksJobb",
+    "description": "Den enkleste plattformen i Norden for å finne og legge ut deltidsjobber",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#3b82f6",
+    "icons": [
+        {
+            "src": "/icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

@@ -17,12 +17,11 @@ export default function Navbar({ locale }) {
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 group">
-                        <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center shadow-lg shadow-primary-200 group-hover:scale-105 transition-transform">
-                            <span className="text-white font-bold text-xl">F</span>
-                        </div>
-                        <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700">
-                            Fleksjobb
-                        </span>
+                        <img
+                            src="/logo.png"
+                            alt="FleksJobb"
+                            className="h-10 w-auto group-hover:scale-105 transition-transform"
+                        />
                     </Link>
 
                     {/* Desktop Navigation */}
