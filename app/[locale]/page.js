@@ -11,6 +11,9 @@ export default function HomePage() {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filters, setFilters] = useState({});
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [total, setTotal] = useState(0);
     const locale = useLocale();
     const priceInfo = getPriceByLocale(locale);
     const t = useTranslations('Home');
@@ -18,10 +21,10 @@ export default function HomePage() {
     const c = useTranslations('Common');
 
     useEffect(() => {
-        fetchJobs(filters);
-    }, [filters]);
+        fetchJobs(filters, currentPage);
+    }, [filters, currentPage]);
 
-    const fetchJobs = async (filters) => {
+    const fetchJobs = async (filters, page = 1) => {
         setLoading(true);
         try {
             const queryParams = new URLSearchParams();
@@ -30,10 +33,14 @@ export default function HomePage() {
             if (filters.country) queryParams.append('country', filters.country);
             if (filters.sector) queryParams.append('sector', filters.sector);
             if (filters.tags) filters.tags.forEach(tag => queryParams.append('tags', tag));
+            queryParams.append('page', page.toString());
+            queryParams.append('limit', '50');
 
             const response = await fetch(`/api/jobs?${queryParams.toString()}`);
             const data = await response.json();
             setJobs(data.jobs || []);
+            setTotal(data.total || 0);
+            setTotalPages(data.totalPages || 1);
         } catch (error) {
             console.error('Error fetching jobs:', error);
         } finally {
@@ -43,6 +50,7 @@ export default function HomePage() {
 
     const handleSearch = (newFilters) => {
         setFilters(newFilters);
+        setCurrentPage(1); // Reset to page 1 on new search
     };
 
     return (
@@ -137,11 +145,70 @@ export default function HomePage() {
                         </button>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {jobs.map((job) => (
-                            <JobCard key={job._id} job={job} />
-                        ))}
-                    </div>
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {jobs.map((job) => (
+                                <JobCard key={job._id} job={job} />
+                            ))}
+                        </div>
+
+                        {/* Pagination */}
+                        {totalPages > 1 && (
+                            <div className="mt-12 flex justify-center items-center gap-2">
+                                <button
+                                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                                    disabled={currentPage === 1}
+                                    className="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    ← Forrige
+                                </button>
+
+                                <div className="flex gap-2">
+                                    {[...Array(totalPages)].map((_, i) => {
+                                        const page = i + 1;
+                                        // Show first, last, current, and adjacent pages
+                                        if (
+                                            page === 1 ||
+                                            page === totalPages ||
+                                            (page >= currentPage - 1 && page <= currentPage + 1)
+                                        ) {
+                                            return (
+                                                <button
+                                                    key={page}
+                                                    onClick={() => setCurrentPage(page)}
+                                                    className={`px-4 py-2 rounded-lg font-medium transition-all ${currentPage === page
+                                                            ? 'bg-primary-600 text-white'
+                                                            : 'glass-card hover:bg-white/10'
+                                                        }`}
+                                                >
+                                                    {page}
+                                                </button>
+                                            );
+                                        } else if (
+                                            page === currentPage - 2 ||
+                                            page === currentPage + 2
+                                        ) {
+                                            return <span key={page} className="px-2">...</span>;
+                                        }
+                                        return null;
+                                    })}
+                                </div>
+
+                                <button
+                                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                                    disabled={currentPage === totalPages}
+                                    className="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    Neste →
+                                </button>
+                            </div>
+                        )}
+
+                        {/* Results count */}
+                        <p className="text-center text-gray-400 mt-6">
+                            Viser {jobs.length} av {total} stillinger
+                        </p>
+                    </>
                 )}
             </div>
         </div>

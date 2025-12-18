@@ -7,17 +7,29 @@ export async function GET(request) {
     try {
         const { searchParams } = new URL(request.url);
 
+        // Pagination parameters
+        const page = parseInt(searchParams.get('page') || '1');
+        const limit = parseInt(searchParams.get('limit') || '50');
+
         const filters = {
             search: searchParams.get('search') || undefined,
             location: searchParams.get('location') || undefined,
             country: 'Norway', // Force Norway-only
             sector: searchParams.get('sector') || undefined,
             tags: searchParams.getAll('tags') || undefined,
+            page,
+            limit,
         };
 
-        const jobs = await getActiveJobs(filters);
+        const result = await getActiveJobs(filters);
 
-        return NextResponse.json({ jobs });
+        return NextResponse.json({
+            jobs: result.jobs,
+            total: result.total,
+            page: result.page,
+            totalPages: result.totalPages,
+            hasMore: result.hasMore
+        });
     } catch (error) {
         console.error('Error fetching jobs:', error);
         return NextResponse.json({ error: 'Failed to fetch jobs' }, { status: 500 });
