@@ -11,9 +11,9 @@ import { routing } from '@/navigation';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-    title: 'Deltidsjobb - Finn din neste deltidsjobb',
-    description: 'Den enkleste plattformen for å finne og legge ut deltidsjobber.',
-    keywords: 'deltidsjobb, jobb, stillinger, deltid, bijobb, ekstrajobb, sommerjobb',
+    title: 'Fleksjobb - Finn din neste deltidsjobb',
+    description: 'Den enkleste plattformen i Norden for å finne og legge ut deltidsjobber.',
+    keywords: 'fleksjobb, deltidsjobb, jobb, stillinger, deltid, bijobb, ekstrajobb, sommerjobb',
     type: 'website',
 };
 

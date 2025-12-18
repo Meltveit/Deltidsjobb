@@ -1,6 +1,6 @@
 export const metadata = {
-    title: 'Kontakt oss | Kundeservice Deltidsjobb',
-    description: 'Trenger du hjelp? Kontakt kundeservice hos Deltidsjobb.no for spørsmål om annonsering, teknisk support eller samarbeid.',
+    title: 'Kontakt oss | Kundeservice Fleksjobb',
+    description: 'Trenger du hjelp? Kontakt kundeservice hos Fleksjobb.no for spørsmål om annonsering, teknisk support eller samarbeid.',
 };
 
 export default function KontaktPage() {
@@ -26,8 +26,8 @@ export default function KontaktPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-slate-900">Generelle henvendelser</h3>
-                                        <a href="mailto:kontakt@deltidsjobb.no" className="text-slate-500 hover:text-primary-600 transition-colors">
-                                            kontakt@deltidsjobb.no
+                                        <a href="mailto:kontakt@fleksjobb.no" className="text-slate-500 hover:text-primary-600 transition-colors">
+                                            kontakt@fleksjobb.no
                                         </a>
                                         <p className="text-xs text-slate-400 mt-1">Vi svarer innen 24 timer</p>
                                     </div>
@@ -38,8 +38,8 @@ export default function KontaktPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-slate-900">For bedrifter</h3>
-                                        <a href="mailto:bedrift@deltidsjobb.no" className="text-slate-500 hover:text-primary-600 transition-colors">
-                                            bedrift@deltidsjobb.no
+                                        <a href="mailto:bedrift@fleksjobb.no" className="text-slate-500 hover:text-primary-600 transition-colors">
+                                            bedrift@fleksjobb.no
                                         </a>
                                         <p className="text-xs text-slate-400 mt-1">Annonsering og samarbeid</p>
                                     </div>

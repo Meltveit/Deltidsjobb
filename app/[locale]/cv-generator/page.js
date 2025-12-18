@@ -307,7 +307,7 @@ export default function CVGeneratorPage() {
 
                         {/* Powered by footer for print */}
                         <div className="hidden print:block mt-20 pt-8 text-center text-xs text-slate-400 border-t border-slate-100">
-                            CV opprettet med Deltidsjobb.no
+                            CV opprettet med Fleksjobb.no
                         </div>
                     </div>
                 </div>

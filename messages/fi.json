@@ -27,15 +27,15 @@
     },
     "Home": {
         "heroTitle": "Löydä seuraava osa-aikatyösi",
-        "heroSubtitle": "Norjan helpoin alusta osa-aikatöiden löytämiseen ja ilmoittamiseen."
+        "heroSubtitle": "Pohjoismaiden helpoin alusta osa-aikatöiden löytämiseen ja ilmoittamiseen."
     },
     "About": {
-        "metaTitle": "Tietoa Deltidsjobbista - Missiomme työmarkkinoille",
-        "metaDescription": "Tutustu Deltidsjobbiin. Yhdistämme työnhakijat avoimiin työpaikkoihin yksinkertaisen ja tehokkaan alustan kautta.",
+        "metaTitle": "Tietoa Fleksjobbista - Missiomme työmarkkinoille",
+        "metaDescription": "Tutustu Fleksjobbiin. Yhdistämme työnhakijat avoimiin työpaikkoihin yksinkertaisen ja tehokkaan alustan kautta.",
         "sectionTitle": "Historiamme",
         "title": "Rakennamme tulevaisuuden",
         "titleHighlight": "työpaikkaa",
-        "description": "Deltidsjobb sai alkunsa yksinkertaisesta ideasta: Lisätyön löytämisen pitäisi olla yhtä helppoa kuin matkan varaaminen. Tänään autamme tuhansia löytämään merkityksellisiä töitä, jotka sopivat heidän arkeensa.",
+        "description": "Fleksjobb sai alkunsa yksinkertaisesta ideasta: Lisätyön löytämisen pitäisi olla yhtä helppoa kuin matkan varaaminen. Tänään autamme tuhansia löytämään merkityksellisiä töitä, jotka sopivat heidän arkeensa.",
         "stats": {
             "developed": "Paikallisesti kehitetty",
             "support": "Tuki ja saatavuus",
@@ -63,19 +63,19 @@
         }
     },
     "Terms": {
-        "metaTitle": "Ehdot ja edellytykset | Deltidsjobb",
-        "metaDescription": "Lue Deltidsjobb.no-sivuston käyttöehdot.",
+        "metaTitle": "Ehdot ja edellytykset | Fleksjobb",
+        "metaDescription": "Lue Fleksjobb.no-sivuston käyttöehdot.",
         "header": {
             "eyebrow": "Oikeudellinen",
             "title": "Ehdot ja",
             "titleHighlight": "Edellytykset",
-            "desc": "Jotta Deltidsjobb olisi turvallinen ja tehokas alusta kaikille, meillä on muutamia yksinkertaisia sääntöjä.",
+            "desc": "Jotta Fleksjobb olisi turvallinen ja tehokas alusta kaikille, meillä on muutamia yksinkertaisia sääntöjä.",
             "updated": "Viimeksi päivitetty"
         },
         "sections": {
             "introduction": {
                 "title": "1. Johdanto",
-                "content": "Tervetuloa Deltidsjobbiin. Nämä ehdot säätelevät verkkosivustomme ja palveluidemme käyttöä. Luomalla tilin tai käyttämällä palveluitamme hyväksyt nämä ehdot kokonaisuudessaan. Jos et hyväksy jotakin ehtojen osaa, et valitettavasti voi käyttää palvelua."
+                "content": "Tervetuloa Fleksjobbiin. Nämä ehdot säätelevät verkkosivustomme ja palveluidemme käyttöä. Luomalla tilin tai käyttämällä palveluitamme hyväksyt nämä ehdot kokonaisuudessaan. Jos et hyväksy jotakin ehtojen osaa, et valitettavasti voi käyttää palvelua."
             },
             "account": {
                 "title": "2. Käyttäjätilisi",
@@ -91,7 +91,7 @@
             },
             "rights": {
                 "title": "4. Oikeudet",
-                "content": "Kaikki Deltidsjobb.no-sivuston sisältö (teksti, grafiikka, logot, koodi) kuuluu meille tai lisenssinantajillemme. Kopiointi ilman lupaa on kielletty."
+                "content": "Kaikki Fleksjobb.no-sivuston sisältö (teksti, grafiikka, logot, koodi) kuuluu meille tai lisenssinantajillemme. Kopiering ilman lupaa on kielletty."
             },
             "liability": {
                 "title": "5. Vastuu",
@@ -104,8 +104,8 @@
         }
     },
     "Privacy": {
-        "metaTitle": "Tietosuojaseloste | Deltidsjobb",
-        "metaDescription": "Näin Deltidsjobb.no käsittelee henkilötietojasi. Lue keräämisestä, käytöstä ja oikeuksistasi.",
+        "metaTitle": "Tietosuojaseloste | Fleksjobb",
+        "metaDescription": "Näin Fleksjobb.no käsittelee henkilötietojasi. Lue keräämisestä, käytöstä ja oikeuksistasi.",
         "header": {
             "eyebrow": "Turvallisuus",
             "title": "Tietosuoja",
@@ -115,7 +115,7 @@
         "sections": {
             "controller": {
                 "title": "1. Rekisterinpitäjä",
-                "content": "Deltidsjobb (toimitusjohtajan edustamana) on päävastuussa siitä, miten käsittelemme henkilötietojasi. Tämä seloste antaa sinulle tiedot, joihin sinulla on oikeus käyttäessäsi verkkosivustoamme."
+                "content": "Fleksjobb (toimitusjohtajan edustamana) on päävastuussa siitä, miten käsittelemme henkilötietojasi. Tämä seloste antaa sinulle tiedot, joihin sinulla on oikeus käyttäessäsi verkkosivustoamme."
             },
             "collection": {
                 "title": "2. Mitä oikeastaan keräämme",
@@ -150,7 +150,7 @@
         }
     },
     "ForCompanies": {
-        "metaTitle": "Yrityksille - Ilmoita työpaikka | Deltidsjobb",
+        "metaTitle": "Yrityksille - Ilmoita työpaikka | Fleksjobb",
         "metaDescription": "Löydä seuraava osa-aikatyöntekijäsi nopeasti ja helposti. Jätä työpaikkailmoitus tänään.",
         "title": "Yrityksille",
         "subtitle": "Helpoin tapa löytää seuraava työntekijäsi",

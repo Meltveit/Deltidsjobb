@@ -142,7 +142,7 @@ export default function PersonvernPage() {
                                 {t('sections.rights.content')}
                             </p>
                         </div>
-                        <a href="mailto:personvern@deltidsjobb.no" className="btn-primary bg-white text-slate-900 hover:bg-slate-50 border-none shrink-0">
+                        <a href="mailto:personvern@fleksjobb.no" className="btn-primary bg-white text-slate-900 hover:bg-slate-50 border-none shrink-0">
                             {t('sections.rights.button')}
                         </a>
                     </div>

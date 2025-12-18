@@ -11,7 +11,14 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* About */}
                     <div>
-                        <h3 className="text-lg font-bold mb-4 gradient-text">Deltidsjobb</h3>
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-accent-500 rounded-lg flex items-center justify-center shadow-lg shadow-primary-200">
+                                <span className="text-white font-bold">F</span>
+                            </div>
+                            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700">
+                                Fleksjobb
+                            </span>
+                        </div>
                         <p className="text-slate-600 text-sm leading-relaxed">
                             {h('heroSubtitle')}
                         </p>

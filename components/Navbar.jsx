@@ -31,11 +31,13 @@ export default function Navbar({ locale }) {
             <div className="container-custom">
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center space-x-2">
-                        <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center text-white shadow-primary-200 shadow-lg">
-                            <span className="text-2xl font-bold">D</span>
+                    <Link href="/" className="flex items-center gap-2 group">
+                        <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center shadow-lg shadow-primary-200 group-hover:scale-105 transition-transform">
+                            <span className="text-white font-bold text-xl">F</span>
                         </div>
-                        <span className="text-xl font-bold text-slate-900">Deltidsjobb</span>
+                        <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700">
+                            Fleksjobb
+                        </span>
                     </Link>
 
                     {/* Desktop Navigation */}

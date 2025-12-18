@@ -27,15 +27,15 @@
     },
     "Home": {
         "heroTitle": "Finn din neste deltidsjobb",
-        "heroSubtitle": "Norges enkleste plattform for å finne og legge ut deltidsjobber."
+        "heroSubtitle": "Nordens enkleste plattform for å finne og legge ut deltidsjobber."
     },
     "About": {
-        "metaTitle": "Om Deltidsjobb - Vår misjon for arbeidsmarkedet",
-        "metaDescription": "Bli kjent med Deltidsjobb. Vi kobler arbeidssøkere med ledige stillinger gjennom en enkel og effektiv plattform.",
+        "metaTitle": "Om Fleksjobb - Vår misjon for arbeidsmarkedet",
+        "metaDescription": "Bli kjent med Fleksjobb. Vi kobler arbeidssøkere med ledige stillinger gjennom en enkel og effektiv plattform.",
         "sectionTitle": "Vår Historie",
         "title": "Vi bygger fremtidens",
         "titleHighlight": "arbeidsplass",
-        "description": "Deltidsjobb startet med en enkel idé: Det burde være like enkelt å finne en ekstrajobb som det er å bestille en reise. I dag hjelper vi tusenvis med å finne meningsfulle jobber som passer deres hverdag.",
+        "description": "Fleksjobb startet med en enkel idé: Det burde være like enkelt å finne en ekstrajobb som det er å bestille en reise. I dag hjelper vi tusenvis med å finne meningsfulle jobber som passer deres hverdag.",
         "stats": {
             "developed": "Lokalt utviklet",
             "support": "Support og tilgjengelighet",
@@ -63,19 +63,19 @@
         }
     },
     "Terms": {
-        "metaTitle": "Vilkår og betingelser | Deltidsjobb",
-        "metaDescription": "Les våre vilkår og betingelser for bruk av Deltidsjobb.no.",
+        "metaTitle": "Vilkår og betingelser | Fleksjobb",
+        "metaDescription": "Les våre vilkår og betingelser for bruk av Fleksjobb.no.",
         "header": {
             "eyebrow": "Juridisk",
             "title": "Vilkår og",
             "titleHighlight": "Betingelser",
-            "desc": "For at Deltidsjobb skal være en trygg og effektiv plattform for alle, har vi noen enkle spilleregler.",
+            "desc": "For at Fleksjobb skal være en trygg og effektiv plattform for alle, har vi noen enkle spilleregler.",
             "updated": "Sist oppdatert"
         },
         "sections": {
             "introduction": {
                 "title": "1. Innledning",
-                "content": "Velkommen til Deltidsjobb. Disse vilkårene regulerer din bruk av vår nettside og tjenester. Ved å opprette en konto eller bruke våre tjenester, godtar du disse vilkårene i sin helhet. Dersom du er uenig i noen del av vilkårene, kan du dessverre ikke bruke tjenesten."
+                "content": "Velkommen til Fleksjobb. Disse vilkårene regulerer din bruk av vår nettside og tjenester. Ved å opprette en konto eller bruke våre tjenester, godtar du disse vilkårene i sin helhet. Dersom du er uenig i noen del av vilkårene, kan du dessverre ikke bruke tjenesten."
             },
             "account": {
                 "title": "2. Din Brukerkonto",
@@ -91,7 +91,7 @@
             },
             "rights": {
                 "title": "4. Rettigheter",
-                "content": "Alt innhold på Deltidsjobb.no (tekst, grafikk, logoer, kode) tilhører oss eller våre lisensgivere. Kopiering uten samtykke er ikke tillatt."
+                "content": "Alt innhold på Fleksjobb.no (tekst, grafikk, logoer, kode) tilhører oss eller våre lisensgivere. Kopiering uten samtykke er ikke tillatt."
             },
             "liability": {
                 "title": "5. Ansvar",
@@ -104,8 +104,8 @@
         }
     },
     "Privacy": {
-        "metaTitle": "Personvernerklæring | Deltidsjobb",
-        "metaDescription": "Slik behandler Deltidsjobb.no dine personopplysninger. Les om innsamling, bruk og dine rettigheter.",
+        "metaTitle": "Personvernerklæring | Fleksjobb",
+        "metaDescription": "Slik behandler Fleksjobb.no dine personopplysninger. Les om innsamling, bruk og dine rettigheter.",
         "header": {
             "eyebrow": "Trygghet",
             "title": "Personvern",
@@ -115,7 +115,7 @@
         "sections": {
             "controller": {
                 "title": "1. Behandlingsansvarlig",
-                "content": "Deltidsjobb (ved daglig leder) er hovedansvarlig for hvordan vi behandler dine personopplysninger. Denne erklæringen gir deg informasjonen du har krav på når du bruker nettsiden vår."
+                "content": "Fleksjobb (ved daglig leder) er hovedansvarlig for hvordan vi behandler dine personopplysninger. Denne erklæringen gir deg informasjonen du har krav på når du bruker nettsiden vår."
             },
             "collection": {
                 "title": "2. Hva vi faktisk samler inn",
@@ -150,7 +150,7 @@
         }
     },
     "ForCompanies": {
-        "metaTitle": "For Bedrifter - Legg ut stilling | Deltidsjobb",
+        "metaTitle": "For Bedrifter - Legg ut stilling | Fleksjobb",
         "metaDescription": "Finn din neste deltidsansatt raskt og enkelt. Legg ut stillingsannonse i dag.",
         "title": "For Bedrifter",
         "subtitle": "Den enkleste måten å finne din neste ansatt på",
