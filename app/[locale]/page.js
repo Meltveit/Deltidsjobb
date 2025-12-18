@@ -24,6 +24,7 @@ export default function HomePage() {
             const queryParams = new URLSearchParams();
             if (filters.search) queryParams.append('search', filters.search);
             if (filters.location) queryParams.append('location', filters.location);
+            if (filters.country) queryParams.append('country', filters.country);
             if (filters.sector) queryParams.append('sector', filters.sector);
             if (filters.tags) filters.tags.forEach(tag => queryParams.append('tags', tag));
 
@@ -47,9 +48,9 @@ export default function HomePage() {
             <div className="text-center mb-16 animate-fade-in">
                 <h1 className="text-5xl md:text-7xl font-bold mb-6">
                     {t('heroTitle')}{' '}
-                    <span className="gradient-text">deltidsjobb</span>
+                    <span className="gradient-text uppercase">fleksjobb</span>
                 </h1>
-                <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                <p className="text-xl text-slate-600 mb-8 max-max-w-2xl mx-auto">
                     {t('heroSubtitle')}
                 </p>
 
@@ -72,40 +73,40 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
                 <div className="glass-card text-center">
                     <div className="text-4xl font-bold gradient-text mb-2">{jobs.length}+</div>
-                    <div className="text-gray-400">Aktive stillinger</div>
+                    <div className="text-gray-400">{t('stats.active')}</div>
                 </div>
                 <div className="glass-card text-center">
                     <div className="text-4xl font-bold gradient-text mb-2">649kr</div>
-                    <div className="text-gray-400">Per annonse i 60 dager</div>
+                    <div className="text-gray-400">{t('stats.price', { days: 60 })}</div>
                 </div>
                 <div className="glass-card text-center">
                     <div className="text-4xl font-bold gradient-text mb-2">24/7</div>
-                    <div className="text-gray-400">Alltid tilgjengelig</div>
+                    <div className="text-gray-400">{t('stats.support')}</div>
                 </div>
             </div>
 
             {/* Jobs Grid */}
             <div>
                 <h2 className="text-3xl font-bold mb-8">
-                    {Object.keys(filters).length > 0 ? 'Søkeresultater' : 'Ledige stillinger'}
+                    {Object.keys(filters).length > 0 ? t('sections.results') : t('sections.vacancies')}
                 </h2>
 
                 {loading ? (
                     <div className="text-center py-12">
                         <div className="inline-block w-12 h-12 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
-                        <p className="mt-4 text-gray-400">Laster stillinger...</p>
+                        <p className="mt-4 text-gray-400">{t('status.loading')}</p>
                     </div>
                 ) : jobs.length === 0 ? (
                     <div className="glass-card text-center py-12">
                         <svg className="w-16 h-16 mx-auto mb-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        <h3 className="text-xl font-semibold mb-2">Ingen stillinger funnet</h3>
+                        <h3 className="text-xl font-semibold mb-2">{t('status.noResults')}</h3>
                         <p className="text-gray-400 mb-6">
-                            Prøv å justere søkefiltrene dine eller sjekk tilbake senere.
+                            {t('status.adjustFilters')}
                         </p>
                         <button onClick={() => setFilters({})} className="btn-secondary">
-                            Nullstill filtre
+                            {t('status.resetFilters')}
                         </button>
                     </div>
                 ) : (

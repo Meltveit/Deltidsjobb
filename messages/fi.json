@@ -27,7 +27,43 @@
     },
     "Home": {
         "heroTitle": "Löydä seuraava osa-aikatyösi",
-        "heroSubtitle": "Pohjoismaiden helpoin alusta osa-aikatöiden löytämiseen ja ilmoittamiseen."
+        "heroSubtitle": "Pohjoismaiden helpoin alusta osa-aikatöiden löytämiseen ja ilmoittamiseen.",
+        "stats": {
+            "active": "Avoimet työpaikat",
+            "price": "Ilmoitus {days} päiväksi",
+            "support": "Aina saatavilla"
+        },
+        "sections": {
+            "results": "Hakutulokset",
+            "vacancies": "Avoimet työpaikat"
+        },
+        "status": {
+            "loading": "Ladataan työpaikkoja...",
+            "noResults": "Työpaikkoja ei löytynyt",
+            "adjustFilters": "Kokeile muuttaa hakusuodattimia tai palaa myöhemmin uudelleen.",
+            "resetFilters": "Tyhjennä suodattimet"
+        }
+    },
+    "Search": {
+        "placeholder": "Etsi työpaikkoja...",
+        "allCities": "Kaikki kaupungit",
+        "allCountries": "Kaikki maat",
+        "allSectors": "Kaikki toimialat",
+        "searchButton": "Hae",
+        "showFilters": "Lisää suodattimia",
+        "hideFilters": "Piilota suodattimet",
+        "countryLabel": "Maa",
+        "sectorLabel": "Toimiala",
+        "typeLabel": "Työsuhteen tyyppi",
+        "tagsLabel": "Tunnisteet",
+        "activeFilters": "Aktiiviset suodattimet:",
+        "searchTag": "Haku: {search}",
+        "countries": {
+            "Norway": "Norja",
+            "Sweden": "Ruotsi",
+            "Denmark": "Tanska",
+            "Finland": "Suomi"
+        }
     },
     "About": {
         "metaTitle": "Tietoa Fleksjobbista - Missiomme työmarkkinoille",

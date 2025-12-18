@@ -27,7 +27,43 @@
     },
     "Home": {
         "heroTitle": "Finn din neste deltidsjobb",
-        "heroSubtitle": "Nordens enkleste plattform for å finne og legge ut deltidsjobber."
+        "heroSubtitle": "Nordens enkleste plattform for å finne og legge ut deltidsjobber.",
+        "stats": {
+            "active": "Aktive stillinger",
+            "price": "Per annonse i {days} dager",
+            "support": "Alltid tilgjengelig"
+        },
+        "sections": {
+            "results": "Søkeresultater",
+            "vacancies": "Ledige stillinger"
+        },
+        "status": {
+            "loading": "Laster stillinger...",
+            "noResults": "Ingen stillinger funnet",
+            "adjustFilters": "Prøv å justere søkefiltrene dine eller sjekk tilbake senere.",
+            "resetFilters": "Nullstill filtre"
+        }
+    },
+    "Search": {
+        "placeholder": "Søk etter stillinger...",
+        "allCities": "Alle byer",
+        "allCountries": "Alle land",
+        "allSectors": "Alle sektorer",
+        "searchButton": "Søk",
+        "showFilters": "Flere filtre",
+        "hideFilters": "Skjul filtre",
+        "countryLabel": "Land",
+        "sectorLabel": "Sektor",
+        "typeLabel": "Ansettelsestype",
+        "tagsLabel": "Tags",
+        "activeFilters": "Aktive filtre:",
+        "searchTag": "Søk: {search}",
+        "countries": {
+            "Norway": "Norge",
+            "Sweden": "Sverige",
+            "Denmark": "Danmark",
+            "Finland": "Finland"
+        }
     },
     "About": {
         "metaTitle": "Om Fleksjobb - Vår misjon for arbeidsmarkedet",

@@ -1,15 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import { useLocale } from 'next-intl';
-import { CITIES_BY_LOCALE, JOB_SECTORS, JOB_TAGS } from '@/lib/constants';
+import { useLocale, useTranslations } from 'next-intl';
+import { CITIES_BY_LOCALE, COUNTRIES, JOB_SECTORS, JOB_TAGS } from '@/lib/constants';
 
 export default function SearchBar({ onSearch }) {
     const locale = useLocale();
+    const t = useTranslations('Search');
     const cities = CITIES_BY_LOCALE[locale] || CITIES_BY_LOCALE['no'];
 
     const [searchQuery, setSearchQuery] = useState('');
     const [location, setLocation] = useState('');
+    const [country, setCountry] = useState('');
     const [sector, setSector] = useState('');
     const [employmentType, setEmploymentType] = useState('');
     const [selectedTags, setSelectedTags] = useState([]);
@@ -19,6 +21,7 @@ export default function SearchBar({ onSearch }) {
         onSearch({
             search: searchQuery,
             location: location || undefined,
+            country: country || undefined,
             sector: sector || undefined,
             employmentType: employmentType || undefined,
             tags: selectedTags.length > 0 ? selectedTags : undefined,
@@ -41,7 +44,7 @@ export default function SearchBar({ onSearch }) {
                     <div className="flex-1">
                         <input
                             type="text"
-                            placeholder="Søk etter stillinger..."
+                            placeholder={t('placeholder')}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
@@ -51,11 +54,26 @@ export default function SearchBar({ onSearch }) {
 
                     <div className="w-full md:w-48">
                         <select
+                            value={country}
+                            onChange={(e) => setCountry(e.target.value)}
+                            className="input"
+                        >
+                            <option value="">{t('allCountries')}</option>
+                            {COUNTRIES.map((c) => (
+                                <option key={c} value={c}>
+                                    {t(`countries.${c}`)}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="w-full md:w-48">
+                        <select
                             value={location}
                             onChange={(e) => setLocation(e.target.value)}
                             className="input"
                         >
-                            <option value="">Alle byer</option>
+                            <option value="">{t('allCities')}</option>
                             {cities.map((city) => (
                                 <option key={city} value={city}>
                                     {city}
@@ -65,14 +83,14 @@ export default function SearchBar({ onSearch }) {
                     </div>
 
                     <button onClick={handleSearch} className="btn-primary whitespace-nowrap">
-                        Søk
+                        {t('searchButton')}
                     </button>
 
                     <button
                         onClick={() => setShowFilters(!showFilters)}
                         className="btn-secondary whitespace-nowrap"
                     >
-                        {showFilters ? 'Skjul filtre' : 'Flere filtre'}
+                        {showFilters ? t('hideFilters') : t('showFilters')}
                     </button>
                 </div>
 
@@ -81,13 +99,13 @@ export default function SearchBar({ onSearch }) {
                     <div className="mt-6 pt-6 border-t border-white/10 space-y-4">
                         {/* Sector filter */}
                         <div>
-                            <label className="block text-sm font-medium mb-2 text-slate-700">Sektor</label>
+                            <label className="block text-sm font-medium mb-2 text-slate-700">{t('sectorLabel')}</label>
                             <select
                                 value={sector}
                                 onChange={(e) => setSector(e.target.value)}
                                 className="input"
                             >
-                                <option value="">Alle sektorer</option>
+                                <option value="">{t('allSectors')}</option>
                                 {JOB_SECTORS.map((s) => (
                                     <option key={s} value={s}>
                                         {s}
@@ -98,7 +116,7 @@ export default function SearchBar({ onSearch }) {
 
                         {/* Employment Type filter */}
                         <div>
-                            <label className="block text-sm font-medium mb-2 text-slate-700">Ansettelsestype</label>
+                            <label className="block text-sm font-medium mb-2 text-slate-700">{t('typeLabel')}</label>
                             <div className="flex flex-wrap gap-2">
                                 {['Heltid', 'Deltid', 'Sesongarbeid', 'Vikariat'].map((type) => (
                                     <button
@@ -117,7 +135,7 @@ export default function SearchBar({ onSearch }) {
 
                         {/* Tags filter */}
                         <div>
-                            <label className="block text-sm font-medium mb-2 text-slate-700">Tags</label>
+                            <label className="block text-sm font-medium mb-2 text-slate-700">{t('tagsLabel')}</label>
                             <div className="flex flex-wrap gap-2 max-h-40 overflow-y-auto custom-scrollbar">
                                 {JOB_TAGS.map((tag) => (
                                     <button
@@ -138,15 +156,27 @@ export default function SearchBar({ onSearch }) {
             </div>
 
             {/* Active filters display */}
-            {(searchQuery || location || sector || employmentType || selectedTags.length > 0) && (
+            {(searchQuery || location || country || sector || employmentType || selectedTags.length > 0) && (
                 <div className="mt-4 flex flex-wrap gap-2 items-center">
-                    <span className="text-sm text-slate-500">Aktive filtre:</span>
+                    <span className="text-sm text-slate-500">{t('activeFilters')}</span>
 
                     {searchQuery && (
                         <span className="tag">
-                            Søk: {searchQuery}
+                            {t('searchTag', { search: searchQuery })}
                             <button
                                 onClick={() => setSearchQuery('')}
+                                className="ml-2 hover:text-red-400"
+                            >
+                                ×
+                            </button>
+                        </span>
+                    )}
+
+                    {country && (
+                        <span className="tag">
+                            {t(`countries.${country}`)}
+                            <button
+                                onClick={() => setCountry('')}
                                 className="ml-2 hover:text-red-400"
                             >
                                 ×
