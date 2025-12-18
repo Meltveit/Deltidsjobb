@@ -20,7 +20,7 @@ export default function Navbar({ locale }) {
                         <img
                             src="/logo.png"
                             alt="FleksJobb"
-                            className="h-10 w-auto group-hover:scale-105 transition-transform"
+                            className="h-20 w-auto group-hover:scale-105 transition-transform"
                         />
                     </Link>
 
