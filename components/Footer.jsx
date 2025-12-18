@@ -15,7 +15,7 @@ export default function Footer() {
                             <img
                                 src="/logo.png"
                                 alt="FleksJobb"
-                                className="h-12 w-auto"
+                                className="h-36 w-auto"
                             />
                         </div>
                         <p className="text-slate-600 text-sm leading-relaxed">
