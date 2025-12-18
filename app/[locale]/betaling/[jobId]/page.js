@@ -176,11 +176,11 @@ export default function PaymentPage() {
                             </div>
 
                             <div className="mt-4 p-3 bg-primary-500/10 border border-primary-500/30 rounded-lg text-sm">
-                                <p className="text-gray-300">
-                                    ✓ Stillingen publiseres umiddelbart<br />
-                                    ✓ Vises i 60 dager<br />
-                                    ✓ Kan redigeres når som helst<br />
-                                    ✓ SEO-optimalisert
+                                <p className="text-gray-300 space-y-1">
+                                    <span className="block">✓ Stillingen publiseres umiddelbart</span>
+                                    <span className="block">✓ Vises i 60 dager</span>
+                                    <span className="block">✓ Kan redigeres når som helst</span>
+                                    <span className="block">✓ Nå tusenvis av jobbsøkere</span>
                                 </p>
                             </div>
                         </div>
