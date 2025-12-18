@@ -23,6 +23,20 @@ export default function SignUpPage() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
+    // Calculate password strength
+    const getPasswordStrength = (password) => {
+        if (!password) return 0;
+        if (password.length < 6) return 1; // Weak
+        if (password.length < 8) return 2; // Medium
+        // Strong: 8+ chars with numbers or special chars
+        const hasNumbers = /\d/.test(password);
+        const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        if (password.length >= 8 && (hasNumbers || hasSpecial)) return 3;
+        return 2; // Medium if just 8+ chars
+    };
+
+    const passwordStrength = getPasswordStrength(formData.password);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
@@ -138,39 +152,32 @@ export default function SignUpPage() {
                             </div>
                         </div>
 
-                        {/* Company Type with Icon */}
+                        {/* Company Type - No Icon (prevents overlap) */}
                         <div>
                             <label className="block text-sm font-medium mb-2 text-slate-700">
                                 Bedriftstype <span className="text-red-500">*</span>
                             </label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg className="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
-                                </div>
-                                <select
-                                    value={formData.companyType}
-                                    onChange={(e) => setFormData({ ...formData, companyType: e.target.value })}
-                                    required
-                                    className="input pl-10"
-                                >
-                                    <option value="">Velg bedriftstype</option>
-                                    <option value="recruitment">Rekrutteringsbyrå / Bemanningsbyrå</option>
-                                    <option value="retail">Dagligvare / Butikk</option>
-                                    <option value="restaurant">Restaurant / Kafé / Bar</option>
-                                    <option value="hotel">Hotell / Overnatting</option>
-                                    <option value="healthcare">Helse / Omsorg</option>
-                                    <option value="education">Utdanning / Skole</option>
-                                    <option value="construction">Bygg / Anlegg</option>
-                                    <option value="logistics">Logistikk / Transport</option>
-                                    <option value="cleaning">Renhold / Vaktmester</option>
-                                    <option value="it">IT / Teknologi</option>
-                                    <option value="sales">Salg / Kundeservice</option>
-                                    <option value="manufacturing">Produksjon / Industri</option>
-                                    <option value="other">Annet</option>
-                                </select>
-                            </div>
+                            <select
+                                value={formData.companyType}
+                                onChange={(e) => setFormData({ ...formData, companyType: e.target.value })}
+                                required
+                                className="input"
+                            >
+                                <option value="">Velg bedriftstype</option>
+                                <option value="recruitment">Rekrutteringsbyrå / Bemanningsbyrå</option>
+                                <option value="retail">Dagligvare / Butikk</option>
+                                <option value="restaurant">Restaurant / Kafé / Bar</option>
+                                <option value="hotel">Hotell / Overnatting</option>
+                                <option value="healthcare">Helse / Omsorg</option>
+                                <option value="education">Utdanning / Skole</option>
+                                <option value="construction">Bygg / Anlegg</option>
+                                <option value="logistics">Logistikk / Transport</option>
+                                <option value="cleaning">Renhold / Vaktmester</option>
+                                <option value="it">IT / Teknologi</option>
+                                <option value="sales">Salg / Kundeservice</option>
+                                <option value="manufacturing">Produksjon / Industri</option>
+                                <option value="other">Annet</option>
+                            </select>
                         </div>
 
                         {/* Contact Person with Icon */}
@@ -259,6 +266,21 @@ export default function SignUpPage() {
                                     placeholder="Minst 6 tegn"
                                 />
                             </div>
+                            {/* Password Strength Indicator */}
+                            {formData.password && (
+                                <div className="mt-2">
+                                    <div className="flex gap-1 mb-1">
+                                        <div className={`h-1 flex-1 rounded transition-colors ${passwordStrength >= 1 ? 'bg-red-500' : 'bg-gray-200'}`} />
+                                        <div className={`h-1 flex-1 rounded transition-colors ${passwordStrength >= 2 ? 'bg-yellow-500' : 'bg-gray-200'}`} />
+                                        <div className={`h-1 flex-1 rounded transition-colors ${passwordStrength >= 3 ? 'bg-green-500' : 'bg-gray-200'}`} />
+                                    </div>
+                                    <p className="text-xs text-slate-500">
+                                        {passwordStrength === 1 && '🔴 Svakt passord - bruk minst 6 tegn'}
+                                        {passwordStrength === 2 && '🟡 Middels passord - bruk 8+ tegn med tall'}
+                                        {passwordStrength === 3 && '🟢 Sterkt passord'}
+                                    </p>
+                                </div>
+                            )}
                         </div>
 
                         {/* Confirm Password with Icon */}
@@ -283,17 +305,14 @@ export default function SignUpPage() {
                             </div>
                         </div>
 
-                        {/* GDPR Consent Section - Enhanced */}
-                        <div className="bg-slate-50 border-2 border-slate-200 rounded-xl p-6 space-y-4 mt-6">
-                            <div className="flex items-center gap-2 mb-2">
-                                <svg className="w-5 h-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                </svg>
-                                <h3 className="font-semibold text-slate-900">Samtykke og vilkår</h3>
-                            </div>
+                        {/* GDPR Consent Section - Simplified */}
+                        <div className="space-y-4 pt-6 border-t border-slate-200">
+                            <h3 className="font-semibold text-slate-900 mb-4">
+                                Samtykke og vilkår
+                            </h3>
 
                             {/* Terms of Service - Required */}
-                            <label className="flex items-start gap-3 p-3 rounded-lg hover:bg-white transition-colors cursor-pointer group">
+                            <label className="flex items-start gap-3 cursor-pointer group">
                                 <input
                                     type="checkbox"
                                     checked={formData.termsAccepted}
@@ -302,7 +321,7 @@ export default function SignUpPage() {
                                 />
                                 <span className="text-sm text-slate-600 group-hover:text-slate-900 leading-relaxed">
                                     Jeg godtar{' '}
-                                    <Link href="/vilkar" className="text-primary-600 hover:text-primary-700 font-medium underline" target="_blank">
+                                    <Link href="/no/vilkar" className="text-primary-600 hover:text-primary-700 font-medium underline" target="_blank">
                                         vilkårene
                                     </Link>
                                     {' '}<span className="text-red-500 font-bold">*</span>
@@ -310,7 +329,7 @@ export default function SignUpPage() {
                             </label>
 
                             {/* Privacy Policy - Required */}
-                            <label className="flex items-start gap-3 p-3 rounded-lg hover:bg-white transition-colors cursor-pointer group">
+                            <label className="flex items-start gap-3 cursor-pointer group">
                                 <input
                                     type="checkbox"
                                     checked={formData.privacyAccepted}
@@ -319,7 +338,7 @@ export default function SignUpPage() {
                                 />
                                 <span className="text-sm text-slate-600 group-hover:text-slate-900 leading-relaxed">
                                     Jeg har lest og godtar{' '}
-                                    <Link href="/personvern" className="text-primary-600 hover:text-primary-700 font-medium underline" target="_blank">
+                                    <Link href="/no/personvern" className="text-primary-600 hover:text-primary-700 font-medium underline" target="_blank">
                                         personvernerklæringen
                                     </Link>
                                     {' '}<span className="text-red-500 font-bold">*</span>
@@ -327,7 +346,7 @@ export default function SignUpPage() {
                             </label>
 
                             {/* Marketing Consent - Optional */}
-                            <label className="flex items-start gap-3 p-3 rounded-lg hover:bg-white transition-colors cursor-pointer group">
+                            <label className="flex items-start gap-3 cursor-pointer group">
                                 <input
                                     type="checkbox"
                                     checked={formData.marketingConsent}
