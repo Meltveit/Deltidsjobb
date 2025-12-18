@@ -1,23 +1,50 @@
 'use client';
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { NORWEGIAN_CITIES, JOB_SECTORS, JOB_TAGS } from '@/lib/constants';
+import { useState, useEffect } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
+import { COUNTRIES, JOB_SECTORS, JOB_TAGS } from '@/lib/constants';
 
 export default function SearchBar({ onSearch }) {
+    const locale = useLocale();
     const t = useTranslations('Search');
 
     const [searchQuery, setSearchQuery] = useState('');
     const [location, setLocation] = useState('');
+    const [country, setCountry] = useState('');
     const [sector, setSector] = useState('');
     const [employmentType, setEmploymentType] = useState('');
     const [selectedTags, setSelectedTags] = useState([]);
     const [showFilters, setShowFilters] = useState(false);
+    const [dynamicCities, setDynamicCities] = useState([]);
+    const [loadingCities, setLoadingCities] = useState(false);
+
+    // Fetch available cities when country changes
+    useEffect(() => {
+        const fetchCities = async () => {
+            setLoadingCities(true);
+            try {
+                const url = country
+                    ? `/api/jobs/filters?country=${encodeURIComponent(country)}`
+                    : '/api/jobs/filters';
+                const response = await fetch(url);
+                const data = await response.json();
+                setDynamicCities(data.cities || []);
+            } catch (error) {
+                console.error('Error fetching cities:', error);
+                setDynamicCities([]);
+            } finally {
+                setLoadingCities(false);
+            }
+        };
+
+        fetchCities();
+    }, [country]);
 
     const handleSearch = () => {
         onSearch({
             search: searchQuery,
             location: location || undefined,
+            country: country || undefined,
             sector: sector || undefined,
             employmentType: employmentType || undefined,
             tags: selectedTags.length > 0 ? selectedTags : undefined,
@@ -50,12 +77,31 @@ export default function SearchBar({ onSearch }) {
 
                     <div className="w-full md:w-48">
                         <select
+                            value={country}
+                            onChange={(e) => {
+                                setCountry(e.target.value);
+                                setLocation(''); // Reset city when country changes
+                            }}
+                            className="input"
+                        >
+                            <option value="">{t('allCountries')}</option>
+                            {COUNTRIES.map((c) => (
+                                <option key={c} value={c}>
+                                    {t(`countries.${c}`)}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="w-full md:w-48">
+                        <select
                             value={location}
                             onChange={(e) => setLocation(e.target.value)}
                             className="input"
+                            disabled={loadingCities}
                         >
                             <option value="">{t('allCities')}</option>
-                            {NORWEGIAN_CITIES.map((city) => (
+                            {dynamicCities.map((city) => (
                                 <option key={city} value={city}>
                                     {city}
                                 </option>
