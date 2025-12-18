@@ -9,6 +9,7 @@ export async function POST(request) {
             companyName,
             contactPerson,
             phoneNumber,
+            companyType,
             country,
             termsAccepted,
             privacyAccepted,
@@ -57,6 +58,7 @@ export async function POST(request) {
             companyName,
             contactPerson,
             phoneNumber,
+            companyType,
             country: country || 'Norway',
             gdprConsent: {
                 termsAccepted,
