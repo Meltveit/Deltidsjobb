@@ -46,7 +46,11 @@ export default function AddressAutocomplete({ onSelect, className }) {
 
         const city = address.city || address.town || address.village || address.municipality || '';
         const zip = address.postcode || '';
-        const country = address.country || '';
+        // Normalize country to English
+        const countryRaw = address.country || '';
+        const country = countryRaw.toLowerCase().includes('norge') || countryRaw.toLowerCase().includes('norway')
+            ? 'Norway'
+            : countryRaw;
 
         setQuery(fullStreet); // Show the street line in input
         setIsOpen(false);

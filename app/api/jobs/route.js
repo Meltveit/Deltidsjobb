@@ -14,7 +14,7 @@ export async function GET(request) {
         const filters = {
             search: searchParams.get('search') || undefined,
             location: searchParams.get('location') || undefined,
-            country: 'Norway', // Force Norway-only
+            country: undefined, // Don't filter by country, show all Norwegian jobs
             sector: searchParams.get('sector') || undefined,
             tags: searchParams.getAll('tags') || undefined,
             page,
