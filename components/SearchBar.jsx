@@ -1,17 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
-import { CITIES_BY_LOCALE, COUNTRIES, JOB_SECTORS, JOB_TAGS } from '@/lib/constants';
+import { useTranslations } from 'next-intl';
+import { NORWEGIAN_CITIES, JOB_SECTORS, JOB_TAGS } from '@/lib/constants';
 
 export default function SearchBar({ onSearch }) {
-    const locale = useLocale();
     const t = useTranslations('Search');
-    const cities = CITIES_BY_LOCALE[locale] || CITIES_BY_LOCALE['no'];
 
     const [searchQuery, setSearchQuery] = useState('');
     const [location, setLocation] = useState('');
-    const [country, setCountry] = useState('');
     const [sector, setSector] = useState('');
     const [employmentType, setEmploymentType] = useState('');
     const [selectedTags, setSelectedTags] = useState([]);
@@ -21,7 +18,6 @@ export default function SearchBar({ onSearch }) {
         onSearch({
             search: searchQuery,
             location: location || undefined,
-            country: country || undefined,
             sector: sector || undefined,
             employmentType: employmentType || undefined,
             tags: selectedTags.length > 0 ? selectedTags : undefined,
@@ -54,27 +50,12 @@ export default function SearchBar({ onSearch }) {
 
                     <div className="w-full md:w-48">
                         <select
-                            value={country}
-                            onChange={(e) => setCountry(e.target.value)}
-                            className="input"
-                        >
-                            <option value="">{t('allCountries')}</option>
-                            {COUNTRIES.map((c) => (
-                                <option key={c} value={c}>
-                                    {t(`countries.${c}`)}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
-                    <div className="w-full md:w-48">
-                        <select
                             value={location}
                             onChange={(e) => setLocation(e.target.value)}
                             className="input"
                         >
                             <option value="">{t('allCities')}</option>
-                            {cities.map((city) => (
+                            {NORWEGIAN_CITIES.map((city) => (
                                 <option key={city} value={city}>
                                     {city}
                                 </option>
@@ -93,6 +74,7 @@ export default function SearchBar({ onSearch }) {
                         {showFilters ? t('hideFilters') : t('showFilters')}
                     </button>
                 </div>
+
 
                 {/* Advanced filters */}
                 {showFilters && (
@@ -156,7 +138,7 @@ export default function SearchBar({ onSearch }) {
             </div>
 
             {/* Active filters display */}
-            {(searchQuery || location || country || sector || employmentType || selectedTags.length > 0) && (
+            {(searchQuery || location || sector || employmentType || selectedTags.length > 0) && (
                 <div className="mt-4 flex flex-wrap gap-2 items-center">
                     <span className="text-sm text-slate-500">{t('activeFilters')}</span>
 
@@ -165,18 +147,6 @@ export default function SearchBar({ onSearch }) {
                             {t('searchTag', { search: searchQuery })}
                             <button
                                 onClick={() => setSearchQuery('')}
-                                className="ml-2 hover:text-red-400"
-                            >
-                                ×
-                            </button>
-                        </span>
-                    )}
-
-                    {country && (
-                        <span className="tag">
-                            {t(`countries.${country}`)}
-                            <button
-                                onClick={() => setCountry('')}
                                 className="ml-2 hover:text-red-400"
                             >
                                 ×

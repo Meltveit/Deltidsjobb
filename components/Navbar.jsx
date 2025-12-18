@@ -1,30 +1,15 @@
 'use client';
 
-import { Link, usePathname, useRouter } from '@/navigation';
+import { Link, usePathname } from '@/navigation';
 import { useSession, signOut } from 'next-auth/react';
-import { useState, useTransition } from 'react';
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function Navbar({ locale }) {
     const { data: session } = useSession();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const t = useTranslations('Navbar');
-    const router = useRouter();
-    const pathname = usePathname();
-    const [isPending, startTransition] = useTransition();
 
-    const changeLanguage = (newLocale) => {
-        startTransition(() => {
-            router.replace(pathname, { locale: newLocale });
-        });
-    };
-
-    const languages = [
-        { code: 'no', label: '🇳🇴', name: 'Norsk' },
-        { code: 'sv', label: '🇸🇪', name: 'Svenska' },
-        { code: 'da', label: '🇩🇰', name: 'Dansk' },
-        { code: 'fi', label: '🇫🇮', name: 'Suomi' }
-    ];
 
     return (
         <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm print:hidden">
@@ -80,27 +65,9 @@ export default function Navbar({ locale }) {
                                     </Link>
                                 </>
                             )}
-
-                            {/* Language Switcher - Moved to far right */}
-                            <div className="relative group ml-2">
-                                <button className="flex items-center gap-1 text-slate-600 hover:text-primary-600 font-medium p-2 rounded-lg hover:bg-slate-50 transition-colors">
-                                    <span className="text-xl">{languages.find(l => l.code === locale)?.label || '🌐'}</span>
-                                </button>
-                                <div className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden z-50">
-                                    {languages.map((lang) => (
-                                        <button
-                                            key={lang.code}
-                                            onClick={() => changeLanguage(lang.code)}
-                                            className={`w-full text-left px-4 py-3 text-sm hover:bg-slate-50 flex items-center gap-3 ${locale === lang.code ? 'font-bold text-primary-600 bg-slate-50' : 'text-slate-600'}`}
-                                        >
-                                            <span className="text-lg">{lang.label}</span>
-                                            <span>{lang.name}</span>
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
                         </div>
                     </div>
+
 
                     {/* Mobile menu button */}
                     <button
@@ -129,22 +96,6 @@ export default function Navbar({ locale }) {
                         <Link href="/cv-generator" className="block py-2 text-slate-600 hover:text-primary-600 font-medium">
                             {t('cvGenerator')}
                         </Link>
-
-                        {/* Mobile Language Switcher */}
-                        <div className="py-2 border-y border-slate-100 my-2">
-                            <p className="text-xs text-slate-400 uppercase mb-2">Språk / Language</p>
-                            <div className="flex gap-4">
-                                {languages.map((lang) => (
-                                    <button
-                                        key={lang.code}
-                                        onClick={() => changeLanguage(lang.code)}
-                                        className={`text-2xl ${locale === lang.code ? 'opacity-100 scale-110' : 'opacity-50'}`}
-                                    >
-                                        {lang.label}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
 
                         {session ? (
                             <>
