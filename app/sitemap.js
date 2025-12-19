@@ -2,7 +2,7 @@ import { getActiveJobs } from '@/lib/models/Job';
 import { slugify } from '@/lib/utils';
 
 export default async function sitemap() {
-    const baseUrl = 'https://deltidsjobb.no'; // Replace with your actual domain
+    const baseUrl = 'https://fleksjobb.no';
 
     try {
         const jobs = await getActiveJobs();

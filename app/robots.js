@@ -5,6 +5,6 @@ export default function robots() {
             allow: '/',
             disallow: ['/api/', '/dashboard/'],
         },
-        sitemap: 'https://deltidsjobb.no/sitemap.xml', // Replace with your actual domain
+        sitemap: 'https://fleksjobb.no/sitemap.xml',
     };
 }
