@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react';
 import SearchBar from '@/components/SearchBar';
 import JobCard from '@/components/JobCard';
 import { Link } from '@/navigation';
-import { useTranslations, useLocale } from 'next-intl';
-import { getPriceByLocale } from '@/lib/constants';
+import { useTranslations } from 'next-intl';
 
 export default function HomePage() {
     const [jobs, setJobs] = useState([]);
@@ -14,8 +13,6 @@ export default function HomePage() {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [total, setTotal] = useState(0);
-    const locale = useLocale();
-    const priceInfo = getPriceByLocale(locale);
     const t = useTranslations('Home');
     const n = useTranslations('Navbar');
     const c = useTranslations('Common');
@@ -111,8 +108,8 @@ export default function HomePage() {
                     <div className="text-gray-400">{t('stats.active')}</div>
                 </div>
                 <div className="glass-card text-center">
-                    <div className="text-4xl font-bold gradient-text mb-2">{priceInfo.display}</div>
-                    <div className="text-gray-400">{t('stats.price', { days: 60 })}</div>
+                    <div className="text-4xl font-bold gradient-text mb-2">Gratis</div>
+                    <div className="text-gray-400">For jobbsøkere</div>
                 </div>
                 <div className="glass-card text-center">
                     <div className="text-4xl font-bold gradient-text mb-2">24/7</div>
@@ -177,8 +174,8 @@ export default function HomePage() {
                                                     key={page}
                                                     onClick={() => setCurrentPage(page)}
                                                     className={`px-4 py-2 rounded-lg font-medium transition-all ${currentPage === page
-                                                            ? 'bg-primary-600 text-white'
-                                                            : 'glass-card hover:bg-white/10'
+                                                        ? 'bg-primary-600 text-white'
+                                                        : 'glass-card hover:bg-white/10'
                                                         }`}
                                                 >
                                                     {page}
