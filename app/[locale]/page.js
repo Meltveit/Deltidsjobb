@@ -52,6 +52,28 @@ export default function HomePage() {
 
     return (
         <div className="container-custom py-12">
+            {/* JSON-LD Structured Data for SEO */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "WebSite",
+                        "name": "FleksJobb",
+                        "url": "https://fleksjobb.no",
+                        "description": "Finn din neste deltidsjobb blant " + (total || jobs.length) + " aktive stillinger",
+                        "potentialAction": {
+                            "@type": "SearchAction",
+                            "target": {
+                                "@type": "EntryPoint",
+                                "urlTemplate": "https://fleksjobb.no/?search={search_term}"
+                            },
+                            "query-input": "required name=search_term"
+                        }
+                    })
+                }}
+            />
+
             {/* Promotional Banner */}
             <div className="mb-8 animate-fade-in">
                 <div className="glass-card bg-gradient-to-r from-primary-500 via-accent-500 to-primary-600 border-0 shadow-xl relative overflow-hidden">
@@ -104,12 +126,14 @@ export default function HomePage() {
             {/* Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
                 <div className="glass-card text-center">
-                    <div className="text-4xl font-bold gradient-text mb-2">{jobs.length}+</div>
-                    <div className="text-gray-400">{t('stats.active')}</div>
+                    <div className="text-4xl font-bold gradient-text mb-2">{total || jobs.length}+</div>
+                    <div className="text-gray-400">
+                        {Object.keys(filters).length > 0 ? 'Søkeresultater' : t('stats.active')}
+                    </div>
                 </div>
                 <div className="glass-card text-center">
-                    <div className="text-4xl font-bold gradient-text mb-2">Gratis</div>
-                    <div className="text-gray-400">For jobbsøkere</div>
+                    <div className="text-4xl font-bold gradient-text mb-2">100%</div>
+                    <div className="text-gray-400">Gratis å søke</div>
                 </div>
                 <div className="glass-card text-center">
                     <div className="text-4xl font-bold gradient-text mb-2">24/7</div>
