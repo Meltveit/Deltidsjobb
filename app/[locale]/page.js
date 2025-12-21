@@ -29,6 +29,7 @@ export default function HomePage() {
             if (filters.location) queryParams.append('location', filters.location);
             if (filters.country) queryParams.append('country', filters.country);
             if (filters.sector) queryParams.append('sector', filters.sector);
+            if (filters.employmentType) queryParams.append('employmentType', filters.employmentType);
             if (filters.tags) filters.tags.forEach(tag => queryParams.append('tags', tag));
             queryParams.append('page', page.toString());
             queryParams.append('limit', '50');
