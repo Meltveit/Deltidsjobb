@@ -55,13 +55,13 @@ export default function JobCard({ job }) {
                             Hentet fra Arbeidsplassen
                         </span>
                     )}
-                    {job.tags.slice(0, 3).map((tag, index) => (
+                    {(job.tags || []).slice(0, 3).map((tag, index) => (
                         <span key={index} className="tag text-xs bg-primary-50 text-primary-700 border-primary-100">
                             {tag}
                         </span>
                     ))}
-                    {job.tags.length > 3 && (
-                        <span className="text-xs text-slate-500 flex items-center">+{job.tags.length - 3} mer</span>
+                    {(job.tags || []).length > 3 && (
+                        <span className="text-xs text-slate-500 flex items-center">+{(job.tags || []).length - 3} mer</span>
                     )}
                 </div>
             </div>
