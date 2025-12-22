@@ -1,25 +1,33 @@
 import { getDatabase } from '@/lib/mongodb';
 import { createJob } from '@/lib/models/Job';
 
-const NAV_API_URL = 'https://arbeidsplassen.nav.no/public-feed/api/v1/ads';
+// Search API (public, no token needed)
+const NAV_API_URL = 'https://arbeidsplassen.nav.no/stillinger/api/search';
 const PAGE_SIZE = 50;
 
 /**
- * Fetch jobs from NAV API
+ * Fetch jobs from NAV Search API
  */
-export async function fetchNavJobs(page = 0) {
+export async function fetchNavJobs(page = 0, query = 'deltid') {
     try {
-        const response = await fetch(`${NAV_API_URL}?size=${PAGE_SIZE}&page=${page}`, {
-            headers: {
-                'Authorization': `Bearer ${process.env.NAV_API_TOKEN || ''}` // NAV API might not need token for public feed, but good to have placeholder
-            }
-        });
+        const from = page * PAGE_SIZE;
+        // Construct query: q=(deltid OR sesong)
+        const url = `${NAV_API_URL}?q=${encodeURIComponent(query)}&size=${PAGE_SIZE}&from=${from}&sort=published:desc`;
+
+        const response = await fetch(url);
 
         if (!response.ok) {
             throw new Error(`NAV API error: ${response.statusText}`);
         }
 
-        return await response.json();
+        const data = await response.json();
+        const hits = data.hits && data.hits.hits ? data.hits.hits : [];
+        const content = hits.map(hit => hit._source); // Extract the actual job object
+
+        // console.log(`[DEBUG] fetchNavJobs URL: ${url}`);
+        // console.log(`[DEBUG] fetchNavJobs found ${content.length} items.`);
+
+        return { content };
     } catch (error) {
         console.error('Error fetching NAV jobs:', error);
         return { content: [] };
@@ -127,40 +135,47 @@ export function mapNavJobToInternal(navJob) {
 export async function importNavJobs(limit = 100) {
     const db = await getDatabase();
     let importedCount = 0;
-    let page = 0;
 
-    console.log('Starting NAV job import...');
+    // Queries to rotate through to get immediate relevant results
+    const queries = ['deltid', 'sesong', 'sommerjobb', 'ekstrahjelp', 'vikar'];
 
-    while (importedCount < limit) {
-        const data = await fetchNavJobs(page);
-        if (!data.content || data.content.length === 0) break;
+    console.log('Starting NAV job import via Search API...');
 
-        for (const navJob of data.content) {
-            if (importedCount >= limit) break;
+    for (const query of queries) {
+        if (importedCount >= limit) break;
 
-            const jobData = mapNavJobToInternal(navJob);
-            if (!jobData) continue; // Skip non-part-time or foreign jobs
+        let page = 0;
+        // Fetch up to 2 pages per query to keep it fast
+        while (page < 2 && importedCount < limit) {
+            const data = await fetchNavJobs(page, query);
+            if (!data.content || data.content.length === 0) break;
 
-            // Check if job already exists
-            const existingJob = await db.collection('jobs').findOne({ externalId: jobData.externalId });
+            for (const navJob of data.content) {
+                if (importedCount >= limit) break;
 
-            if (!existingJob) {
-                // Insert new job directly to avoid payment flow
-                const activationData = {
-                    ...jobData,
-                    views: 0,
-                    createdAt: new Date(),
-                    updatedAt: new Date(),
-                    activatedAt: new Date()
-                };
+                const jobData = mapNavJobToInternal(navJob);
+                if (!jobData) continue; // Skip if mapping fails or validation checks fail
 
-                await db.collection('jobs').insertOne(activationData);
-                importedCount++;
-                console.log(`Imported NAV job: ${jobData.title}`);
+                // Check if job already exists
+                const existingJob = await db.collection('jobs').findOne({ externalId: jobData.externalId });
+
+                if (!existingJob) {
+                    // Insert new job
+                    const activationData = {
+                        ...jobData,
+                        views: 0,
+                        createdAt: new Date(),
+                        updatedAt: new Date(),
+                        activatedAt: new Date()
+                    };
+
+                    await db.collection('jobs').insertOne(activationData);
+                    importedCount++;
+                    console.log(`Imported NAV job: ${jobData.title} (Query: ${query})`);
+                }
             }
+            page++;
         }
-
-        page++;
     }
 
     return importedCount;
