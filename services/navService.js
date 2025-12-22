@@ -119,11 +119,11 @@ export function mapNavJobToInternal(navJob) {
     const isRelevant = importKeywords.some(keyword => combinedText.includes(keyword));
     if (!isRelevant) return null;
 
-    // Location Logic: Use 'locations' array from Search API
-    const locObj = navJob.locations && navJob.locations[0];
+    // Location Logic: Use 'locationList' array from Search API
+    const locObj = navJob.locationList && navJob.locationList[0];
     const country = locObj?.country || 'Norge';
 
-    if (country.toLowerCase() !== 'norge' && country.toLowerCase() !== 'norway') return null;
+    if (country.toLowerCase() !== 'norge' && country.toLowerCase() !== 'norway' && country.toLowerCase() !== 'no') return null;
 
     // Prefer municipality, then city, then "Norge"
     let displayLocation = 'Norge';
