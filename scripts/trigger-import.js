@@ -18,7 +18,9 @@ async function run() {
         const data = await response.json();
 
         console.log('Response status:', response.status);
-        console.log('Data:', JSON.stringify(data, null, 2));
+        console.log('Error:', data.error);
+        if (data.details) console.log('Details:', data.details);
+        if (data.stack) console.log('Stack:', data.stack);
     } catch (error) {
         console.error('Error triggering import:', error.message);
     }

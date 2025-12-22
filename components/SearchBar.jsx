@@ -160,6 +160,24 @@ export default function SearchBar({ onSearch }) {
                 )}
             </div>
 
+            {/* Popular tags quick select */}
+            {!searchQuery && !selectedTags.length && (
+                <div className="mt-4">
+                    <p className="text-xs font-medium text-slate-500 mb-2 uppercase tracking-wide">{t('popularSearches')}</p>
+                    <div className="flex flex-wrap gap-2">
+                        {['Butikk', 'Salg', 'Deltid', 'Sommerjobb', 'Helse', 'Kundeservice', 'Lager'].map(tag => (
+                            <button
+                                key={tag}
+                                onClick={() => toggleTag(tag)}
+                                className="text-sm px-3 py-1 bg-white border border-slate-200 rounded-full text-slate-600 hover:border-primary-300 hover:text-primary-600 transition-colors shadow-sm"
+                            >
+                                {tag}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
+
             {/* Active filters display */}
             {(searchQuery || location || sector || employmentType || selectedTags.length > 0) && (
                 <div className="mt-4 flex flex-wrap gap-2 items-center">

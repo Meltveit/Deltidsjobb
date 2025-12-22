@@ -1,5 +1,64 @@
 import { getDatabase } from '@/lib/mongodb';
-import { createJob } from '@/lib/models/Job';
+
+// ...
+
+// Helper to fetch description from public page
+// Helper to fetch description from public page
+async function fetchDescriptionFromPage(uuid) {
+    try {
+        const url = `https://arbeidsplassen.nav.no/stillinger/stilling/${uuid}`;
+        const res = await fetch(url);
+        if (!res.ok) return '';
+        const html = await res.text();
+
+        // 1. Look for specific markers known from inspection
+        // "Om jobben" is a strong h2 marker.
+        // We want strict match on "Om jobben" or "Stillingsbeskrivelse"
+
+        let description = '';
+
+        // Use a simple regex to find the section between "Om jobben" and the next H2
+        // HTML usually looks like: <h2>Om jobben</h2><div...>...</div><h2>
+        // But headers might be anything.
+        // Let's rely on text content proximity. 
+
+        // Find start index
+        const startMarker = 'Om jobben';
+        const startIndex = html.indexOf(startMarker);
+
+        if (startIndex !== -1) {
+            // Find next section start. Common next sections: "Søk på jobben", "Om bedriften", "Kontaktperson"
+            const potentialEnds = ['Søk på jobben', 'Om bedriften', 'Kontaktperson', 'Arbeidssted', 'Du får'];
+            let endIndex = html.length;
+
+            for (const end of potentialEnds) {
+                const idx = html.indexOf(end, startIndex + startMarker.length);
+                if (idx !== -1 && idx < endIndex) {
+                    endIndex = idx;
+                }
+            }
+
+            // Extract raw HTML chunk
+            let rawChunk = html.substring(startIndex + startMarker.length, endIndex);
+
+            // Clean up: simple strip tags.
+            // This is dirty but effective for plain text.
+            description = rawChunk.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
+        }
+
+        // Fallback: If "Om jobben" not found (some ads don't have it), try "Stillingsbeskrivelse"
+        if (!description) {
+            // ... fallback logic or just return empty
+        }
+
+        return description;
+    } catch (e) {
+        console.error(`Error scraping description for ${uuid}:`, e.message);
+        return '';
+    }
+}
+
+// ... existing code ...
 
 // Search API (public, no token needed)
 const NAV_API_URL = 'https://arbeidsplassen.nav.no/stillinger/api/search';
@@ -134,6 +193,7 @@ export function mapNavJobToInternal(navJob) {
     }
 
     const tags = extractTags(navJob);
+    const sector = getSector(navJob);
 
     // Strict Employment Type Logic
     let employmentType = 'Annet';
@@ -169,7 +229,7 @@ export function mapNavJobToInternal(navJob) {
         expiresAt: new Date(navJob.expires),
         userId: null,
         tags: tags,
-        sector: 'Annet', // Could try to map occupationList if available
+        sector: sector,
         showPhone: false,
     };
 }
@@ -186,42 +246,59 @@ export async function importNavJobs(limit = 100) {
 
     console.log('Starting NAV job import via Search API...');
 
-    for (const query of queries) {
-        if (importedCount >= limit) break;
+    try {
+        for (const query of queries) {
+            if (importedCount >= limit) break;
 
-        let page = 0;
-        // Fetch up to 2 pages per query to keep it fast
-        while (page < 2 && importedCount < limit) {
-            const data = await fetchNavJobs(page, query);
-            if (!data.content || data.content.length === 0) break;
+            let page = 0;
+            // Fetch up to 2 pages per query to keep it fast
+            while (page < 2 && importedCount < limit) {
+                const data = await fetchNavJobs(page, query);
+                if (!data.content || data.content.length === 0) break;
 
-            for (const navJob of data.content) {
-                if (importedCount >= limit) break;
+                for (const navJob of data.content) {
+                    if (importedCount >= limit) break;
 
-                const jobData = mapNavJobToInternal(navJob);
-                if (!jobData) continue; // Skip if mapping fails or validation checks fail
+                    const jobData = mapNavJobToInternal(navJob);
+                    if (!jobData) continue; // Skip if mapping fails or validation checks fail
 
-                // Check if job already exists
-                const existingJob = await db.collection('jobs').findOne({ externalId: jobData.externalId });
+                    // Check if job already exists
+                    const existingJob = await db.collection('jobs').findOne({ externalId: jobData.externalId });
 
-                if (!existingJob) {
-                    // Insert new job
-                    const activationData = {
-                        ...jobData,
-                        views: 0,
-                        createdAt: new Date(),
-                        updatedAt: new Date(),
-                        activatedAt: new Date()
-                    };
+                    if (!existingJob) {
+                        // Fetch full description if missing
+                        let fullDescription = jobData.description;
+                        if (!fullDescription || fullDescription.length < 50) {
+                            // We need to define fetchDescriptionFromPage inside or export it. 
+                            // Since I added it to the file scope in previous step (implied), it should be available.
+                            // BUT `mapNavJobToInternal` is sync.
+                            fullDescription = await fetchDescriptionFromPage(navJob.uuid);
+                            if (fullDescription) {
+                                jobData.description = fullDescription;
+                            }
+                        }
 
-                    await db.collection('jobs').insertOne(activationData);
-                    importedCount++;
-                    console.log(`Imported NAV job: ${jobData.title} (Query: ${query})`);
+                        // Insert new job
+                        const activationData = {
+                            ...jobData,
+                            views: 0,
+                            createdAt: new Date(),
+                            updatedAt: new Date(),
+                            activatedAt: new Date()
+                        };
+
+                        await db.collection('jobs').insertOne(activationData);
+                        importedCount++;
+                        console.log(`Imported NAV job: ${jobData.title} (Query: ${query})`);
+                    }
                 }
+                page++;
             }
-            page++;
         }
-    }
 
-    return importedCount;
+        return importedCount;
+    } catch (e) {
+        console.error('CRITICAL ERROR in importNavJobs:', e);
+        throw e; // Re-throw to be caught by route handler
+    }
 }

@@ -45,7 +45,7 @@ export default function JobCard({ job }) {
                     </svg>
                     <span>{job.location}</span>
                     <span className="text-slate-300">•</span>
-                    <span>{job.sector}</span>
+                    <span>{job.sector || 'Annet'}</span>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
