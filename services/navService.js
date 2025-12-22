@@ -35,44 +35,68 @@ export async function fetchNavJobs(page = 0, query = 'deltid') {
 }
 
 /**
+ * Helper to capitalize first letter
+ */
+function capitalize(str) {
+    if (!str) return '';
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+/**
  * Extract tags from job content
  */
 function extractTags(navJob) {
     const tags = new Set();
     const textToCheck = `${navJob.title} ${navJob.description} ${navJob.engagementtype || ''} ${navJob.extent || ''}`.toLowerCase();
 
-    // Map of keywords to tags
+    // Engagement types
+    if (navJob.engagementtype) {
+        const type = navJob.engagementtype.toLowerCase();
+        if (type.includes('fast')) tags.add('Fast stilling');
+        else if (type.includes('vikar')) tags.add('Vikariat');
+        else if (type.includes('prosjekt')) tags.add('Prosjekt');
+        else if (type.includes('sesong')) tags.add('Sesongarbeid');
+        else if (type.includes('ferie')) tags.add('Sommerjobb');
+    }
+
+    // Category Keywords
     const keywordMap = {
+        // High level categories
+        'salg': 'Salg',
+        'selger': 'Salg',
+        'sales': 'Salg',
+        'b2b': 'B2B Salg',
+        'account manager': 'B2B Salg',
+        'kundeservice': 'Kundeservice',
+        'kundebehandler': 'Kundeservice',
+        'support': 'Kundeservice',
+        'helse': 'Helse og Omsorg',
+        'sykepleier': 'Helse og Omsorg',
+        'assistent': 'Helse og Omsorg',
+        'omsorg': 'Helse og Omsorg',
+        'barnehage': 'Oppvekst',
+        'lære': 'Lærling',
+        'butikk': 'Butikk',
+        'kasse': 'Butikk',
+        'varehandel': 'Butikk',
+        'lager': 'Lager og Logistikk',
+        'logistikk': 'Lager og Logistikk',
+        'sjåfør': 'Transport',
+        'servering': 'Restaurant og Servering',
+        'servitør': 'Restaurant og Servering',
+        'restaurant': 'Restaurant og Servering',
+        'kokk': 'Restaurant og Servering',
+
+        // Specific types
         'deltid': 'Deltid',
-        'heltid': 'Heltid',
-        'sesong': 'Sesongarbeid',
         'sommerjobb': 'Sommerjobb',
         'julehjelp': 'Julehjelp',
-        'julerush': 'Julehjelp',
-        'vikar': 'Vikariat',
-        'tilkalling': 'Tilkalling',
-        'ekstrahjelp': 'Ekstrahjelp',
-        'lærling': 'Lærling',
-        'trainee': 'Trainee',
         'kveld': 'Kveldsarbeid',
         'helg': 'Helgearbeid',
         'student': 'Student',
-        'hjemmekontor': 'Hjemmekontor',
-        'remote': 'Hjemmekontor'
     };
 
-    // Check strict engagement type first
-    if (navJob.engagementtype) {
-        const type = navJob.engagementtype.toLowerCase();
-        if (type.includes('fast')) tags.add('Fast');
-        if (type.includes('vikar')) tags.add('Vikariat');
-        if (type.includes('engasjement')) tags.add('Engasjement');
-        if (type.includes('prosjekt')) tags.add('Prosjekt');
-        if (type.includes('sesong')) tags.add('Sesongarbeid');
-        if (type.includes('ferie')) tags.add('Sommerjobb');
-    }
-
-    // Check text for other keywords
+    // Check text for keywords
     Object.entries(keywordMap).forEach(([keyword, tag]) => {
         if (textToCheck.includes(keyword)) {
             tags.add(tag);
@@ -88,32 +112,53 @@ function extractTags(navJob) {
 export function mapNavJobToInternal(navJob) {
     const combinedText = `${navJob.title} ${navJob.description} ${navJob.engagementtype || ''} ${navJob.extent || ''}`.toLowerCase();
 
-    // Keywords we are interested in
-    const keywords = ['deltid', 'tilkalling', 'vikar', 'sesong', 'ekstrahjelp', 'sommerjobb'];
+    // Keywords we are interested in for IMPORTING
+    const importKeywords = ['deltid', 'tilkalling', 'vikar', 'sesong', 'ekstrahjelp', 'sommerjobb'];
 
-    // Check if job matches any of our criteria
-    const isRelevant = keywords.some(keyword => combinedText.includes(keyword));
-
+    // Check if job matches any of import criteria
+    const isRelevant = importKeywords.some(keyword => combinedText.includes(keyword));
     if (!isRelevant) return null;
 
-    // Must be in Norway
-    const location = navJob.workLocations && navJob.workLocations[0];
-    if (location && location.country && location.country !== 'Norge') return null;
+    // Location Logic: Use 'locations' array from Search API
+    const locObj = navJob.locations && navJob.locations[0];
+    const country = locObj?.country || 'Norge';
+
+    if (country.toLowerCase() !== 'norge' && country.toLowerCase() !== 'norway') return null;
+
+    // Prefer municipality, then city, then "Norge"
+    let displayLocation = 'Norge';
+    if (locObj?.municipal) {
+        displayLocation = capitalize(locObj.municipal);
+    } else if (locObj?.city) {
+        displayLocation = capitalize(locObj.city);
+    }
 
     const tags = extractTags(navJob);
 
-    // Determine primary employment type
+    // Strict Employment Type Logic
     let employmentType = 'Annet';
-    if (combinedText.includes('deltid')) employmentType = 'Deltid';
-    else if (combinedText.includes('sesong')) employmentType = 'Sesong';
-    else if (combinedText.includes('sommerjobb')) employmentType = 'Sommerjobb';
-    else if (combinedText.includes('vikar')) employmentType = 'Vikar';
-    else if (combinedText.includes('tilkalling') || combinedText.includes('ekstrahjelp')) employmentType = 'Tilkalling';
+
+    if (combinedText.includes('deltid')) {
+        employmentType = 'Deltid';
+    } else if (combinedText.includes('sommerjobb')) {
+        employmentType = 'Sommerjobb';
+    } else if (combinedText.includes('sesong')) {
+        employmentType = 'Sesong';
+    } else if (combinedText.includes('tilkalling') || combinedText.includes('ekstrahjelp')) {
+        employmentType = 'Tilkalling';
+    } else if (combinedText.includes('vikar')) {
+        employmentType = 'Vikar';
+    } else if (combinedText.includes('heltid')) {
+        // Only classify as Heltid if it hasn't matched the above (meaning it's purely full time)
+        // But we are filtering for "relevant" jobs, so this case implies it might have matched a specific keyword like 'vikar' + 'heltid'
+        // If we are here, it didn't match the specific part-time keywords above, so we default to 'Heltid' if present.
+        employmentType = 'Heltid';
+    }
 
     return {
         title: navJob.title,
-        description: navJob.description, // Note: NAV descriptions can be HTML
-        location: location?.city || location?.municipality || 'Norge',
+        description: navJob.description,
+        location: displayLocation,
         country: 'Norway',
         employmentType,
         source: 'nav',
@@ -122,9 +167,9 @@ export function mapNavJobToInternal(navJob) {
         companyName: navJob.employer?.name || 'Anonym arbeidsgiver',
         status: 'active',
         expiresAt: new Date(navJob.expires),
-        userId: null, // System job
+        userId: null,
         tags: tags,
-        sector: 'Annet', // Default sector
+        sector: 'Annet', // Could try to map occupationList if available
         showPhone: false,
     };
 }

@@ -5,8 +5,8 @@ export default function JobCard({ job }) {
     const slug = `${slugify(job.title)}-${slugify(job.location)}-${job._id}`;
 
     return (
-        <Link href={`/jobb/${slug}`}>
-            <div className="glass-card hover-lift group cursor-pointer bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+        <Link href={`/jobb/${slug}`} className="block h-full">
+            <div className="glass-card hover-lift group cursor-pointer bg-white border border-slate-300 shadow-sm hover:shadow-md transition-all h-full flex flex-col">
                 <div className="flex gap-4 mb-4">
                     {job.logo && (
                         <div className="w-16 h-16 flex-shrink-0 bg-slate-50 rounded-lg p-2 flex items-center justify-center border border-slate-100">
@@ -34,7 +34,7 @@ export default function JobCard({ job }) {
                     </div>
                 </div>
 
-                <p className="text-slate-600 text-sm mb-4 leading-relaxed">
+                <p className="text-slate-600 text-sm mb-4 leading-relaxed flex-grow">
                     {truncate(job.description, 100)}
                 </p>
 
