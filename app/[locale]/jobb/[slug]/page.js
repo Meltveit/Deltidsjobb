@@ -15,12 +15,12 @@ export async function generateMetadata({ params }) {
     }
 
     return {
-        title: `${job.title} - ${job.location} | Deltidsjobb`,
-        description: job.description.substring(0, 160),
-        keywords: job.tags.join(', '),
+        title: `${job.title} - ${job.location || 'Norge'} | Deltidsjobb`,
+        description: (job.description || '').substring(0, 160),
+        keywords: (job.tags || []).join(', '),
         openGraph: {
-            title: `${job.title} - ${job.location}`,
-            description: job.description.substring(0, 160),
+            title: `${job.title} - ${job.location || 'Norge'}`,
+            description: (job.description || '').substring(0, 160),
             type: 'website',
         },
     };

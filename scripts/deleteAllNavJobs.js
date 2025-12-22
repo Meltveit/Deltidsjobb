@@ -9,7 +9,7 @@ async function clearNavJobs() {
         await client.connect();
         // The DB name is often part of the URI or default. Let's try connecting and listing.
         // Or assume 'test' or get from URI.
-        const db = client.db();
+        const db = client.db('deltidsjobb');
         console.log(`Connected to database: ${db.databaseName}`);
 
         const result = await db.collection('jobs').deleteMany({ source: 'nav' });
