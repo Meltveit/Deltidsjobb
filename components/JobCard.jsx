@@ -49,6 +49,12 @@ export default function JobCard({ job }) {
                 </div>
 
                 <div className="flex flex-wrap gap-2">
+                    {job.source === 'nav' && (
+                        <span className="tag text-xs bg-blue-50 text-blue-700 border-blue-100 flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                            Hentet fra Arbeidsplassen
+                        </span>
+                    )}
                     {job.tags.slice(0, 3).map((tag, index) => (
                         <span key={index} className="tag text-xs bg-primary-50 text-primary-700 border-primary-100">
                             {tag}
