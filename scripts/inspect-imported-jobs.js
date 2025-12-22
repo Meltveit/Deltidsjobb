@@ -1,5 +1,5 @@
 // Inspect the jobs in DB to see if description is populated
-import { getDatabase } from '@/lib/mongodb';
+import { getDatabase } from '../lib/mongodb.js';
 
 async function inspect() {
     const db = await getDatabase();

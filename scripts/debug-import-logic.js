@@ -39,24 +39,43 @@ async function fetchDescriptionFromPage(uuid) {
         if (!res.ok) return '';
         const html = await res.text();
 
-        // Regex logic copy-paste
-        let description = '';
-        const startMarker = 'Om jobben';
-        const startIndex = html.indexOf(startMarker);
+        // Improved scraping: look for semantic section or role="main" or class containing "description"
+        // But since we use regex, let's look for known boundaries.
+        // "Om jobben" is good.
+        // Let's also look for "job-posting-text" or similar if we knew the class.
 
-        if (startIndex !== -1) {
-            const potentialEnds = ['Søk på jobben', 'Om bedriften', 'Kontaktperson', 'Arbeidssted', 'Du får'];
-            let endIndex = html.length;
-            for (const end of potentialEnds) {
-                const idx = html.indexOf(end, startIndex + startMarker.length);
+        // Simpler: Split by "Om jobben"
+        const parts = html.split('Om jobben');
+        if (parts.length > 1) {
+            // Get content AFTER "Om jobben"
+            let content = parts[1];
+
+            // 1. Skip metadata / apply box (Start content AFTER these)
+            // The metadata usually ends with a "Søk på jobben" box containing "Gå til søknad".
+            const startMarkers = ['Gå til søknad', 'Søk på jobben'];
+            for (const marker of startMarkers) {
+                const idx = content.indexOf(marker);
+                // Only skip if it's found early (e.g. in the first 1500 chars) to avoid false positives deep in text
+                if (idx !== -1 && idx < 1500) {
+                    content = content.substring(idx + marker.length);
+                }
+            }
+
+            // 2. Cut off at end markers (Footer sections)
+            const endMarkers = ['Om bedriften', 'Kontaktperson', '<footer', 'Annonsedata', 'Du får'];
+            let endIndex = content.length;
+            for (const marker of endMarkers) {
+                const idx = content.indexOf(marker);
                 if (idx !== -1 && idx < endIndex) {
                     endIndex = idx;
                 }
             }
-            let rawChunk = html.substring(startIndex + startMarker.length, endIndex);
-            description = rawChunk.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
+            content = content.substring(0, endIndex);
+
+            // Strip tags
+            return content.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
         }
-        return description;
+        return '';
     } catch (e) {
         console.error(`Error scraping description for ${uuid}:`, e.message);
         return '';
@@ -65,38 +84,15 @@ async function fetchDescriptionFromPage(uuid) {
 
 // ... Main Logic ...
 async function run() {
-    console.log('Starting debug run...');
+    console.log('Starting debug run for specific UUID...');
+    const uuid = '34ea43fc-4aed-4306-b8d8-efa1ecd20872'; // KIWI Lunde
 
-    // 1. Fetch search
-    const NAV_API_URL = 'https://arbeidsplassen.nav.no/stillinger/api/search';
-    const query = 'deltid';
-    const url = `${NAV_API_URL}?q=${encodeURIComponent(query)}&size=1&sort=published:desc`;
-
-    try {
-        const res = await fetch(url);
-        const data = await res.json();
-        const hits = data.hits.hits.map(h => h._source);
-
-        console.log(`Found ${hits.length} hits.`);
-
-        for (const navJob of hits) {
-            console.log('Processing:', navJob.title);
-
-            // Map
-            // Simulate mapNavJobToInternal logic locally
-            // ...
-
-            // Fetch Description
-            const desc = await fetchDescriptionFromPage(navJob.uuid);
-            console.log('Fetched Description:', desc ? desc.substring(0, 50) + '...' : 'EMPTY');
-
-            // Simulate DB insert
-            // ...
-        }
-
-    } catch (e) {
-        console.error('Debug run error:', e);
-    }
+    // Fetch Description
+    const desc = await fetchDescriptionFromPage(uuid);
+    console.log('---------------------------------------------------');
+    console.log('Fetched Description Length:', desc.length);
+    console.log('Preview:', desc.substring(0, 500));
+    console.log('---------------------------------------------------');
 }
 
 run();

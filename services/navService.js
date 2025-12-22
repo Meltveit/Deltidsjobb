@@ -4,6 +4,34 @@ import { getDatabase } from '@/lib/mongodb';
 
 // Helper to fetch description from public page
 // Helper to fetch description from public page
+const occupationMap = {
+    'Helse og sosial': 'Helse og Omsorg',
+    'Salg og service': 'Salg og Service',
+    'Industri, bygg og anlegg': 'Bygg og Anlegg',
+    'Kontor og administrasjon': 'Kontor og Administrasjon',
+    'Undervisning': 'Undervisning',
+    'IT': 'IT og Teknologi',
+    'Transport og logistikk': 'Transport og Lager',
+    'Kultur og natur': 'Kultur og Natur',
+    'Hotell og reiseliv': 'Reiseliv og Servering',
+    'Butikk': 'Butikk',
+    'Renhold': 'Renhold',
+    'Kokk': 'Restaurant og Servering',
+    'Servitør': 'Restaurant og Servering',
+    'Sjåfør': 'Transport',
+    'Lager': 'Lager og Logistikk',
+    'Barnehage': 'Oppvekst',
+};
+
+function getSector(navJob) {
+    if (navJob.occupationList && navJob.occupationList.length > 0) {
+        const occ = navJob.occupationList[0];
+        if (occ.level2 && occupationMap[occ.level2]) return occupationMap[occ.level2];
+        if (occ.level1 && occupationMap[occ.level1]) return occupationMap[occ.level1];
+    }
+    return 'Annet';
+}
+
 async function fetchDescriptionFromPage(uuid) {
     try {
         const url = `https://arbeidsplassen.nav.no/stillinger/stilling/${uuid}`;
@@ -11,49 +39,46 @@ async function fetchDescriptionFromPage(uuid) {
         if (!res.ok) return '';
         const html = await res.text();
 
-        // 1. Look for specific markers known from inspection
-        // "Om jobben" is a strong h2 marker.
-        // We want strict match on "Om jobben" or "Stillingsbeskrivelse"
+        // Improved scraping: look for semantic section or role="main" or class containing "description"
+        // But since we use regex, let's look for known boundaries.
+        // "Om jobben" is good.
+        // Let's also look for "job-posting-text" or similar if we knew the class.
 
-        let description = '';
+        // Simpler: Split by "Om jobben"
+        const parts = html.split('Om jobben');
+        if (parts.length > 1) {
+            // Get content AFTER "Om jobben"
+            let content = parts[1];
 
-        // Use a simple regex to find the section between "Om jobben" and the next H2
-        // HTML usually looks like: <h2>Om jobben</h2><div...>...</div><h2>
-        // But headers might be anything.
-        // Let's rely on text content proximity. 
+            // 1. Skip metadata / apply box (Start content AFTER these)
+            // The metadata usually ends with a "Søk på jobben" box containing "Gå til søknad".
+            const startMarkers = ['Gå til søknad', 'Søk på jobben'];
+            for (const marker of startMarkers) {
+                const idx = content.indexOf(marker);
+                // Only skip if it's found early (e.g. in the first 1500 chars) to avoid false positives deep in text
+                if (idx !== -1 && idx < 1500) {
+                    content = content.substring(idx + marker.length);
+                }
+            }
 
-        // Find start index
-        const startMarker = 'Om jobben';
-        const startIndex = html.indexOf(startMarker);
-
-        if (startIndex !== -1) {
-            // Find next section start. Common next sections: "Søk på jobben", "Om bedriften", "Kontaktperson"
-            const potentialEnds = ['Søk på jobben', 'Om bedriften', 'Kontaktperson', 'Arbeidssted', 'Du får'];
-            let endIndex = html.length;
-
-            for (const end of potentialEnds) {
-                const idx = html.indexOf(end, startIndex + startMarker.length);
+            // 2. Cut off at end markers (Footer sections)
+            const endMarkers = ['Om bedriften', 'Kontaktperson', '<footer', 'Annonsedata', 'Du får'];
+            let endIndex = content.length;
+            for (const marker of endMarkers) {
+                const idx = content.indexOf(marker);
                 if (idx !== -1 && idx < endIndex) {
                     endIndex = idx;
                 }
             }
+            content = content.substring(0, endIndex);
 
-            // Extract raw HTML chunk
-            let rawChunk = html.substring(startIndex + startMarker.length, endIndex);
-
-            // Clean up: simple strip tags.
-            // This is dirty but effective for plain text.
-            description = rawChunk.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
+            // Strip tags and normalize whitespace
+            return content.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
         }
 
-        // Fallback: If "Om jobben" not found (some ads don't have it), try "Stillingsbeskrivelse"
-        if (!description) {
-            // ... fallback logic or just return empty
-        }
-
-        return description;
+        return '';
     } catch (e) {
-        console.error(`Error scraping description for ${uuid}:`, e.message);
+        console.error(`Error scraping ${uuid}:`, e.message);
         return '';
     }
 }
