@@ -41,40 +41,63 @@ async function fetchDescriptionFromPage(uuid) {
 
         // Improved scraping: look for semantic section or role="main" or class containing "description"
         // But since we use regex, let's look for known boundaries.
-        // "Om jobben" is good.
-        // Let's also look for "job-posting-text" or similar if we knew the class.
 
-        // Simpler: Split by "Om jobben"
-        const parts = html.split('Om jobben');
-        if (parts.length > 1) {
-            // Get content AFTER "Om jobben"
-            let content = parts[1];
+        let content = '';
 
-            // 1. Skip metadata / apply box (Start content AFTER these)
-            // The metadata usually ends with a "Søk på jobben" box containing "Gå til søknad".
-            const startMarkers = ['Gå til søknad', 'Søk på jobben'];
-            for (const marker of startMarkers) {
-                const idx = content.indexOf(marker);
-                // Only skip if it's found early (e.g. in the first 1500 chars) to avoid false positives deep in text
-                if (idx !== -1 && idx < 1500) {
-                    content = content.substring(idx + marker.length);
+        // Strategy 1: Look for "job-posting-text" class (common in NAV internal apps)
+        const jobTextClass = 'job-posting-text';
+        const classIdx = html.indexOf(jobTextClass);
+
+        if (classIdx !== -1) {
+            console.log('Strategy 1: Found job-posting-text at', classIdx);
+            // Find the end of the opening tag
+            const tagEnd = html.indexOf('>', classIdx);
+            if (tagEnd !== -1) {
+                content = html.substring(tagEnd + 1);
+                console.log('Strategy 1 Raw Start:', content.substring(0, 100));
+            }
+        } else {
+            console.log('Strategy 1: job-posting-text NOT FOUND');
+        }
+
+        // Strategy 2: Fallback to "Om jobben" split
+        if (!content) {
+            console.log('Strategy 2: Fallback to Om jobben');
+            const parts = html.split('Om jobben');
+            if (parts.length > 1) {
+                content = parts[1];
+                // 1. Skip metadata / apply box (Start content AFTER these)
+                const startMarkers = ['Gå til søknad', 'Søk på jobben'];
+                for (const marker of startMarkers) {
+                    const idx = content.indexOf(marker);
+                    if (idx !== -1 && idx < 5000) {
+                        console.log('Strategy 2: Found marker', marker, 'at', idx);
+                        content = content.substring(idx + marker.length);
+                        break;
+                    }
                 }
             }
+        }
 
-            // 2. Cut off at end markers (Footer sections)
+        if (content) {
+            // Cut off at end markers (Footer sections)
             const endMarkers = ['Om bedriften', 'Kontaktperson', '<footer', 'Annonsedata', 'Du får'];
             let endIndex = content.length;
             for (const marker of endMarkers) {
                 const idx = content.indexOf(marker);
                 if (idx !== -1 && idx < endIndex) {
+                    console.log('Found End Marker:', marker, 'at', idx);
                     endIndex = idx;
                 }
             }
             content = content.substring(0, endIndex);
 
-            // Strip tags
-            return content.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
+            // Strip tags and normalize whitespace
+            const striped = content.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
+            console.log('Final Strip Start:', striped.substring(0, 100));
+            return striped;
         }
+
         return '';
     } catch (e) {
         console.error(`Error scraping description for ${uuid}:`, e.message);
